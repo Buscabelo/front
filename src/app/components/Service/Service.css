@@ -1,0 +1,71 @@
+.service-container {
+  display: flex;
+  height: 100%;
+}
+
+.service-container .service-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 0 5px 10px;
+  border-left: 1px solid var(--gray-2);
+  margin: 5px 0;
+}
+
+.service-container .service-body .service-title a {
+  color: initial;
+  text-decoration: none;
+}
+
+.service-container .service-body .service-description {
+  overflow: hidden;
+  font-size: 1rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-height: 1.35rem;
+}
+
+@media screen and (max-width: 425px) {
+  .service-container .service-icon {
+    width: 120px;
+    margin-right: 3vw;
+  }
+
+  .service-container .service-body .service-description {
+    -webkit-line-clamp: 3;
+  }
+}
+
+@media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 1024px) {
+  .service-container {
+    border: 1px solid #000;
+    padding: 1.5vh 1vw;
+  }
+
+  .service-container .service-icon {
+    width: 150px;
+    margin-right: 1vw;
+  }
+
+  .service-container .service-body .service-title {
+    margin-bottom: 5px;
+  }
+
+  .service-container .service-body .service-description {
+    -webkit-line-clamp: 5;
+  }
+
+  .service-container .service-body .service-rate {
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+  }
+
+  .service-container .service-body .service-rate svg {
+    font-size: 1rem;
+    margin-right: 5px;
+  }
+}
