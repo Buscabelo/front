@@ -7,13 +7,13 @@ export default function Divider({ size = 2, position = null, custom = null }) {
   size = size + 'rem';
 
   if (!custom) {
-    if (position == 'horizontal') {
+    if (position === 'horizontal') {
       style = {
         ...style,
         marginRight: size,
         marginLeft: size
       }
-    } else if (position == 'vertical') {
+    } else if (position === 'vertical') {
       style = {
         ...style,
         marginTop: size,

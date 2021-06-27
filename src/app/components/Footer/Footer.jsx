@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <footer>
       <div className="info">
-        {!isMobile && <img src={logo} width="80" />}
+        {!isMobile && <img src={logo} width="80" alt="Logo Buscabelo" />}
         <span>
           © Copyright 2021 - Buscabelo
           {!isMobile && <p>

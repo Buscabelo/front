@@ -8,7 +8,7 @@ export default function Submenu({ isShow, hide }) {
     return (
       <nav className="submenu">
         <a href="/agendamentos">Agendamentos</a>
-        <a href="" onClick={handleLogout}>Sair</a>
+        <a href="/" onClick={handleLogout}>Sair</a>
       </nav>
     );
 

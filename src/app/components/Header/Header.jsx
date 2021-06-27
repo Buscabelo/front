@@ -16,12 +16,12 @@ export default function Header({ user = null }) {
     if (!isMobile) {
       setShowSearch(true);
     }
-  })
+  }, [])
 
   return (
     <header>
       <a href="/">
-        <img src={logo} width="80" />
+        <img src={logo} width="80" alt="Logo Buscabelo" />
       </a>
       <SearchInput
         isShow={showSearch}

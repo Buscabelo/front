@@ -12,7 +12,7 @@ export default function AuthInfo({ user, showMenu }) {
 
   if (user)
     return (
-      <a onClick={handleShowMenu}>
+      <a href="/" onClick={handleShowMenu}>
         Logado
       </a>
     );
