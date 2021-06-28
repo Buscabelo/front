@@ -8,7 +8,7 @@ export default function Service({ data }) {
       <img src={data.icon} className="service-icon" alt={data.title} />
       <div className="service-body">
         <div className="service-content">
-          <h3 class="service-title">
+          <h3 className="service-title">
             <a href={data.link}>
               {data.title}
             </a>

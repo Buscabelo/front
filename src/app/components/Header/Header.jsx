@@ -19,7 +19,7 @@ export default function Header({ user = null }) {
   }, [])
 
   return (
-    <header>
+    <header className="topbar">
       <a href="/">
         <img src={logo} width="80" alt="Logo Buscabelo" />
       </a>
@@ -27,7 +27,7 @@ export default function Header({ user = null }) {
         isShow={showSearch}
         hide={() => setShowSearch(false)}
       />
-      <nav>
+      <nav className="navbar">
         <button onClick={() => setShowSearch(true)}>
           <MdSearch />
         </button>

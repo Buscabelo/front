@@ -1,20 +1,18 @@
 import './List.css';
 
 export default function List({ direction = 'horizontal', items, ItemComponent = null, itemsPerLine }) {
-  let type, width;
+  let type;
 
   if (direction === 'horizontal') {
     type = 'grid';
-    width = (100 / +itemsPerLine) - 5;
-    console.log(width)
   } else if (direction === 'vertical') {
     type = 'list'
   }
 
   return (
-    <ol className={`list-container ${type}`}>
+    <ol className={`list-container ${type}`} style={{'--grid-num-rows': itemsPerLine}}>
       {items.map(item => (
-        <li style={{width: `${width}vw`}}>
+        <li key={item.id}>
           {ItemComponent && <ItemComponent data={item} />}
         </li>
       ))}
