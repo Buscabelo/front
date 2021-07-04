@@ -1,0 +1,85 @@
+.service-wrapper {
+  margin: 0 2vw;
+  padding: 4vh 2vw;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--gray-2);
+}
+
+.service-wrapper main {
+  width: 35%;
+}
+
+.service-wrapper main h2 {
+  font-size: 1.75rem;
+  margin-bottom: 2vh;
+}
+
+.service-wrapper main b {
+  line-height: 4vh;
+}
+
+.service-wrapper main p {
+  margin-bottom: 2vh;
+  line-height: 4vh;
+}
+
+.service-wrapper main .btn-group {
+  display: flex;
+  justify-content: space-between;
+  width: 55%;
+}
+
+.service-wrapper main .btn-group button {
+  appearance: none;
+  background-color: var(--primary);
+  border: none;
+  padding: 1.5vh 1vw;
+  border-radius: 15%;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.service-wrapper aside {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  background-color: gray;
+  color: white;
+}
+
+.other-services h3 {
+  font-size: 1.4rem;
+  padding: 0 2vw;
+}
+
+.other-services .wrapper {
+  display: flex;
+  text-decoration: none;
+  color: initial;
+}
+
+.other-services .wrapper aside {
+  height: 100%;
+}
+
+.other-services .wrapper aside img {
+  max-width: 8vw;
+  margin-bottom: -2px;
+}
+
+.other-services .wrapper main {
+  padding: 1vh 1vw 0 1vw;
+  background: gray;
+  width: 100%;
+}
+
+.other-services .wrapper main p {
+  overflow: hidden;
+  font-size: 1rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-height: 1.4rem;
+  -webkit-line-clamp: 4;
+}

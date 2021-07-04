@@ -5,6 +5,7 @@ import Login from './pages/Login/Login';
 import Provider from './pages/Provider/Provider';
 import Register from './pages/Register/Register';
 import Search from './pages/Search/Search';
+import Service from './pages/Service/Service';
 
 export default function Routes() {
   return(
@@ -15,6 +16,7 @@ export default function Routes() {
         <Route exact path="/cadastrar" component={Register} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/estabelecimento" component={Provider} />
+        <Route exact path="/servico" component={Service} />
       </Switch>
     </Router>
   );
