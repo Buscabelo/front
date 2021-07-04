@@ -1,10 +1,10 @@
 import { StrictMode } from 'react';
-import ReactDOM from 'react-dom';
-import App from './app/App';
+import { render } from 'react-dom';
+import App from './app/routes';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 
-ReactDOM.render(
+render(
   <StrictMode>
     <App />
   </StrictMode>,
