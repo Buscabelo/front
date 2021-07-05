@@ -1,0 +1,26 @@
+.desktop .slider {
+  justify-content: space-between;
+  padding: 0 2vw;
+}
+
+.desktop .slide a {
+  display: inline-block;
+  height: 100%;
+  padding: 0 3vw;
+}
+
+.desktop .slide a img {
+  border-radius: 15px;
+}
+
+.desktop .slide:first-of-type a {
+  padding-left: 0;
+}
+
+.desktop .slide:nth-child(2) a {
+  padding: 0 2vw;
+}
+
+.desktop .slide:last-of-type a {
+  padding-right: 0;
+}

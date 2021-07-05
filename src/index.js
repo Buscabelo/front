@@ -1,5 +1,7 @@
 import { StrictMode } from 'react';
 import { render } from 'react-dom';
+
+import './index.css';
 import App from './app/routes';
 import reportWebVitals from './reportWebVitals';
 import './index.css';

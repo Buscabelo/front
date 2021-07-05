@@ -1,0 +1,42 @@
+.list-container {
+  list-style: none;
+  width: 100%;
+}
+
+.list-container.list li {
+  margin-bottom: 2vh;
+}
+
+.list-container.list li:last-of-type {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 425px) {
+  .list-container.list {
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 4vw;
+  }
+}
+
+@media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 1024px) {
+  .list-container.list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 2vw;
+  }
+
+  .list-container.grid {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-num-rows), 1fr);
+    grid-column-gap: 5vw;
+    column-gap: 5vw;
+    grid-row-gap: 6vh;
+    row-gap: 6vh;
+    padding: 0 2vw;
+  }
+}
