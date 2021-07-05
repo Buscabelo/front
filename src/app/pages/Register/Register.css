@@ -1,0 +1,69 @@
+.register-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7vh 4vw;
+}
+
+.register-wrapper .cta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.register-wrapper .cta img {
+  max-width: 50%;
+}
+
+.register-wrapper main {
+  width: 40%
+}
+
+.register-wrapper main form {
+  padding: 2vh 2vw 4vh 2vw;
+  background-color: var(--gray-2);
+  margin-bottom: 2vh;
+}
+
+.register-wrapper main form .input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3vh;
+}
+
+.register-wrapper main form .input-group label {
+  margin-bottom: 5px;
+}
+
+.register-wrapper main form .input-group input {
+  padding: 1.5vh 1vw;
+  border-radius: 5px;
+  border: 1px solid var(--gray-1);
+}
+
+.register-wrapper main form button {
+  appearance: none;
+  padding: 1.3vh 1.5vw;
+  background-color: var(--primary);
+  border: none;
+  border-radius: 10%;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.register-wrapper main .login-cta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 2vh 5vw;
+  background-color: var(--gray-2);
+}
+
+.register-wrapper main .login-cta a {
+  margin-top: 5px;
+  text-decoration: none;
+}

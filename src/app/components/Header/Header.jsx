@@ -8,7 +8,8 @@ import SearchInput from './SearchInput';
 import Submenu from './Submenu';
 import logo from '../../assets/images/logo.png';
 
-export default function Header({ user = null }) {
+export default function Header() {
+  const user = localStorage.getItem('user');
   const [showSearch, setShowSearch] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
 
@@ -40,6 +41,7 @@ export default function Header({ user = null }) {
         />
       </nav>
       <Submenu
+        user={user}
         isShow={openMenu}
         hide={() => setOpenMenu(false)}
       />
