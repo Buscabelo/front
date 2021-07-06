@@ -9,7 +9,7 @@ import Submenu from './Submenu';
 import logo from '../../assets/images/logo.png';
 
 export default function Header() {
-  const user = localStorage.getItem('user');
+  const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
   const [showSearch, setShowSearch] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
 

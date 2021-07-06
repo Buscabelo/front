@@ -13,7 +13,7 @@ export default function AuthInfo({ user, showMenu }) {
   if (user)
     return (
       <a href="/" onClick={handleShowMenu}>
-        Logado
+        {user.name}
       </a>
     );
 
