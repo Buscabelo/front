@@ -1,0 +1,142 @@
+.provider-banner {
+  width: 100%;
+}
+
+.provider-banner img {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.provider-header {
+  display: flex;
+}
+
+.provider-header aside img {
+  border-radius: 50%;
+}
+
+.provider-header main p {
+  margin-top: 1.5vh;
+  color: #7b7b7b;
+}
+
+.provider-header main .info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.provider-header main .info .opened {
+  color: #52e31e;
+}
+
+.provider-header main .info .closed {
+  color: #fe4747;
+}
+
+.services-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.services-header .services-title {
+  font-size: 1.75rem;
+}
+
+.services-header .services-views {
+  display: flex;
+  font-size: 1.5rem;
+  color: var(--gray-2);  
+}
+
+.services-header .services-views svg {
+  cursor: pointer;
+}
+
+.services-header .services-views .active {
+  color: #000;
+  cursor: default;
+}
+
+@media screen and (max-width: 425px) {
+  .provider-banner img {
+    height: 30vh;
+  }
+
+  .provider-header {
+    align-items: flex-start;
+  }
+
+  .provider-header aside {
+    padding: 0 4vw;
+  }
+
+  .provider-header aside img {
+    width: 18vw;
+    height: 18vw;
+  }
+
+  .provider-header main h2 {
+    font-size: 1.5rem;
+  }
+
+  .provider-header main .info {
+    width: 48vw;
+  }
+
+  .provider-description {
+    margin-top: 1.5vh;
+    color: #7b7b7b;
+    padding: 0 4vw;
+    font-size: 1.1rem;
+  }
+
+  .services-header {
+    padding: 0 4vw;
+  }
+
+  .services-header .services-views svg {
+    margin-left: 3vw;
+  }
+}
+
+@media screen and (min-width: 768px) {  
+}
+
+@media screen and (min-width: 1024px) {
+  .provider-banner img {
+    max-height: 40vh;
+  }
+
+  .provider-header aside {
+    padding: 0 2vw;
+  }
+
+  .provider-header aside img {
+    width: 6.25vw;
+    height: 6.25vw;
+  }
+
+  .provider-header main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .provider-header main h2 {
+    font-size: 2rem;
+  }
+
+  .provider-header main .info {
+    width: 12.5vw;
+  }
+
+  .services-header {
+    padding: 0 2vw;
+  }
+
+  .services-header .services-views svg {
+    margin-left: 1vw;
+  }
+}
