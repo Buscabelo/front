@@ -1,0 +1,29 @@
+.search-header {
+  padding: 0 2vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-title {
+  padding-left: 2vw;
+  margin-bottom: 3vh;
+  font-size: 1rem;
+}
+
+.service-item {
+  border-bottom: 1px solid var(--gray-2);
+  padding-bottom: 1.5vh;
+}
+
+.service-item p {
+  margin-bottom: 5px;
+}
+
+.service-item p:last-of-type {
+  margin: 0;
+}
+
+.list li:last-of-type .service-item {
+  border: none;
+}

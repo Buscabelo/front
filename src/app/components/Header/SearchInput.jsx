@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { isMobile } from 'react-device-detect';
 import { MdClose, MdSearch } from 'react-icons/md';
+import { useHistory } from 'react-router-dom';
 
-export default function SearchInput({ isShow, hide, onSubmit = () => {} }) {
+export default function SearchInput({ isShow, hide }) {
+  const history = useHistory();
   const [value, setValue] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit(event.target);
+
+    history.push('/pesquisa', { search: value });
   }
 
   const clearInput = () => {
