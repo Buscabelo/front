@@ -15,7 +15,7 @@ export default function Routes() {
         <Route exact path="/pesquisa" component={Search} />
         <Route exact path="/cadastrar" component={Register} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/estabelecimento" component={Provider} />
+        <Route exact path="/estabelecimento/:id" component={Provider} />
         <Route exact path="/servico" component={Service} />
       </Switch>
     </Router>
