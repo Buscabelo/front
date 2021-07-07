@@ -9,6 +9,10 @@ export default function List({ direction = 'horizontal', items, ItemComponent = 
     type = 'list'
   }
 
+  if (!items || (Array.isArray(items) && items.length === 0)) {
+    return null;
+  }
+
   return (
     <ol className={`list-container ${type}`} style={{'--grid-num-rows': itemsPerLine}}>
       {items.map(item => (

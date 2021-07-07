@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 
@@ -11,8 +11,8 @@ import Provider from '../../components/Service/Service'
 function Service({ data }) {
   return (
     <div className="service-item">
-      <p>{data.title}</p>
-      <p>{data.description}</p>
+      <p><a href={`/servico/${data.id}`}>{data.name}</a></p>
+      <p>R$ {data.value.toFixed(2).replace('.', ',')}</p>
     </div>
   )
 }
@@ -21,6 +21,8 @@ export default function Search() {
   const [search, setSearch] = useState('');
   const history = useHistory();
   const location = useLocation();
+  const [services, setServices] = useState([]);
+  const [providers, setProviders] = useState([]);
 
   useEffect(() => {
     if (location.state) {
@@ -30,6 +32,62 @@ export default function Search() {
     }
   }, [location, history])
 
+  const loadServices = useCallback(() => {
+    fetch(`${process.env.REACT_APP_API}/services/search?name=${search}`)
+      .then((response) => response.json())
+      .then(({data}) => {
+        setServices(data)
+      })
+      .catch((error) => { setServices([]) })
+  }, [search, setServices])
+
+  const loadProviders = useCallback(() => {
+    fetch(`${process.env.REACT_APP_API}/providers/search?name=${search}`)
+      .then((response) => response.json())
+      .then(({data}) => {
+        setProviders(data)
+      })
+      .catch((error) => { setProviders([]) })
+  }, [search, setProviders])
+
+  useEffect(() => {
+    if (search) {
+      loadServices();
+      loadProviders();
+    }
+  }, [search, loadServices, loadProviders])
+
+  const renderContent = () => {
+    if ((!providers || (providers && providers.length === 0)) && (!services || (services && services.length === 0))) {
+      return <>Não foram encontrados serviços ou estabelecimentos com o(s) termo(s) pesquisado(s)</> 
+    }
+
+    return (
+      <>
+        {services && services.length > 0 && <>
+          <h3 className="search-title"><i>Serviços encontrados:</i></h3>
+          <List
+            direction="vertical"
+            itemsPerLine={2}
+            ItemComponent={Service}
+            items={services}
+          />
+          <Divider size={0.5} />
+        </>}
+        {providers && providers.length > 0 && <>
+          <h3 className="search-title"><i>Estabelecimentos encontrados:</i></h3>
+          <List
+            direction={isMobile ? 'vertical' : 'horizontal'}
+            itemsPerLine={2}
+            ItemComponent={Provider}
+            items={providers}
+          />
+          <Divider size={1} />
+        </>}
+      </>
+    );
+  }
+
   return (
     <AppLayout>
       <Divider size={1} />
@@ -38,22 +96,7 @@ export default function Search() {
         {false && 'filtro'}
       </header>
       <Divider size={0.5} />
-      <h3 className="search-title"><i>Serviços encontrados:</i></h3>
-      <List
-        direction="vertical"
-        itemsPerLine={2}
-        ItemComponent={Service}
-        items={[{id: 1, title: 'Cabelo raspadinho, estilo ronaldinho', link: '', description: 'R$ 35,00'},{id: 3, title: 'Corte Brabo', link: '', description: 'R$ 60,00'}]}
-      />
-      <Divider size={0.5} />
-      <h3 className="search-title"><i>Estabelecimentos encontrados:</i></h3>
-      <List
-        direction={isMobile ? 'vertical' : 'horizontal'}
-        itemsPerLine={2}
-        ItemComponent={Provider}
-        items={[{id: 2, icon: 'https://picsum.photos/200/200', title: 'Dom Manuel', link: '', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', rating: '4,0'},{id: 5, icon: 'https://picsum.photos/200/200', title: 'Dom Manuel', link: '', description: 'Lorem Ipsum', rating: '4,0'},{id: 6, icon: 'https://picsum.photos/200/200', title: 'Dom Manuel', link: '', description: 'Lorem Ipsum', rating: '4,0'},{id: 7, icon: 'https://picsum.photos/200/200', title: 'Dom Manuel', link: '', description: 'Lorem Ipsum', rating: '4,0'}]}
-      />
-      <Divider size={1} />
+      {renderContent()}
     </AppLayout>
   )
 }
