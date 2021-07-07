@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import './Login.css';
@@ -5,12 +6,30 @@ import logo from '../../assets/images/logo.png';
 
 export default function Login() {
   const history = useHistory();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const body = JSON.stringify({ email, password });
 
-    localStorage.setItem('user', JSON.stringify({}))
-    history.push('/');
+    fetch(`${process.env.REACT_APP_API}/sessions`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        localStorage.setItem('@buscabelo_client/user', JSON.stringify(data.user))
+        localStorage.setItem('@buscabelo_client/token', data.token)
+        history.push('/');
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   return (
@@ -24,11 +43,11 @@ export default function Login() {
           <h1 id="login-title">Login</h1>
           <div className="input-group">
             <label>Email:</label>
-            <input placeholder="Ex: Yan" />
+            <input type="email" placeholder="Ex: yanvictor@example.com" value={email} onChange={({target}) => setEmail(target.value)} required />
           </div>
           <div className="input-group">
             <label>Senha:</label>
-            <input type="password" placeholder="Ex: ******" />
+            <input type="password" placeholder="Ex: ******" value={password} onChange={({target}) => setPassword(target.value)} required />
           </div>
           <button className="btn-block" type="submit">Entrar</button>
           <section className="register-cta">
