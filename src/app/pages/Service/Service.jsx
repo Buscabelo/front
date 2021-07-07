@@ -1,4 +1,6 @@
+import { useCallback, useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
+import { useHistory, useParams } from 'react-router';
 
 import './Service.css';
 import AppLayout from '../../components/AppLayout/AppLayout';
@@ -19,19 +21,44 @@ function ServiceItem({ data }) {
 }
 
 export default function Service() {
+  const history = useHistory();
+  const { id } = useParams();
+  const [data, setData] = useState(null);
+
+  const loadService = useCallback(() => {
+    fetch(`${process.env.REACT_APP_API}/services/${id}`)
+      .then((response) => response.json())
+      .then(({data}) => {
+        setData(data)
+      })
+      .catch((error) => {
+        if (history.length > 1) {
+          history.goBack();
+        } else {
+          history.replace('/');
+        }
+      })
+  }, [id, setData]);
+
+  useEffect(() => {
+    loadService();
+  }, [loadService])
+
+  if (!data) {
+    return null;
+  }
+
   return (
     <AppLayout>
       <Divider size={1} />
       <article className="service-wrapper">
         <main>
-          <h2>Corte + Tratamento Capilar</h2>
-          <p>R$ 60,00</p>
+          <h2>{data.name}</h2>
+          <p>R$ {data.value.toFixed(2).replace('.', ',')}</p>
           <p><b>Estabelecimento:</b> Barbearia Dom Manuel</p>
           <section>
             <b>Descrição:</b>
-            <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
+            <p>{data.description}</p>
           </section>
           <section className="btn-group">
             <button onClick={() => {}}>Marcar Horário</button>
