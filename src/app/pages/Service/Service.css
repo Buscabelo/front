@@ -26,8 +26,6 @@
 
 .service-wrapper main .btn-group {
   display: flex;
-  justify-content: space-between;
-  width: 55%;
 }
 
 .service-wrapper main .btn-group button {
@@ -38,6 +36,10 @@
   border-radius: 15%;
   cursor: pointer;
   font-weight: bold;
+}
+
+.service-wrapper main .btn-group button:first-child {
+  margin-right: 20px;
 }
 
 .service-wrapper aside {
