@@ -1,0 +1,23 @@
+.appointment-container {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #212121;
+}
+
+.appointment-container main {
+  padding-top: 5px;
+  padding-left: 15px;
+}
+
+.appointment-container main h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.appointment-container main p {
+  margin-bottom: 5px;
+}
+
+.appointment-container aside img {
+  height: 100%;
+}
