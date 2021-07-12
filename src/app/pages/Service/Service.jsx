@@ -1,11 +1,20 @@
 import { useCallback, useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
+import Modal from 'react-modal';
 import { useHistory, useParams } from 'react-router';
+import FullCalendar, { formatDate } from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from "@fullcalendar/interaction";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 import './Service.css';
 import AppLayout from '../../components/AppLayout/AppLayout';
 import Divider from '../../components/Divider/Divider';
 import List from '../../components/List/List';
+
+const MySwal = withReactContent(Swal)
 
 function ServiceItem({ data }) {
   return (
@@ -20,13 +29,28 @@ function ServiceItem({ data }) {
   )
 }
 
+Modal.setAppElement('#root');
+
 export default function Service() {
   const history = useHistory();
   const { id } = useParams();
+  const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
+  const token = localStorage.getItem('@buscabelo_client/token');
   const [data, setData] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [date, setDate] = useState('');
+
+  const openModal = () => {
+    setShowModal(true);
+  }
 
   const loadService = useCallback(() => {
-    fetch(`${process.env.REACT_APP_API}/services/${id}`)
+    fetch(`${process.env.REACT_APP_API}/services/${id}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    })
       .then((response) => response.json())
       .then(({data}) => {
         setData(data)
@@ -43,6 +67,33 @@ export default function Service() {
   useEffect(() => {
     loadService();
   }, [loadService])
+
+  const handleDateClick = ({ dateStr, view }) => {
+    if (view.type === 'dayGridMonth') {
+      view.calendar.changeView('timeGridDay', dateStr);
+    } else if (view.type === 'timeGridDay') {
+      setDate(dateStr);
+    }
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    MySwal.fire({
+      title: 'Você deseja marcar horário para este serviço?',
+      html: (<>
+        <p>Serviço: { data.name }</p>
+        <p>Data: {formatDate(date, { year: 'numeric', month: '2-digit', day: '2-digit' })}</p>
+      </>),
+      showDenyButton: true,
+      confirmButtonText: 'Confirmar',
+      denyButtonText: 'Cancelar',
+    }).then(({isConfirmed}) => {
+      if (isConfirmed) {
+        setShowModal(false);
+      }
+    })
+  }
 
   if (!data) {
     return null;
@@ -61,7 +112,7 @@ export default function Service() {
             <p>{data.description}</p>
           </section>
           <section className="btn-group">
-            <button onClick={() => {}}>Marcar Horário</button>
+            <button onClick={() => openModal()}>Marcar Horário</button>
             <button onClick={() => {}}>Favoritar</button>
           </section>
         </main>
@@ -81,6 +132,39 @@ export default function Service() {
         />
       </section>
       <Divider size={1} />
+      <Modal
+        isOpen={showModal}
+        contentLabel="Teste"
+      >
+        <FullCalendar
+          plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin ]}
+          aspectRatio={2}
+          initialView="dayGridMonth"
+          businessHours={{
+            daysOfWeek: [1,2,3,4,5],
+            startTime: '07:00',
+            endTime: '20:00'
+          }}
+          weekends={false}
+          nowIndicator={true}
+          locale='pt'
+          selectable={true}
+          selectConstraint='businessHours'
+          selectOverlap={false}
+          headerToolbar={{
+            left: 'title',
+            right: 'prev,next'
+          }}
+          dateClick={handleDateClick}
+        />
+        <form method="post" onSubmit={handleSubmit}>
+          <input name="service" type="hidden" value={id} />
+          <input name="customer" type="hidden" value={user.id} />
+          {/* <input name="provider" type="hidden" value="{{ object.provider }}" /> */}
+          <input id="data" name="date" type="hidden" value={date} />
+          {date && <button>Finalizar Agendamento</button>}
+        </form>
+      </Modal>
     </AppLayout>
   )
 }
