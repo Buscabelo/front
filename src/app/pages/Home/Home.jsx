@@ -1,10 +1,10 @@
 import { isMobile } from 'react-device-detect';
 
 import AppLayout from '../../components/AppLayout/AppLayout';
-import Carousel from '../../components/Carousel/Carousel'
+import Carousel from '../../components/Carousel/Carousel';
 import Divider from '../../components/Divider/Divider';
 import List from '../../components/List/List';
-import Service from '../../components/Service/Service'
+import Service from '../../components/Service/Service';
 
 export default function Home() {
   return (
