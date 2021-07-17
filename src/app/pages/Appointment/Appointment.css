@@ -1,0 +1,41 @@
+.item-container {
+  padding: 0 2vw;
+}
+
+.item-container header {
+  margin-bottom: 2.5vh;
+}
+
+.item-container header h1 {
+  font-size: 1.75rem;
+  margin-bottom: 10px;
+}
+
+.item-container header span {
+  font-weight: normal;
+  font-size: 0.8rem;
+  vertical-align: middle;
+  padding: 3px 8px;
+}
+
+.item-container header span.done {
+  background-color: var(--success);
+  color: white;
+}
+
+.item-container header span.canceled {
+  background-color: var(--danger);
+  color: white;
+}
+
+.item-container main ol {
+  list-style-type: none;
+}
+
+.item-container main ol h2 {
+  font-size: 1.35rem;
+}
+
+.item-container main ol p {
+  margin-top: 5px;
+}
