@@ -90,7 +90,33 @@ export default function Service() {
       denyButtonText: 'Cancelar',
     }).then(({isConfirmed}) => {
       if (isConfirmed) {
-        setShowModal(false);
+        const body = JSON.stringify({
+          scheduled_at: new Date().toISOString(),
+          appointment_to: date,
+          provider: data.provider.id,
+          customer: user.id,
+          service: id,
+          time_done_at: '',
+          canceled_at: ''
+        });
+
+        fetch(`${process.env.REACT_APP_API}/appointments`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body
+        })
+          .then(({status}) => {
+            if (status === 200) {
+              setShowModal(false);
+              MySwal.fire('Sucesso!', 'Agendamento cadastrado com sucesso', 'success')
+            }
+          })
+          .catch((error) => {
+            console.error(error)
+          })
       }
     })
   }
@@ -157,13 +183,7 @@ export default function Service() {
           }}
           dateClick={handleDateClick}
         />
-        <form method="post" onSubmit={handleSubmit}>
-          <input name="service" type="hidden" value={id} />
-          <input name="customer" type="hidden" value={user.id} />
-          {/* <input name="provider" type="hidden" value="{{ object.provider }}" /> */}
-          <input id="data" name="date" type="hidden" value={date} />
-          {date && <button>Finalizar Agendamento</button>}
-        </form>
+        {date && <button onClick={handleSubmit}>Finalizar Agendamento</button>}
       </Modal>
     </AppLayout>
   )
