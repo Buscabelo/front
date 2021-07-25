@@ -30,14 +30,17 @@ export default function Appointments() {
   const [data, setData] = useState([]);
 
   const loadAppointments = useCallback(() => {
-    fetch(`${process.env.REACT_APP_API}/customer/${user.id}/appointments`, {
+    fetch(`${process.env.REACT_APP_API}/customers/${user.id}/appointments`, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       }
     })
       .then((response) => response.json())
-      .then((data) => setData(data))
+      .then((data) => {
+        const appointments = data.map(d => d.appointment);
+        setData(appointments)
+      })
       .catch((error) => console.error(error))
   }, [user, token, setData]);
 
