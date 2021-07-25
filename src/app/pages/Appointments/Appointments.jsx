@@ -6,16 +6,16 @@ import Divider from '../../components/Divider/Divider';
 import List from '../../components/List/List';
 
 function Appointment({ data }) {
-  const { service, appointment, provider } = data;
+  const { service, provider } = data;
 
   return (
     <div className="appointment-container">
       <main>
         <h3>{service.name}</h3>
-        <p>Data: {appointment.appointment_to}</p>
+        <p>Data: {data.appointment_to}</p>
         <p><b>{provider.name}</b></p>
-        {appointment.time_done_at && <p><b>Finalizado:</b> {appointment.time_done_at}</p>}
-        {appointment.canceled_at && <p><b>Cancelado:</b> {appointment.canceled_at}</p>}
+        {data.time_done_at && <p><b>Finalizado:</b> {data.time_done_at}</p>}
+        {data.canceled_at && <p><b>Cancelado:</b> {data.canceled_at}</p>}
       </main>
       <aside>
         <img src="https://picsum.photos/100/100" alt="icone serviço" />
