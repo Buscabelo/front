@@ -9,7 +9,7 @@ export default function Service({ data }) {
       <div className="service-body">
         <div className="service-content">
           <h3 className="service-title">
-            <a href={`/${data.password ? 'estabelecimento' : 'servico'}/${data.id}`}>
+            <a href={`/${data.provider ? 'servico' : 'estabelecimento'}/${data.id}`}>
               {data.name}
             </a>
           </h3>

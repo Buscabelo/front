@@ -14,6 +14,7 @@ export default function Provider() {
   const { id } = useParams();
   const [direction, setDirection] = useState('horizontal');
   const [data, setData] = useState(null);
+  const [services, setServices] = useState(null);
 
   useEffect(() => {
     if (isMobile) {
@@ -24,8 +25,8 @@ export default function Provider() {
   const loadProvider = useCallback(() => {
     fetch(`${process.env.REACT_APP_API}/providers/${id}`)
       .then((response) => response.json())
-      .then(({data}) => {
-        setData(data);
+      .then(({ provider }) => {
+        setData(provider);
       })
       .catch((error) => {
         if (history.length > 1) {
@@ -36,9 +37,19 @@ export default function Provider() {
       })
   }, [id, setData])
 
+  const loadServices = useCallback(() => {
+    fetch(`${process.env.REACT_APP_API}/providers/${id}/services`)
+      .then((response) => response.json())
+      .then((apiData) => {
+        const servicos = apiData.map(a => a.service);
+        setServices(servicos);
+      })
+  }, [id, setServices])
+
   useEffect(() => {
     loadProvider();
-  }, [loadProvider])
+    loadServices();
+  }, [loadProvider, loadServices])
 
   const handleDirectionChange = (changedDirection) => {
     if (direction !== changedDirection)
@@ -70,21 +81,23 @@ export default function Provider() {
         </main>
       </header>
       {isMobile && <p className="provider-description">{data.description}</p>}
-      <Divider size={1} />
-      <div className="services-header">
-        <h3 className="services-title">Serviços</h3>
-        <div className="services-views">
-          <MdGridOn className={`${direction === 'horizontal' ? 'active' : '' }`} onClick={() => handleDirectionChange('horizontal')} />
-          <MdFormatListBulleted className={`${direction === 'vertical' ? 'active' : '' }`} onClick={() => handleDirectionChange('vertical')} />
+      {services && <>
+        <Divider size={1} />
+        <div className="services-header">
+          <h3 className="services-title">Serviços</h3>
+          <div className="services-views">
+            <MdGridOn className={`${direction === 'horizontal' ? 'active' : '' }`} onClick={() => handleDirectionChange('horizontal')} />
+            <MdFormatListBulleted className={`${direction === 'vertical' ? 'active' : '' }`} onClick={() => handleDirectionChange('vertical')} />
+          </div>
         </div>
-      </div>
-      <Divider size={1} />
-      <List
-        direction={direction}
-        itemsPerLine={2}
-        ItemComponent={Service}
-        items={[{id: 2, icon: 'https://picsum.photos/200/200', title: 'Corte 01', link: '', description: 'R$ 30,00', rating: '4,0'},{id: 5, icon: 'https://picsum.photos/200/200', title: 'Corte 02', link: '', description: 'R$ 25,00', rating: '4,0'},{id: 6, icon: 'https://picsum.photos/200/200', title: 'Corte 03', link: '', description: 'R$ 16,50', rating: '4,0'},{id: 7, icon: 'https://picsum.photos/200/200', title: 'Corte 04', link: '', description: 'R$ 65,50', rating: '4,0'}]}
-      />
+        <Divider size={1} />
+        <List
+          direction={direction}
+          itemsPerLine={2}
+          ItemComponent={Service}
+          items={services}
+        />
+      </>}
       <Divider size={1} />
     </AppLayout>
   )

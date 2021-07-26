@@ -37,6 +37,7 @@ export default function Service() {
   const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
   const token = localStorage.getItem('@buscabelo_client/token');
   const [data, setData] = useState(null);
+  const [services, setServices] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [date, setDate] = useState('');
 
@@ -52,8 +53,8 @@ export default function Service() {
       },
     })
       .then((response) => response.json())
-      .then(({data}) => {
-        setData(data)
+      .then(({ service }) => {
+        setData(service);
       })
       .catch((error) => {
         if (history.length > 1) {
@@ -62,11 +63,31 @@ export default function Service() {
           history.replace('/');
         }
       })
-  }, [id, setData]);
+  }, [id, token, setData]);
 
   useEffect(() => {
     loadService();
   }, [loadService])
+
+  const loadServices = useCallback(() => {
+    if (data) {
+      fetch(`${process.env.REACT_APP_API}/providers/${data.provider.id}/services`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      })
+        .then((response) => response.json())
+        .then((apiData) => {
+          const servicos = apiData.map(a => a.service);
+          setServices(servicos);
+        })
+    }
+  }, [data, token, setServices])
+
+  useEffect(() => {
+    loadServices();
+  }, [data, loadServices])
 
   const handleDateClick = ({ dateStr, view }) => {
     if (view.type === 'dayGridMonth') {
@@ -132,14 +153,14 @@ export default function Service() {
         <main>
           <h2>{data.name}</h2>
           <p>R$ {data.value.toFixed(2).replace('.', ',')}</p>
-          <p><b>Estabelecimento:</b> Barbearia Dom Manuel</p>
+          <p><b>Estabelecimento:</b> {data.provider.name}</p>
           <section>
             <b>Descrição:</b>
             <p>{data.description}</p>
           </section>
           <section className="btn-group">
-            <button onClick={() => openModal()}>Marcar Horário</button>
-            <button onClick={() => {}}>Favoritar</button>
+            {user && <button onClick={() => openModal()}>Marcar Horário</button>}
+            {false && <button onClick={() => {}}>Favoritar</button>}
           </section>
         </main>
         <aside>
@@ -150,12 +171,12 @@ export default function Service() {
       <section className="other-services">
         <h3>Outros serviços de Barbearia Dom Manuel</h3>
         <Divider size={1} />
-        <List
+        {services && <List
           direction={isMobile ? 'vertical' : 'horizontal'}
           itemsPerLine={2}
           ItemComponent={ServiceItem}
-          items={[{id: 2, icon: 'https://picsum.photos/200/200', title: 'Corte Brabo', link: '', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', rating: '4,0'},{id: 5, icon: 'https://picsum.photos/200/200', title: 'Corte Brabo', link: '', description: 'Lorem Ipsum', rating: '4,0'},{id: 6, icon: 'https://picsum.photos/200/200', title: 'Corte Brabo', link: '', description: 'Lorem Ipsum', rating: '4,0'},{id: 7, icon: 'https://picsum.photos/200/200', title: 'Corte Brabo', link: '', description: 'Lorem Ipsum', rating: '4,0'}]}
-        />
+          items={services}
+        />}
       </section>
       <Divider size={1} />
       <Modal
