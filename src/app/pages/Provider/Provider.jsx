@@ -72,11 +72,11 @@ export default function Provider() {
         </aside>
         <main>
           <h2>{data.name}</h2>
-          <p className="info">
+          {/* <p className="info">
             <span className="opened">Aberto</span>
             •
             <span className="">Fecha às 17:00</span>
-          </p>
+          </p> */}
           {!isMobile && <p>{data.description}</p>}
         </main>
       </header>

@@ -169,7 +169,7 @@ export default function Service() {
       </article>
       <Divider size={1} />
       <section className="other-services">
-        <h3>Outros serviços de Barbearia Dom Manuel</h3>
+        <h3>Outros serviços de {data.provider.name}</h3>
         <Divider size={1} />
         {services && <List
           direction={isMobile ? 'vertical' : 'horizontal'}
