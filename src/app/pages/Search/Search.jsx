@@ -35,9 +35,10 @@ export default function Search() {
   const loadServices = useCallback(() => {
     fetch(`${process.env.REACT_APP_API}/services/search?name=${search}`)
       .then((response) => response.json())
-      .then((data) => {
-        const servicos = data.map(d => d.service);
-        setServices(servicos);
+      .then(({ success, services }) => {
+        if (success) {
+          setServices(services);
+        }
       })
       .catch((error) => { setServices([]) })
   }, [search, setServices])
@@ -45,9 +46,10 @@ export default function Search() {
   const loadProviders = useCallback(() => {
     fetch(`${process.env.REACT_APP_API}/providers/search?name=${search}`)
       .then((response) => response.json())
-      .then((data) => {
-        const estabelecimentos = data.map(d => d.provider);
-        setProviders(estabelecimentos);
+      .then(({ success, providers }) => {
+        if (success) {
+          setProviders(providers);
+        }
       })
       .catch((error) => { setProviders([]) })
   }, [search, setProviders])
