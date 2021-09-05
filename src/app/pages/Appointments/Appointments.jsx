@@ -45,6 +45,7 @@ function Appointment({ data }) {
         <p>Data: {data.appointment_to}</p>
         <p><b>{provider.name}</b></p>
         {renderStatus()}
+        <a href={`/agendamento/${data.id}`} style={{ display: 'inline-block', marginBottom: '10px' }}>Ver Detalhes</a>
       </main>
       <aside>
         <img src="https://picsum.photos/100/100" alt="icone serviço" />
