@@ -8,14 +8,41 @@ import List from '../../components/List/List';
 function Appointment({ data }) {
   const { service, provider } = data;
 
+  const cancelAppointment = () => {
+    fetch(`${process.env.REACT_APP_API}/appointments/cancel/${data.id}`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ canceled_at: new Date().toISOString() })
+    })
+      .then(response => response.json)
+      .then(({ success }) => {
+        if (success) {
+          window.location.reload();
+        }
+      })
+      // eslint-disable-next-line no-console
+      .catch(error => console.error(error));
+  };
+
+  const renderStatus = () => {
+    if (data.time_done_at)
+      return <p><b>Finalizado:</b> {data.time_done_at}</p>;
+
+    if (data.canceled_at)
+      return <p><b>Cancelado:</b> {data.canceled_at}</p>;
+
+    return <button type="button" onClick={() => cancelAppointment()}>Cancelar</button>;
+  };
+
   return (
     <div className="appointment-container">
       <main>
         <h3>{service.name}</h3>
         <p>Data: {data.appointment_to}</p>
         <p><b>{provider.name}</b></p>
-        {data.time_done_at && <p><b>Finalizado:</b> {data.time_done_at}</p>}
-        {data.canceled_at && <p><b>Cancelado:</b> {data.canceled_at}</p>}
+        {renderStatus()}
       </main>
       <aside>
         <img src="https://picsum.photos/100/100" alt="icone serviço" />
