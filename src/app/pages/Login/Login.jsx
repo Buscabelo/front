@@ -22,10 +22,12 @@ export default function Login() {
       body
     })
       .then((response) => response.json())
-      .then((data) => {
-        localStorage.setItem('@buscabelo_client/user', JSON.stringify(data.user))
-        localStorage.setItem('@buscabelo_client/token', data.token)
-        history.push('/');
+      .then(({ success, token, user }) => {
+        if (success) {
+          localStorage.setItem('@buscabelo_client/user', JSON.stringify(user))
+          localStorage.setItem('@buscabelo_client/token', token)
+          history.push('/');
+        }
       })
       .catch((error) => {
         console.error(error)

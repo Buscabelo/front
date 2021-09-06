@@ -25,8 +25,10 @@ export default function Provider() {
   const loadProvider = useCallback(() => {
     fetch(`${process.env.REACT_APP_API}/providers/${id}`)
       .then((response) => response.json())
-      .then(({ provider }) => {
-        setData(provider);
+      .then(({ success, provider }) => {
+        if (success) {
+          setData(provider);
+        }
       })
       .catch((error) => {
         if (history.length > 1) {
@@ -40,9 +42,10 @@ export default function Provider() {
   const loadServices = useCallback(() => {
     fetch(`${process.env.REACT_APP_API}/providers/${id}/services`)
       .then((response) => response.json())
-      .then((apiData) => {
-        const servicos = apiData.map(a => a.service);
-        setServices(servicos);
+      .then(({ success, services }) => {
+        if (success) {
+          setServices(services);
+        }
       })
   }, [id, setServices])
 

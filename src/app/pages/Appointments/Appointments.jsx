@@ -37,9 +37,10 @@ export default function Appointments() {
       }
     })
       .then((response) => response.json())
-      .then((data) => {
-        const appointments = data.map(d => d.appointment);
-        setData(appointments)
+      .then(({ success, appointments }) => {
+        if (success) {
+          setData(appointments)
+        }
       })
       .catch((error) => console.error(error))
   }, [user, token, setData]);

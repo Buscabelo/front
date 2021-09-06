@@ -53,8 +53,10 @@ export default function Service() {
       },
     })
       .then((response) => response.json())
-      .then(({ service }) => {
-        setData(service);
+      .then(({ success, service }) => {
+        if (success) {
+          setData(service);
+        }
       })
       .catch((error) => {
         if (history.length > 1) {
@@ -78,9 +80,10 @@ export default function Service() {
         }
       })
         .then((response) => response.json())
-        .then((apiData) => {
-          const servicos = apiData.map(a => a.service);
-          setServices(servicos);
+        .then(({ success, services }) => {
+          if (success) {
+            setServices(services);
+          }
         })
     }
   }, [data, token, setServices])
