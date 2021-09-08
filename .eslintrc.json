@@ -72,7 +72,7 @@
         "react/jsx-no-comment-textnodes": "warn",
         "react/jsx-no-useless-fragment": ["warn", { "allowExpressions": true }],
         "react/jsx-pascal-case": "error",
-        "react/jsx-tag-spacing": ["warn", { "closingSlash": "never", "beforeSelfClosing": true }],
+        "react/jsx-tag-spacing": ["warn", { "closingSlash": "never", "beforeSelfClosing": "always" }],
         "react/jsx-uses-vars": "error",
         "react/jsx-uses-react": "off",
         "react-hooks/rules-of-hooks": "error",
