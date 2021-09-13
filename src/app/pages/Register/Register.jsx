@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import './Register.css';
 import logo from '../../assets/images/logo.png';
-import Divider from "../../components/Divider/Divider";
+import Divider from '../../components/Divider/Divider';
 
 export default function Register() {
   const history = useHistory();
@@ -13,9 +13,9 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const body = JSON.stringify({ name: `${name} ${lastname}`, email, password, avatar: null })
+  const handleSubmit = ({ preventDefault }) => {
+    preventDefault();
+    const body = JSON.stringify({ name: `${name} ${lastname}`, email, password, avatar: null });
 
     fetch(`${process.env.REACT_APP_API}/customers`, {
       method: 'POST',
@@ -25,13 +25,14 @@ export default function Register() {
       },
       body
     })
-      .then((response) => {
+      .then(() => {
         history.push('/login');
       })
-      .catch((error) => {
-        console.error(error)
-      })
-  }
+      .catch(error => {
+        // eslint-disable-next-line no-console
+        console.error(error);
+      });
+  };
 
   return (
     <article className="register-wrapper">
@@ -70,5 +71,5 @@ export default function Register() {
         </section>
       </main>
     </article>
-  )
+  );
 }

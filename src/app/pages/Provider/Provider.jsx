@@ -20,44 +20,44 @@ export default function Provider() {
     if (isMobile) {
       setDirection('vertical');
     }
-  }, [])
+  }, []);
 
   const loadProvider = useCallback(() => {
     fetch(`${process.env.REACT_APP_API}/providers/${id}`)
-      .then((response) => response.json())
+      .then(response => response.json())
       .then(({ success, provider }) => {
         if (success) {
           setData(provider);
         }
       })
-      .catch((error) => {
+      .catch(() => {
         if (history.length > 1) {
           history.goBack();
         } else {
           history.replace('/');
         }
-      })
-  }, [id, setData])
+      });
+  }, [id, setData, history]);
 
   const loadServices = useCallback(() => {
     fetch(`${process.env.REACT_APP_API}/providers/${id}/services`)
-      .then((response) => response.json())
+      .then(response => response.json())
       .then(({ success, services }) => {
         if (success) {
           setServices(services);
         }
-      })
-  }, [id, setServices])
+      });
+  }, [id, setServices]);
 
   useEffect(() => {
     loadProvider();
     loadServices();
-  }, [loadProvider, loadServices])
+  }, [loadProvider, loadServices]);
 
-  const handleDirectionChange = (changedDirection) => {
+  const handleDirectionChange = changedDirection => {
     if (direction !== changedDirection)
       setDirection(changedDirection);
-  }
+  };
 
   if (!data) {
     return null;
@@ -103,5 +103,5 @@ export default function Provider() {
       </>}
       <Divider size={1} />
     </AppLayout>
-  )
+  );
 }

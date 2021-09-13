@@ -1,6 +1,6 @@
 import { isMobile } from 'react-device-detect';
 import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 import './Carousel.css';
 
@@ -17,7 +17,7 @@ export default function CustomCarousel() {
       infiniteLoop: true,
       showIndicators: true,
       stopOnHover: false,
-    }
+    };
   } else {
     carouselOptions = {
       ...carouselOptions,
@@ -25,7 +25,7 @@ export default function CustomCarousel() {
       showIndicators: false,
       centerMode: true,
       centerSlidePercentage: 20
-    }
+    };
   }
 
   return (
@@ -43,5 +43,5 @@ export default function CustomCarousel() {
         <img src="https://picsum.photos/600/250" alt="slide 02" />
       </a>
     </Carousel>
-  )
+  );
 }

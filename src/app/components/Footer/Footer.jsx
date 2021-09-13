@@ -25,5 +25,5 @@ export default function Footer() {
         <MdEmail />
       </div>
     </footer>
-  )
+  );
 }

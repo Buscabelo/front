@@ -3,10 +3,10 @@ import { isMobile } from 'react-device-detect';
 import { MdMenu, MdSearch } from 'react-icons/md';
 
 import './Header.css';
+import logo from '../../assets/images/logo.png';
 import AuthInfo from './AuthInfo';
 import SearchInput from './SearchInput';
 import Submenu from './Submenu';
-import logo from '../../assets/images/logo.png';
 
 export default function Header() {
   const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
@@ -17,7 +17,7 @@ export default function Header() {
     if (!isMobile) {
       setShowSearch(true);
     }
-  }, [])
+  }, []);
 
   return (
     <header className="topbar">
@@ -29,10 +29,10 @@ export default function Header() {
         hide={() => setShowSearch(false)}
       />
       <nav className="navbar">
-        <button onClick={() => setShowSearch(true)}>
+        <button type="button" onClick={() => setShowSearch(true)}>
           <MdSearch />
         </button>
-        <button onClick={() => setOpenMenu(!openMenu)}>
+        <button type="button" onClick={() => setOpenMenu(!openMenu)}>
           <MdMenu />
         </button>
         <AuthInfo
@@ -46,5 +46,5 @@ export default function Header() {
         hide={() => setOpenMenu(false)}
       />
     </header>
-  )
+  );
 }
