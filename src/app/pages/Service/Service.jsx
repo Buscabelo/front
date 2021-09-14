@@ -5,7 +5,7 @@ import { useHistory, useParams } from 'react-router';
 import FullCalendar, { formatDate } from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from "@fullcalendar/interaction";
+import interactionPlugin from '@fullcalendar/interaction';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
@@ -14,19 +14,19 @@ import AppLayout from '../../components/AppLayout/AppLayout';
 import Divider from '../../components/Divider/Divider';
 import List from '../../components/List/List';
 
-const MySwal = withReactContent(Swal)
+const MySwal = withReactContent(Swal);
 
 function ServiceItem({ data }) {
   return (
     <a href="/" className="wrapper">
       <aside>
-        <img src={data.icon} />
+        <img src={data.icon} alt="Icone" />
       </aside>
       <main>
         <p>{data.description}</p>
       </main>
     </a>
-  )
+  );
 }
 
 Modal.setAppElement('#root');
@@ -43,7 +43,7 @@ export default function Service() {
 
   const openModal = () => {
     setShowModal(true);
-  }
+  };
 
   const loadService = useCallback(() => {
     fetch(`${process.env.REACT_APP_API}/services/${id}`, {
@@ -52,24 +52,24 @@ export default function Service() {
         'Authorization': `Bearer ${token}`
       },
     })
-      .then((response) => response.json())
+      .then(response => response.json())
       .then(({ success, service }) => {
         if (success) {
           setData(service);
         }
       })
-      .catch((error) => {
+      .catch(() => {
         if (history.length > 1) {
           history.goBack();
         } else {
           history.replace('/');
         }
-      })
-  }, [id, token, setData]);
+      });
+  }, [id, token, setData, history]);
 
   useEffect(() => {
     loadService();
-  }, [loadService])
+  }, [loadService]);
 
   const loadServices = useCallback(() => {
     if (data) {
@@ -79,18 +79,18 @@ export default function Service() {
           'Authorization': `Bearer ${token}`
         }
       })
-        .then((response) => response.json())
+        .then(response => response.json())
         .then(({ success, services }) => {
           if (success) {
             setServices(services);
           }
-        })
+        });
     }
-  }, [data, token, setServices])
+  }, [data, token, setServices]);
 
   useEffect(() => {
     loadServices();
-  }, [data, loadServices])
+  }, [data, loadServices]);
 
   const handleDateClick = ({ dateStr, view }) => {
     if (view.type === 'dayGridMonth') {
@@ -98,10 +98,10 @@ export default function Service() {
     } else if (view.type === 'timeGridDay') {
       setDate(dateStr);
     }
-  }
+  };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = ({ preventDefault }) => {
+    preventDefault();
 
     MySwal.fire({
       title: 'Você deseja marcar horário para este serviço?',
@@ -132,18 +132,19 @@ export default function Service() {
           },
           body
         })
-          .then(({status}) => {
+          .then(({ status }) => {
             if (status === 200) {
               setShowModal(false);
-              MySwal.fire('Sucesso!', 'Agendamento cadastrado com sucesso', 'success')
+              MySwal.fire('Sucesso!', 'Agendamento cadastrado com sucesso', 'success');
             }
           })
-          .catch((error) => {
-            console.error(error)
-          })
+          .catch(error => {
+            // eslint-disable-next-line no-console
+            console.error(error);
+          });
       }
-    })
-  }
+    });
+  };
 
   if (!data) {
     return null;
@@ -162,8 +163,8 @@ export default function Service() {
             <p>{data.description}</p>
           </section>
           <section className="btn-group">
-            {user && <button onClick={() => openModal()}>Marcar Horário</button>}
-            {false && <button onClick={() => {}}>Favoritar</button>}
+            {user && <button type="button" onClick={() => openModal()}>Marcar Horário</button>}
+            {false && <button type="button" onClick={() => null}>Favoritar</button>}
           </section>
         </main>
         <aside>
@@ -187,7 +188,7 @@ export default function Service() {
         contentLabel="Teste"
       >
         <FullCalendar
-          plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin ]}
+          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           aspectRatio={2}
           initialView="dayGridMonth"
           businessHours={{
@@ -207,8 +208,8 @@ export default function Service() {
           }}
           dateClick={handleDateClick}
         />
-        {date && <button onClick={handleSubmit}>Finalizar Agendamento</button>}
+        {date && <button type="button" onClick={handleSubmit}>Finalizar Agendamento</button>}
       </Modal>
     </AppLayout>
-  )
+  );
 }

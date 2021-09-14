@@ -9,8 +9,8 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = ({ preventDefault }) => {
+    preventDefault();
     const body = JSON.stringify({ email, password });
 
     fetch(`${process.env.REACT_APP_API}/sessions`, {
@@ -21,18 +21,19 @@ export default function Login() {
       },
       body
     })
-      .then((response) => response.json())
+      .then(response => response.json())
       .then(({ success, token, user }) => {
         if (success) {
-          localStorage.setItem('@buscabelo_client/user', JSON.stringify(user))
-          localStorage.setItem('@buscabelo_client/token', token)
+          localStorage.setItem('@buscabelo_client/user', JSON.stringify(user));
+          localStorage.setItem('@buscabelo_client/token', token);
           history.push('/');
         }
       })
-      .catch((error) => {
-        console.error(error)
-      })
-  }
+      .catch(error => {
+        // eslint-disable-next-line no-console
+        console.error(error);
+      });
+  };
 
   return (
     <article className="login-wrapper">
@@ -58,5 +59,5 @@ export default function Login() {
         </form>
       </main>
     </article>
-  )
+  );
 }

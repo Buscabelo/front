@@ -1,11 +1,25 @@
 {
     "env": {
+        "node": true,
         "browser": true,
         "es2021": true
     },
+    "settings": {
+        "react": {
+            "pragma": "React",
+            "version": "detect"
+        },
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", "ts", "tsx"]
+            }
+        }
+    },
+    "ignorePatterns": ["./node_modules/*", "./public/*"],
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
+        "plugin:react/jsx-runtime",
         "plugin:react-hooks/recommended",
         "plugin:import/recommended"
     ],
@@ -21,6 +35,7 @@
         "react-hooks"
     ],
     "rules": {
+        "react/prop-types": "off",
         "indent": ["error", 2],
         "linebreak-style": ["error", "unix"],
         "quotes": ["error", "single"],
@@ -62,7 +77,6 @@
         "prefer-destructuring": ["error", { "array": true, "object": true }, { "enforceForRenamedProperties": false }],
         "prefer-rest-params": "error",
         "prefer-spread": "error",
-        "sort-imports": ["error", { "ignoreCase": true }],
         "react/button-has-type": "warn",
         "react/function-component-definition": ["error", { "namedComponents": "function-declaration", "unnamedComponents": "arrow-function" }],
         "react/no-unused-state": "error",

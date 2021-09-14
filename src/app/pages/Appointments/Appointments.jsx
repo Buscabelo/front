@@ -21,7 +21,7 @@ function Appointment({ data }) {
         <img src="https://picsum.photos/100/100" alt="icone serviço" />
       </aside>
     </div>
-  )
+  );
 }
 
 export default function Appointments() {
@@ -36,18 +36,17 @@ export default function Appointments() {
         'Authorization': `Bearer ${token}`
       }
     })
-      .then((response) => response.json())
+      .then(response => response.json())
       .then(({ success, appointments }) => {
-        if (success) {
-          setData(appointments)
-        }
+        if (success) setData(appointments);
       })
-      .catch((error) => console.error(error))
+      // eslint-disable-next-line no-console
+      .catch(error => console.error(error));
   }, [user, token, setData]);
 
   useEffect(() => {
     loadAppointments();
-  }, [loadAppointments])
+  }, [loadAppointments]);
 
   return (
     <AppLayout>
@@ -64,5 +63,5 @@ export default function Appointments() {
       }
       <Divider size={1} />
     </AppLayout>
-  )
+  );
 }

@@ -6,7 +6,7 @@ import './Search.css';
 import AppLayout from '../../components/AppLayout/AppLayout';
 import Divider from '../../components/Divider/Divider';
 import List from '../../components/List/List';
-import Provider from '../../components/Service/Service'
+import Provider from '../../components/Service/Service';
 
 function Service({ data }) {
   return (
@@ -14,7 +14,7 @@ function Service({ data }) {
       <p><a href={`/servico/${data.id}`}>{data.name}</a></p>
       <p>R$ {data.value.toFixed(2).replace('.', ',')}</p>
     </div>
-  )
+  );
 }
 
 export default function Search() {
@@ -30,40 +30,44 @@ export default function Search() {
     } else {
       history.replace('/');
     }
-  }, [location, history])
+  }, [location, history]);
 
   const loadServices = useCallback(() => {
     fetch(`${process.env.REACT_APP_API}/services/search?name=${search}`)
-      .then((response) => response.json())
+      .then(response => response.json())
       .then(({ success, services }) => {
         if (success) {
           setServices(services);
         }
       })
-      .catch((error) => { setServices([]) })
-  }, [search, setServices])
+      .catch(() => {
+        setServices([]);
+      });
+  }, [search, setServices]);
 
   const loadProviders = useCallback(() => {
     fetch(`${process.env.REACT_APP_API}/providers/search?name=${search}`)
-      .then((response) => response.json())
+      .then(response => response.json())
       .then(({ success, providers }) => {
         if (success) {
           setProviders(providers);
         }
       })
-      .catch((error) => { setProviders([]) })
-  }, [search, setProviders])
+      .catch(() => {
+        setProviders([]);
+      });
+  }, [search, setProviders]);
 
   useEffect(() => {
     if (search) {
       loadServices();
       loadProviders();
     }
-  }, [search, loadServices, loadProviders])
+  }, [search, loadServices, loadProviders]);
 
   const renderContent = () => {
-    if ((!providers || (providers && providers.length === 0)) && (!services || (services && services.length === 0))) {
-      return <>Não foram encontrados serviços ou estabelecimentos com o(s) termo(s) pesquisado(s)</> 
+    if ((!providers || providers && providers.length === 0) && (!services || services && services.length === 0)) {
+      return <>Não foram encontrados serviços ou estabelecimentos com o(s) termo(s) pesquisado(s)</>;
     }
 
     return (
@@ -90,17 +94,17 @@ export default function Search() {
         </>}
       </>
     );
-  }
+  };
 
   return (
     <AppLayout>
       <Divider size={1} />
       <header className="search-header">
-        <h2>Resultados para "{search}"</h2>
+        <h2>Resultados para &quot;{search}&quot;</h2>
         {false && 'filtro'}
       </header>
       <Divider size={0.5} />
       {renderContent()}
     </AppLayout>
-  )
+  );
 }

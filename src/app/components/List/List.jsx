@@ -1,15 +1,15 @@
 import './List.css';
 
-export default function List({ direction = 'horizontal', items, ItemComponent = null, itemsPerLine }) {
-  let type;
+export default function List({ direction = 'horizontal', items, ItemComponent = null, itemsPerLine = 1 }) {
+  let type = 'grid';
 
   if (direction === 'horizontal') {
     type = 'grid';
   } else if (direction === 'vertical') {
-    type = 'list'
+    type = 'list';
   }
 
-  if (!items || (Array.isArray(items) && items.length === 0)) {
+  if (!items || Array.isArray(items) && items.length === 0) {
     return null;
   }
 
@@ -21,5 +21,5 @@ export default function List({ direction = 'horizontal', items, ItemComponent = 
         </li>
       ))}
     </ol>
-  )
+  );
 }

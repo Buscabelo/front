@@ -7,19 +7,18 @@ export default function SearchInput({ isShow, hide }) {
   const history = useHistory();
   const [value, setValue] = useState('');
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
+  const handleSubmit = ({ preventDefault }) => {
+    preventDefault();
     history.push('/pesquisa', { search: value });
-  }
+  };
 
   const clearInput = () => {
-    if (!!value) {
+    if (value) {
       setValue('');
     } else {
       hide();
     }
-  }
+  };
 
   const renderIcon = () => {
     if (isMobile)
@@ -34,18 +33,17 @@ export default function SearchInput({ isShow, hide }) {
         <MdSearch />
       </button>
     );
-  }
+  };
 
-  if (!isShow) {
+  if (!isShow)
     return null;
-  }
 
   return (
     <form className="searchbar" onSubmit={handleSubmit}>
       <input
         className="searchinput"
         placeholder="Busque por um serviço ou estabelecimento"
-        onChange={({target}) => setValue(target.value)}
+        onChange={({ target }) => setValue(target.value)}
       />
       {renderIcon()}
     </form>

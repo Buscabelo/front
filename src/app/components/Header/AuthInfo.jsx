@@ -5,10 +5,10 @@ export default function AuthInfo({ user, showMenu }) {
   if (isMobile)
     return null;
 
-  const handleShowMenu = (e) => {
-    e.preventDefault();
+  const handleShowMenu = ({ preventDefault }) => {
+    preventDefault();
     showMenu();
-  }
+  };
 
   if (user)
     return (

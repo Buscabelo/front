@@ -20,5 +20,5 @@ export default function Home() {
       />
       <Divider size={1} />
     </AppLayout>
-  )
+  );
 }
