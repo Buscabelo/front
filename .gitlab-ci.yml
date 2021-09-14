@@ -8,7 +8,7 @@ build-job:
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   before_script:
-    - apt-get install dh-autoreconf
+    - apk add --update autoconf
   script:
     - npm ci
     - npm run build
