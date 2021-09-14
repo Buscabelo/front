@@ -1,0 +1,19 @@
+stages:
+  - build
+  - deploy
+
+build-job:
+  image: node:12.13.0-alpine
+  stage: build
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - npm ci
+    - npm run build
+
+deploy-job:
+  stage: deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - git push https://heroku:$HEROKU_STAGING_API_KEY@git.heroku.com/buscabelo-client.git HEAD:master
