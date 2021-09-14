@@ -7,6 +7,8 @@ build-job:
   stage: build
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  before_script:
+    - apt-get install dh-autoreconf
   script:
     - npm ci
     - npm run build
