@@ -9,8 +9,8 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = ({ preventDefault }) => {
-    preventDefault();
+  const handleSubmit = event => {
+    event.preventDefault();
     const body = JSON.stringify({ email, password });
 
     fetch(`${process.env.REACT_APP_API}/sessions`, {

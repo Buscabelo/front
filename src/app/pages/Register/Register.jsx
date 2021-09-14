@@ -13,8 +13,8 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = ({ preventDefault }) => {
-    preventDefault();
+  const handleSubmit = event => {
+    event.preventDefault();
     const body = JSON.stringify({ name: `${name} ${lastname}`, email, password, avatar: null });
 
     fetch(`${process.env.REACT_APP_API}/customers`, {

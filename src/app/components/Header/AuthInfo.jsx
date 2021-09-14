@@ -5,8 +5,8 @@ export default function AuthInfo({ user, showMenu }) {
   if (isMobile)
     return null;
 
-  const handleShowMenu = ({ preventDefault }) => {
-    preventDefault();
+  const handleShowMenu = event => {
+    event.preventDefault();
     showMenu();
   };
 
