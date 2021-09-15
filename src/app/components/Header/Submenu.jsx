@@ -1,6 +1,6 @@
 export default function Submenu({ user, isShow, hide }) {
-  const handleLogout = ({ preventDefault }) => {
-    preventDefault();
+  const handleLogout = event => {
+    event.preventDefault();
     localStorage.removeItem('@buscabelo_client/user');
     localStorage.removeItem('@buscabelo_client/token');
     hide();

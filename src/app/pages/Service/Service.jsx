@@ -100,8 +100,8 @@ export default function Service() {
     }
   };
 
-  const handleSubmit = ({ preventDefault }) => {
-    preventDefault();
+  const handleSubmit = event => {
+    event.preventDefault();
 
     MySwal.fire({
       title: 'Você deseja marcar horário para este serviço?',

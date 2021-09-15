@@ -7,8 +7,8 @@ export default function SearchInput({ isShow, hide }) {
   const history = useHistory();
   const [value, setValue] = useState('');
 
-  const handleSubmit = ({ preventDefault }) => {
-    preventDefault();
+  const handleSubmit = event => {
+    event.preventDefault();
     history.push('/pesquisa', { search: value });
   };
 

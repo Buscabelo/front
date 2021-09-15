@@ -7,6 +7,36 @@ import List from '../../components/List/List';
 
 function Appointment({ data }) {
   const { service, provider } = data;
+  const token = localStorage.getItem('@buscabelo_client/token');
+
+  const cancelAppointment = () => {
+    fetch(`${process.env.REACT_APP_API}/appointments/cancel/${data.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ canceled_at: new Date().toISOString() })
+    })
+      .then(response => response.json)
+      .then(({ success }) => {
+        if (success) {
+          location.reload();
+        }
+      })
+      // eslint-disable-next-line no-console
+      .catch(error => console.error(error));
+  };
+
+  const renderStatus = () => {
+    if (data.time_done_at)
+      return <p><b>Finalizado:</b> {data.time_done_at}</p>;
+
+    if (data.canceled_at)
+      return <p><b>Cancelado:</b> {data.canceled_at}</p>;
+
+    return <button type="button" onClick={() => cancelAppointment()}>Cancelar</button>;
+  };
 
   return (
     <div className="appointment-container">
@@ -14,8 +44,7 @@ function Appointment({ data }) {
         <h3>{service.name}</h3>
         <p>Data: {data.appointment_to}</p>
         <p><b>{provider.name}</b></p>
-        {data.time_done_at && <p><b>Finalizado:</b> {data.time_done_at}</p>}
-        {data.canceled_at && <p><b>Cancelado:</b> {data.canceled_at}</p>}
+        {renderStatus()}
       </main>
       <aside>
         <img src="https://picsum.photos/100/100" alt="icone serviço" />
@@ -42,7 +71,7 @@ export default function Appointments() {
       })
       // eslint-disable-next-line no-console
       .catch(error => console.error(error));
-  }, [user, token, setData]);
+  }, [user.id, token, setData]);
 
   useEffect(() => {
     loadAppointments();
