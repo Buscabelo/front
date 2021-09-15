@@ -7,19 +7,21 @@ import List from '../../components/List/List';
 
 function Appointment({ data }) {
   const { service, provider } = data;
+  const token = localStorage.getItem('@buscabelo_client/token');
 
   const cancelAppointment = () => {
     fetch(`${process.env.REACT_APP_API}/appointments/cancel/${data.id}`, {
-      method: 'post',
+      method: 'PATCH',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({ canceled_at: new Date().toISOString() })
     })
       .then(response => response.json)
       .then(({ success }) => {
         if (success) {
-          window.location.reload();
+          location.reload();
         }
       })
       // eslint-disable-next-line no-console
@@ -69,7 +71,7 @@ export default function Appointments() {
       })
       // eslint-disable-next-line no-console
       .catch(error => console.error(error));
-  }, [user, token, setData]);
+  }, [user.id, token, setData]);
 
   useEffect(() => {
     loadAppointments();
