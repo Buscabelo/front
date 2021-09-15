@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { GoogleLogin } from 'react-google-login';
 
 import './Register.css';
 import logo from '../../assets/images/logo.png';
@@ -34,6 +35,37 @@ export default function Register() {
       });
   };
 
+  const handleGoogleLoginSuccess = response => {
+    if (response.profileObj) {
+      const { name, email } = response.profileObj;
+
+      fetch(`${process.env.REACT_APP_API}/customers/googleAuth`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, email })
+      })
+        .then(response => response.json())
+        .then(({ success, user, token }) => {
+          if (success) {
+            localStorage.setItem('@buscabelo_client/user', JSON.stringify(user));
+            localStorage.setItem('@buscabelo_client/token', token);
+            history.push('/');
+          }
+        })
+        .catch(error => {
+          // eslint-disable-next-line no-console
+          console.error(error);
+        });
+    }
+  };
+
+  const handleGoogleLoginFailure = response => {
+    // eslint-disable-next-line no-console
+    console.error(response);
+  };
+
   return (
     <article className="register-wrapper">
       <aside className="cta">
@@ -64,6 +96,15 @@ export default function Register() {
           </div>
           <button type="submit">Cadastrar</button>
         </form>
+        <Divider size={1} />
+        <GoogleLogin
+          clientId="698519431370-hqbblgqr7v6vl3vd96itd98j0d4a3ibv.apps.googleusercontent.com"
+          buttonText="Cadastrar usando Google"
+          onSuccess={handleGoogleLoginSuccess}
+          onFailure={handleGoogleLoginFailure}
+          cookiePolicy={'single_host_origin'}
+          style={{margin: '0 auto'}}
+        />
         <Divider size={1} />
         <section className="login-cta">
           Tem uma conta?
