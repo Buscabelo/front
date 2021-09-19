@@ -18,7 +18,7 @@ const MySwal = withReactContent(Swal);
 
 function ServiceItem({ data }) {
   return (
-    <a href="/" className="wrapper">
+    <a href={`/servico/${data.id}`} className="wrapper">
       <aside>
         <img src={data.icon} alt="Icone" />
       </aside>
