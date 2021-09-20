@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 
 import './Appointments.css';
 import AppLayout from '../../components/AppLayout/AppLayout';
@@ -6,6 +7,7 @@ import Divider from '../../components/Divider/Divider';
 import List from '../../components/List/List';
 
 function Appointment({ data }) {
+  const history = useHistory();
   const { service, provider } = data;
   const token = localStorage.getItem('@buscabelo_client/token');
 
@@ -18,10 +20,10 @@ function Appointment({ data }) {
       },
       body: JSON.stringify({ canceled_at: new Date().toISOString() })
     })
-      .then(response => response.json)
+      .then(response => response.json())
       .then(({ success }) => {
         if (success) {
-          location.reload();
+          history.go(0);
         }
       })
       // eslint-disable-next-line no-console
