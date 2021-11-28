@@ -1,0 +1,9 @@
+#btn-delete:hover, #btn-pin:hover {
+  color:rgb(255, 86, 86);
+  cursor: pointer;
+}
+
+#btn-pin:hover {
+  color: rgb(86, 97, 255);
+  cursor: pointer;
+}
