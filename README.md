@@ -9,8 +9,3 @@ npm start
 ```
 
 Após isso, a aplicação será aberta no navegador na URL [http://localhost:3000](http://localhost:3000).
-
-## Documentações
-
-- [Buscabelo](https://gitlab.devops.ifrn.edu.br/tads.cnat/pdsdistribuido/2021.1/buscabelo/buscabelo-general)
-- [React](https://reactjs.org/)
