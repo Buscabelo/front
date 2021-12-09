@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Appointment from './pages/Appointment/Appointment';
@@ -11,20 +10,13 @@ import Search from './pages/Search/Search';
 import Service from './pages/Service/Service';
 
 // Provider
-import ListServices from './pages/ListServices/ListServices';
-import RegisterService from './pages/RegisterService/RegisterService';
-import Dashboard from './pages/Dashboard/Dashboard';
 import AuthPage from './pages/AuthPage/AuthPage';
 
-import DashboardLayout from './components/DashboardLayout/DashboardLayout';
 import { ResponseHandlerProvider } from './context/ResponseHandlerContext';
-import AuthContext from "./context/AuthContextProvider";
-import LoadingPage from './pages/LoadingPage/LoadingPage';
-import ListAppointments from './pages/ListAppointments/ListAppointments';
+import AuthContextProvider from "./context/AuthContext";
+import DashboardRoutes from './dashboardRoutes';
 
 export default function Routes() {
-  const { isAuthenticated, isCheckingAuthentication } = useContext(AuthContext)
-
   return (
     <Router>
       <Switch>
@@ -37,22 +29,12 @@ export default function Routes() {
         <Route exact path="/pesquisa" component={Search} />
         <Route exact path="/servico/:id" component={Service} />
 
-        <ResponseHandlerProvider>
-          <Route exact path="/sessions" component={AuthPage} />
-          {isCheckingAuthentication ?
-            <LoadingPage />
-          :
-            isAuthenticated ?
-              <DashboardLayout>
-                <Route exact path="/dashboard" component={Dashboard} />
-                <Route exact path="/dashboard/service" component={ListServices} />
-                <Route exact path="/dashboard/service/register" component={RegisterService} />
-                <Route exact path="/appointments" component={ListAppointments} />
-              </DashboardLayout>
-            :
-              <AuthPage />              
-          }
-        </ResponseHandlerProvider>
+        <AuthContextProvider>
+          <ResponseHandlerProvider>
+            <Route exact path="/sessions" component={AuthPage} />
+            <DashboardRoutes />
+          </ResponseHandlerProvider>
+        </AuthContextProvider>
       </Switch>
     </Router>
   );
