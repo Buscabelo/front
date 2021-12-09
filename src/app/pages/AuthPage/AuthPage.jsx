@@ -6,7 +6,6 @@ import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import { ResponseHandlerContext } from '../../context/ResponseHandlerContext';
 import { AuthContext } from '../../context/AuthContext';
-import DashboardLayout from '../../components/DashboardLayout/DashboardLayout';
 
 const { Title, Paragraph } = Typography;
 const { TabPane } = Tabs;
@@ -112,41 +111,39 @@ export default function AuthPage() {
   }
 
   return (
-    <DashboardLayout>
-      <Layout>
-        <Content>
-          <Row>
-            <Col style={{ height: '100vh', display: 'flex', justifyContent: 'center', position: 'relative' }} span={12}>
-              <div style={{ position: 'absolute', top: '90px' }}>
-                {
-                  currentTab === "1" ?
-                    <div>
-                      <Title>Vem sempre aqui?</Title><br />
-                      <Paragraph>Estamos muito felizes em te ver de novo!</Paragraph>
-                    </div>
-                    :
-                    <div>
-                      <Title>Seja bem-vindo!</Title><br />
-                      <Paragraph>Cadastre seu estabelecimento!</Paragraph>
-                    </div>
-                }
-              </div>
-            </Col>
-            <Col style={{ height: '100vh', display: 'flex', justifyContent: 'center', position: 'relative' }} span={12}>
-              <div style={{ position: 'absolute', top: '90px' }}>
-                <Tabs defaultActiveKey="1" onChange={handleTabChange}>
-                  <TabPane tab="Login" key="1">
-                    <LoginForm isLoading={isLoading} onFinishLogin={onFinishLogin} onFinishLoginFailed={onFinishFormFailed} />
-                  </TabPane>
-                  <TabPane tab="Register" key="2">
-                    <RegisterForm isLoading={isLoading} onFinishRegister={onFinishRegister} onFinishRegisterFailed={onFinishFormFailed} />
-                  </TabPane>
-                </Tabs>
-              </div>
-            </Col>
-          </Row>
-        </Content>
-      </Layout>
-    </DashboardLayout>
+    <Layout>
+      <Content>
+        <Row>
+          <Col style={{ height: '100vh', display: 'flex', justifyContent: 'center', position: 'relative' }} span={12}>
+            <div style={{ position: 'absolute', top: '90px' }}>
+              {
+                currentTab === "1" ?
+                  <div>
+                    <Title>Vem sempre aqui?</Title><br />
+                    <Paragraph>Estamos muito felizes em te ver de novo!</Paragraph>
+                  </div>
+                  :
+                  <div>
+                    <Title>Seja bem-vindo!</Title><br />
+                    <Paragraph>Cadastre seu estabelecimento!</Paragraph>
+                  </div>
+              }
+            </div>
+          </Col>
+          <Col style={{ height: '100vh', display: 'flex', justifyContent: 'center', position: 'relative' }} span={12}>
+            <div style={{ position: 'absolute', top: '90px' }}>
+              <Tabs defaultActiveKey="1" onChange={handleTabChange}>
+                <TabPane tab="Login" key="1">
+                  <LoginForm isLoading={isLoading} onFinishLogin={onFinishLogin} onFinishLoginFailed={onFinishFormFailed} />
+                </TabPane>
+                <TabPane tab="Register" key="2">
+                  <RegisterForm isLoading={isLoading} onFinishRegister={onFinishRegister} onFinishRegisterFailed={onFinishFormFailed} />
+                </TabPane>
+              </Tabs>
+            </div>
+          </Col>
+        </Row>
+      </Content>
+    </Layout>
   );
 }
