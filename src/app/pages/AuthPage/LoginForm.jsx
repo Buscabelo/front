@@ -1,9 +1,6 @@
-import React from 'react';
-
 import { Form, Input, Button, Spin } from 'antd';
 
 export default function LoginForm({ onFinishLogin, onFinishLoginFailed, isLoading }) {
-
   return (
     <Spin spinning={isLoading}>
       <Form
@@ -41,4 +38,4 @@ export default function LoginForm({ onFinishLogin, onFinishLoginFailed, isLoadin
       </Form>
     </Spin>
   );
-};
+}

@@ -1,35 +1,30 @@
-import React, { useState, memo, createContext, useEffect } from "react"
+import { useState, createContext, useEffect } from 'react';
 
+export const AuthContext = createContext();
 
-export const AuthContext = createContext()
-
-const AuthContextProvider = ({children}) => {
-
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [isCheckingAuthentication, setIsCheckingAuthentication] = useState(true)
-
-
-  useEffect(()=> {
-    auth()
-  }, [])
+function AuthContextProvider({children}) {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isCheckingAuthentication, setIsCheckingAuthentication] = useState(true);
 
   function auth() {
     setTimeout(() => {
-      setIsAuthenticated(true)
-      setIsCheckingAuthentication(false)
+      setIsAuthenticated(true);
+      setIsCheckingAuthentication(false);
     }, 3000);
   }
 
-  function logout() {
-    localStorage.removeItem("@buscabelo-estabelecimento/token")
-    localStorage.removeItem("@buscabelo-estabelecimento/me")
-    setIsAuthenticated(false)
-    setIsCheckingAuthentication(false)
+  useEffect(() => {
+    auth();
+  }, []);
 
+  function logout() {
+    localStorage.removeItem('@buscabelo-estabelecimento/token');
+    localStorage.removeItem('@buscabelo-estabelecimento/me');
+    setIsAuthenticated(false);
+    setIsCheckingAuthentication(false);
   }
 
-
-  return(
+  return (
     <AuthContext.Provider
       value={{
         isAuthenticated,
@@ -40,7 +35,7 @@ const AuthContextProvider = ({children}) => {
     >
       {children}
     </AuthContext.Provider>
-  )
+  );
 }
 
-export default AuthContextProvider
+export default AuthContextProvider;

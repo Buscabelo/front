@@ -1,28 +1,25 @@
-import React from 'react';
-import { LineChart } from "@opd/g2plot-react";
-import { ConsoleSqlOutlined } from '@ant-design/icons';
+import { LineChart } from '@opd/g2plot-react';
 
 export default function Graph({data}) {
-
   const config = {
-    padding: "auto",
+    padding: 'auto',
     autoFit: true,
-    data: data,
-    xField: "date",
-    yField: "value",
+    data,
+    xField: 'date',
+    yField: 'value',
     smooth: true,
-    seriesField: "category",
+    seriesField: 'category',
     meta: {
       date: {
-        alias: "Data"
+        alias: 'Data'
       },
       value: {
-        alias: "Value"
+        alias: 'Value'
       }
     }
   };
 
   return (
     <LineChart {...config} />
-  )
+  );
 }
