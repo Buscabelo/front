@@ -1,22 +1,22 @@
 import { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router';
 import { Row, Col, Layout, Card } from 'antd';
-import UserReviewComponent from '../../components/UserReviewComponent/UserReviewComponent';
+// import UserReviewComponent from '../../components/UserReviewComponent/UserReviewComponent';
+import { ResponseHandlerContext } from '../../context/ResponseHandlerContext';
 import Graph from './Graph';
 import { default as Calendar } from './Calendar';
 
-import { ResponseHandlerContext } from '../../context/ResponseHandlerContext';
 import './Dashboard.css';
 
-const { Header, Content } = Layout;
+const { Content } = Layout;
 
 // const style = { background: '#0092ff', padding: '8px' };
 
 export default function Dashboard() {
-  const { query } = useContext(ResponseHandlerContext)
+  const { query } = useContext(ResponseHandlerContext);
   const history = useHistory();
 
-  const [userData, setUserData] = useState();
+  // const [userData, setUserData] = useState();
   const [cardsData, setCardsData] = useState();
   const [graphData, setGraphData] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -26,79 +26,73 @@ export default function Dashboard() {
       const user = await JSON.parse(localStorage.getItem('@buscabelo-estabelecimento/me'));
       const token = await JSON.parse(localStorage.getItem('@buscabelo-estabelecimento/token'));
 
-      //shallow check
-      if (!user || !token) return history.push('sessions/')
-      else {
-        const appointments = await query({ 
-          link: `${process.env.REACT_APP_BACKEND_AD}/appointments`,
-          method: "GET",
+      // shallow check
+      if (!user || !token) return history.push('sessions/');
+
+      const appointments = await query({
+        link: `${process.env.REACT_APP_BACKEND_AD}/appointments`,
+        method: 'GET',
+        auth: true,
+      });
+
+      const localStorageMe = JSON.parse(localStorage.getItem('@buscabelo-estabelecimento/me'));
+      let me = null;
+
+      if (localStorageMe) {
+        me = await query({
+          link: `${process.env.REACT_APP_BACKEND_AD}/providers/${localStorageMe.id}`,
+          method: 'GET',
           auth: true,
-        })
-
-        const localStorageMe = JSON.parse(localStorage.getItem("@buscabelo-estabelecimento/me"))
-
-        let me = null
-
-        if (localStorageMe) {
-          me = await query({ 
-            link: `${process.env.REACT_APP_BACKEND_AD}/providers/${localStorageMe.id}`,
-            method: "GET",
-            auth: true,
-          }).then(({response}) => response?.provider)
-
-        }
-
-
-        const canceledAppointments = appointments.response.appointments.filter(ap => ap.canceled_at)
-        const finishedAppontments = appointments.response.appointments.filter(ap => ap.time_done_at)
-
-        let graphCanceledAppointments = {}
-        let graphFinishedAppointments = {}
-
-        let amount = 0
-
-        appointments.response.appointments.forEach(ap => {
-          amount += ap.service.value
-          if(ap.time_done_at) {
-
-            const data = new Date(ap.time_done_at).toLocaleDateString()
-
-            graphFinishedAppointments[data] = (graphFinishedAppointments[data] + 1) || 1
-            if (!graphCanceledAppointments[data]) {
-              graphCanceledAppointments[data] = 0
-            }
-          } else if(ap.canceled_at) {
-            const data = new Date(ap.canceled_at).toLocaleDateString()
-            graphCanceledAppointments[data] = (graphCanceledAppointments[data] + 1) || 1
-            if (!graphFinishedAppointments[data]) {
-              graphFinishedAppointments[data] = 0
-            }
-          }
-        })
-
-        let graphData = []
-        Object.entries(graphFinishedAppointments).forEach(f_ap => {
-
-          graphData.push({ value: f_ap[1], date: f_ap[0], category: "Finalizado" })
-          graphData.push({ value: graphCanceledAppointments[f_ap[0]], date: f_ap[0], category: "Cancelado" })
-        })
-
-        setCardsData({
-          canceledAppointments, 
-          finishedAppontments, 
-          appointments: appointments.response.appointments,
-          rate: me?.rating || 0,
-          amount
-        })
-
-        setGraphData(graphData)
-        setUserData(user)
-        setIsLoading(false)
+        }).then(({response}) => response?.provider);
       }
-    })()
-  }, [])
 
-  if (isLoading) return <div>Loading...</div>
+      const canceledAppointments = appointments.response.appointments.filter(ap => ap.canceled_at);
+      const finishedAppontments = appointments.response.appointments.filter(ap => ap.time_done_at);
+      const graphCanceledAppointments = {};
+      const graphFinishedAppointments = {};
+      let amount = 0;
+
+      appointments.response.appointments.forEach(ap => {
+        amount += ap.service.value;
+
+        if (ap.time_done_at) {
+          const data = new Date(ap.time_done_at).toLocaleDateString();
+          graphFinishedAppointments[data] = graphFinishedAppointments[data] + 1 || 1;
+
+          if (!graphCanceledAppointments[data]) {
+            graphCanceledAppointments[data] = 0;
+          }
+        } else if (ap.canceled_at) {
+          const data = new Date(ap.canceled_at).toLocaleDateString();
+          graphCanceledAppointments[data] = graphCanceledAppointments[data] + 1 || 1;
+
+          if (!graphFinishedAppointments[data]) {
+            graphFinishedAppointments[data] = 0;
+          }
+        }
+      });
+
+      const graphData = [];
+      Object.entries(graphFinishedAppointments).forEach(f_ap => {
+        graphData.push({ value: f_ap[1], date: f_ap[0], category: 'Finalizado' });
+        graphData.push({ value: graphCanceledAppointments[f_ap[0]], date: f_ap[0], category: 'Cancelado' });
+      });
+
+      setCardsData({
+        canceledAppointments,
+        finishedAppontments,
+        appointments: appointments.response.appointments,
+        rate: me?.rating || 0,
+        amount
+      });
+
+      setGraphData(graphData);
+      // setUserData(user);
+      setIsLoading(false);
+    })();
+  }, [history, query]);
+
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <Layout>
@@ -153,7 +147,7 @@ export default function Dashboard() {
           </Col>
           <Col xs={24} sm={24} md={8} lg={8} className="gutter-row" span={8}>
             <Card style={{ margin: '10px' }} className="dashboard-card" title="Agendamentos" bordered={true} >
-              <Calendar/>
+              <Calendar />
             </Card>
           </Col>
         </Row>
@@ -170,5 +164,5 @@ export default function Dashboard() {
         </Row> */}
       </Content>
     </Layout>
-  )
+  );
 }

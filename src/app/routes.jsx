@@ -13,7 +13,7 @@ import Service from './pages/Service/Service';
 import AuthPage from './pages/AuthPage/AuthPage';
 
 import { ResponseHandlerProvider } from './context/ResponseHandlerContext';
-import AuthContextProvider from "./context/AuthContext";
+import AuthContextProvider from './context/AuthContext';
 import DashboardRoutes from './dashboardRoutes';
 
 export default function Routes() {

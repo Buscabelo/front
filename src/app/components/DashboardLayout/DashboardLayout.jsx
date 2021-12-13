@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import {
@@ -8,25 +8,25 @@ import {
 } from '@ant-design/icons';
 import { AuthContext } from '../../context/AuthContext';
 
-import "./DashboardLayout.css";
-import logo from '../../assets/images/logo.png'
+import './DashboardLayout.css';
+import logo from '../../assets/images/logo.png';
 
 const { Content, Footer, Sider } = Layout;
 
-const AppLayout = ({ children }) => {
-
+function AppLayout({ children }) {
   const [isCollapsed, setIsCollapsed] = useState(true);
-  const { logout } = useContext(AuthContext)
-  function onCollapse() {
-    setIsCollapsed(!isCollapsed)
-  };
+  const { logout } = useContext(AuthContext);
 
-  function handleLogout() {
-    logout()
+  function onCollapse() {
+    setIsCollapsed(!isCollapsed);
   }
 
-  //possivel bug no mobile ?
-  let currentPath = window.location.pathname
+  function handleLogout() {
+    logout();
+  }
+
+  // possivel bug no mobile?
+  const currentPath = window.location.pathname;
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -55,10 +55,10 @@ const AppLayout = ({ children }) => {
               Listar Agendamentos
             </NavLink>
           </Menu.Item>
-          <Menu.Item key="/logout/" onClick={handleLogout} icon={<LogoutOutlined style={{color:"red"}} />}>
-              Logout
+          <Menu.Item key="/logout/" onClick={handleLogout} icon={<LogoutOutlined style={{color:'red'}} />}>
+            Logout
           </Menu.Item>
-          {/* 
+          {/*
           <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
             <Menu.Item key="6">Team 1</Menu.Item>
             <Menu.Item key="8">Team 2</Menu.Item>
@@ -77,4 +77,4 @@ const AppLayout = ({ children }) => {
   );
 }
 
-export default withRouter(AppLayout); 
+export default withRouter(AppLayout);

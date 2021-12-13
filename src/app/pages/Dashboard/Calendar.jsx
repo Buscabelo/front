@@ -59,8 +59,9 @@ import { Calendar } from 'antd';
 //     </div>
 //   ) : null;
 // }
+
 export default function MyCalendar() {
   return (
     <Calendar style={{ height: '100%' }} fullscreen={false} />
-  )
+  );
 }
