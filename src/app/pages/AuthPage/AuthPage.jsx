@@ -4,12 +4,14 @@ import { Tabs, Row, Col, Layout, Typography, message } from 'antd';
 
 import { ResponseHandlerContext } from '../../context/ResponseHandlerContext';
 import { AuthContext } from '../../context/AuthContext';
+import { httpCode } from '../../constants';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 
 const { Title, Paragraph } = Typography;
 const { TabPane } = Tabs;
 const { Content } = Layout;
+const timeoutPeriod = 2000;
 
 export default function AuthPage() {
   const history = useHistory();
@@ -41,7 +43,7 @@ export default function AuthPage() {
 
     responseMessage({statusCode});
 
-    if (statusCode === 200) {
+    if (statusCode === httpCode.ok) {
       localStorage.setItem('@buscabelo-estabelecimento/me', JSON.stringify(response.user));
       localStorage.setItem('@buscabelo-estabelecimento/token', JSON.stringify(response.token));
     }
@@ -50,7 +52,7 @@ export default function AuthPage() {
       setTimeout(() => {
         auth();
         history.push('/dashboard');
-      }, 2000);
+      }, timeoutPeriod);
       responseMessage({statusCode});
     } else {
       setIsLoading(false);
@@ -79,7 +81,7 @@ export default function AuthPage() {
 
     responseMessage(providerRegistrado.statusCode);
 
-    if (providerRegistrado.statusCode === 200) {
+    if (providerRegistrado.statusCode === httpCode.ok) {
       localStorage.setItem('@buscabelo-estabelecimento/me', JSON.stringify(providerRegistrado.response.provider));
 
       const providerLogado = await query({
@@ -88,13 +90,13 @@ export default function AuthPage() {
         method: 'POST'
       });
 
-      if (providerLogado.statusCode === 200) {
+      if (providerLogado.statusCode === httpCode.ok) {
         localStorage.setItem('@buscabelo-estabelecimento/token', JSON.stringify(providerLogado.response.token));
 
         setTimeout(() => {
           auth();
           history.push('/dashboard');
-        }, 2000);
+        }, timeoutPeriod);
       } else {
         setIsLoading(false);
       }

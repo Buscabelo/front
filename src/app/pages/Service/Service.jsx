@@ -13,6 +13,7 @@ import './Service.css';
 import AppLayout from '../../components/AppLayout/AppLayout';
 import Divider from '../../components/Divider/Divider';
 import List from '../../components/List/List';
+import { httpCode, minStackLength, decimalPlaces } from '../../constants';
 
 const MySwal = withReactContent(Swal);
 
@@ -59,7 +60,7 @@ export default function Service() {
         }
       })
       .catch(() => {
-        if (history.length > 1) {
+        if (history.length >= minStackLength) {
           history.goBack();
         } else {
           history.replace('/');
@@ -133,7 +134,7 @@ export default function Service() {
           body
         })
           .then(({ status }) => {
-            if (status === 200) {
+            if (status === httpCode.ok) {
               setShowModal(false);
               MySwal.fire('Sucesso!', 'Agendamento cadastrado com sucesso', 'success');
             }
@@ -156,7 +157,7 @@ export default function Service() {
       <article className="service-wrapper">
         <main>
           <h2>{data.name}</h2>
-          <p>R$ {data.value.toFixed(2).replace('.', ',')}</p>
+          <p>R$ {data.value.toFixed(decimalPlaces).replace('.', ',')}</p>
           <p><b>Estabelecimento:</b> {data.provider.name}</p>
           <section>
             <b>Descrição:</b>
@@ -192,6 +193,7 @@ export default function Service() {
           aspectRatio={2}
           initialView="dayGridMonth"
           businessHours={{
+            // eslint-disable-next-line no-magic-numbers
             daysOfWeek: [1,2,3,4,5],
             startTime: '07:00',
             endTime: '20:00'

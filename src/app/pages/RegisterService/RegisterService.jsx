@@ -1,6 +1,8 @@
 import { Form, Input, Button, InputNumber, message } from 'antd';
 import { useHistory } from 'react-router';
 
+import { httpCode } from '../../constants';
+
 export default function RegisterService() {
   const history = useHistory();
   const [form] = Form.useForm();
@@ -28,8 +30,8 @@ export default function RegisterService() {
     try {
       const response = await fetch(`${process.env.REACT_APP_BACKEND_AD}/services`, requestOptions);
 
-      if (response.status.valueOf() === 401) history.pushState('/sessions');
-      else if (response.status.valueOf() !== 200) message.warning('Bad Request');
+      if (response.status.valueOf() === httpCode.bad_request) history.pushState('/sessions');
+      else if (response.status.valueOf() !== httpCode.ok) message.warning('Bad Request');
       else message.success('Serviço cadastrado com sucesso!');
     } catch (err) {
       message.error('Bad Request');

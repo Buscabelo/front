@@ -1,6 +1,7 @@
 import { useState, createContext, useEffect } from 'react';
 
 export const AuthContext = createContext();
+const timeoutPeriod = 3000;
 
 function AuthContextProvider({children}) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -10,7 +11,7 @@ function AuthContextProvider({children}) {
     setTimeout(() => {
       setIsAuthenticated(true);
       setIsCheckingAuthentication(false);
-    }, 3000);
+    }, timeoutPeriod);
   }
 
   useEffect(() => {

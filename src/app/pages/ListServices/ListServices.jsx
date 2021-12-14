@@ -31,7 +31,7 @@ export default function ListServices() {
   return (
     <div style={{ maxWidth: '100vw' }}>
       {
-        services.length > 0 ?
+        services.length ?
           <div style={{
             display: 'flex',
             alignItems: 'center',

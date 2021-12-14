@@ -9,6 +9,8 @@ import { default as Calendar } from './Calendar';
 import './Dashboard.css';
 
 const { Content } = Layout;
+const minAppointments = 1;
+const defaultRate = 0;
 
 // const style = { background: '#0092ff', padding: '8px' };
 
@@ -57,14 +59,14 @@ export default function Dashboard() {
 
         if (ap.time_done_at) {
           const data = new Date(ap.time_done_at).toLocaleDateString();
-          graphFinishedAppointments[data] = graphFinishedAppointments[data] + 1 || 1;
+          graphFinishedAppointments[data] = graphFinishedAppointments[data]++ || minAppointments;
 
           if (!graphCanceledAppointments[data]) {
             graphCanceledAppointments[data] = 0;
           }
         } else if (ap.canceled_at) {
           const data = new Date(ap.canceled_at).toLocaleDateString();
-          graphCanceledAppointments[data] = graphCanceledAppointments[data] + 1 || 1;
+          graphCanceledAppointments[data] = graphCanceledAppointments[data]++ || minAppointments;
 
           if (!graphFinishedAppointments[data]) {
             graphFinishedAppointments[data] = 0;
@@ -74,15 +76,17 @@ export default function Dashboard() {
 
       const graphData = [];
       Object.entries(graphFinishedAppointments).forEach(f_ap => {
-        graphData.push({ value: f_ap[1], date: f_ap[0], category: 'Finalizado' });
-        graphData.push({ value: graphCanceledAppointments[f_ap[0]], date: f_ap[0], category: 'Cancelado' });
+        const [date, value,] = f_ap;
+
+        graphData.push({ value, date, category: 'Finalizado' });
+        graphData.push({ value: graphCanceledAppointments[date], date, category: 'Cancelado' });
       });
 
       setCardsData({
         canceledAppointments,
         finishedAppontments,
         appointments: appointments.response.appointments,
-        rate: me?.rating || 0,
+        rate: me?.rating || defaultRate,
         amount
       });
 

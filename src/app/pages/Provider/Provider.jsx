@@ -8,6 +8,7 @@ import AppLayout from '../../components/AppLayout/AppLayout';
 import Divider from '../../components/Divider/Divider';
 import List from '../../components/List/List';
 import Service from '../../components/Service/Service';
+import { minStackLength } from '../../constants';
 
 export default function Provider() {
   const history = useHistory();
@@ -31,7 +32,7 @@ export default function Provider() {
         }
       })
       .catch(() => {
-        if (history.length > 1) {
+        if (history.length >= minStackLength) {
           history.goBack();
         } else {
           history.replace('/');
