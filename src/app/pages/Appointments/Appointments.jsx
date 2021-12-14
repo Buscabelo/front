@@ -6,6 +6,8 @@ import AppLayout from '../../components/AppLayout/AppLayout';
 import Divider from '../../components/Divider/Divider';
 import List from '../../components/List/List';
 
+const initialPath = 0;
+
 function Appointment({ data }) {
   const history = useHistory();
   const { service, provider } = data;
@@ -23,7 +25,7 @@ function Appointment({ data }) {
       .then(response => response.json())
       .then(({ success }) => {
         if (success) {
-          history.go(0);
+          history.go(initialPath);
         }
       })
       // eslint-disable-next-line no-console
@@ -83,7 +85,7 @@ export default function Appointments() {
   return (
     <AppLayout>
       <Divider size={1} />
-      {data.length > 0 ?
+      {data.length ?
         <List
           direction={'horizontal'}
           itemsPerLine={3}

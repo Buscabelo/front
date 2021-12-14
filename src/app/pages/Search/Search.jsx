@@ -7,12 +7,13 @@ import AppLayout from '../../components/AppLayout/AppLayout';
 import Divider from '../../components/Divider/Divider';
 import List from '../../components/List/List';
 import Provider from '../../components/Service/Service';
+import { decimalPlaces } from '../../constants';
 
 function Service({ data }) {
   return (
     <div className="service-item">
       <p><a href={`/servico/${data.id}`}>{data.name}</a></p>
-      <p>R$ {data.value.toFixed(2).replace('.', ',')}</p>
+      <p>R$ {data.value.toFixed(decimalPlaces).replace('.', ',')}</p>
     </div>
   );
 }
@@ -66,13 +67,13 @@ export default function Search() {
   }, [search, loadServices, loadProviders]);
 
   const renderContent = () => {
-    if ((!providers || providers && providers.length === 0) && (!services || services && services.length === 0)) {
+    if ((!providers || providers && !providers.length) && (!services || services && !services.length)) {
       return <>Não foram encontrados serviços ou estabelecimentos com o(s) termo(s) pesquisado(s)</>;
     }
 
     return (
       <>
-        {services && services.length > 0 && <>
+        {services && services.length && <>
           <h3 className="search-title"><i>Serviços encontrados:</i></h3>
           <List
             direction="vertical"
@@ -82,7 +83,7 @@ export default function Search() {
           />
           <Divider size={0.5} />
         </>}
-        {providers && providers.length > 0 && <>
+        {providers && providers.length && <>
           <h3 className="search-title"><i>Estabelecimentos encontrados:</i></h3>
           <List
             direction={isMobile ? 'vertical' : 'horizontal'}

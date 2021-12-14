@@ -1,9 +1,21 @@
-export default function Divider({ size = 2, position = null, custom = null }) {
+const defaultSize = 2;
+const minSliceIndex = 1;
+
+export default function Divider({ size = defaultSize, position = null, custom = null }) {
   let style = {
     border: 'none'
   };
 
-  const capitalize = str => str && str[0].toUpperCase() + str.slice(1);
+  const capitalize = str => {
+    if (str) {
+      const [first,] = str;
+
+      return first.toUpperCase() + str.slice(minSliceIndex);
+    }
+
+    return str;
+  };
+
   size = size + 'rem';
 
   if (!custom) {

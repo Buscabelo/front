@@ -2,6 +2,8 @@ import { message } from 'antd';
 import { createContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import { httpCode } from '../constants';
+
 export const ResponseHandlerContext = createContext();
 
 export function ResponseHandlerProvider({children}) {
@@ -24,7 +26,7 @@ export function ResponseHandlerProvider({children}) {
       // pode ser separado em metodo deny() em authcontext
       if (!token) {
         history.push('/sessions');
-        return { response: null, statusCode: 401 };
+        return { response: null, statusCode: httpCode.unauthorized };
       }
 
       headers.append('Authorization', `Bearer ${token}`);
@@ -46,16 +48,16 @@ export function ResponseHandlerProvider({children}) {
   // deve ser retirado daqui
   function responseMessage({errMessage, sucMessage, statusCode}) {
     switch (statusCode) {
-    case 200:
+    case httpCode.ok:
       message.info(sucMessage || 'Sucesso!');
       break;
-    case 201:
+    case httpCode.created:
       message.success(sucMessage || 'Sucesso!');
       break;
-    case 400:
+    case httpCode.bad_request:
       message.warning(errMessage || 'Algo de errado ocorreu');
       break;
-    case 401:
+    case httpCode.unauthorized:
       history.push('/sessions');
       break;
     default:

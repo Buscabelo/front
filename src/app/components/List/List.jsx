@@ -1,6 +1,8 @@
 import './List.css';
 
-export default function List({ direction = 'horizontal', items, ItemComponent = null, itemsPerLine = 1 }) {
+const defaultLineCount = 1;
+
+export default function List({ direction = 'horizontal', items, ItemComponent = null, itemsPerLine = defaultLineCount }) {
   let type = 'grid';
 
   if (direction === 'horizontal') {
@@ -9,7 +11,7 @@ export default function List({ direction = 'horizontal', items, ItemComponent = 
     type = 'list';
   }
 
-  if (!items || Array.isArray(items) && items.length === 0) {
+  if (!items || Array.isArray(items) && !items.length) {
     return null;
   }
 
