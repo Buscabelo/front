@@ -35,39 +35,27 @@ function AppLayout({ children }) {
           <img src={logo} alt="Buscabelo" />
         </div>
         <Menu theme="light" selectedKeys={[currentPath]} mode="inline">
-          <Menu.Item key="/dashboard" icon={<PieChartOutlined />}>
-            <NavLink to="/dashboard">
+          <Menu.Item key="/painel" icon={<PieChartOutlined />}>
+            <NavLink to="/painel">
               Meu Estabelecimento
             </NavLink>
           </Menu.Item>
-          <Menu.Item key="/dashboard/service/" icon={<PieChartOutlined />}>
-            <NavLink to="/dashboard/service/">
+          <Menu.Item key="/painel/servicos" icon={<PieChartOutlined />}>
+            <NavLink to="/painel/servicos">
               Serviços
             </NavLink>
           </Menu.Item>
-          <Menu.Item key="/dashboard/service/register/" icon={<DesktopOutlined />}>
-            <NavLink to="/dashboard/service/register/">
-              Cadastrar Serviço
-            </NavLink>
-          </Menu.Item>
-          <Menu.Item key="/dashboard/appointments/" icon={<DesktopOutlined />}>
-            <NavLink to="/dashboard/appointments/">
+          <Menu.Item key="/painel/agendamentos" icon={<DesktopOutlined />}>
+            <NavLink to="/painel/agendamentos">
               Listar Agendamentos
             </NavLink>
           </Menu.Item>
           <Menu.Item key="/logout/" onClick={handleLogout} icon={<LogoutOutlined style={{color:'red'}} />}>
             Logout
           </Menu.Item>
-          {/*
-          <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-            <Menu.Item key="6">Team 1</Menu.Item>
-            <Menu.Item key="8">Team 2</Menu.Item>
-          </SubMenu>
-          */}
         </Menu>
       </Sider>
       <Layout className="site-layout">
-        {/*<Header className="site-layout-background" style={{ padding: 0 }} />*/}
         <Content style={{ margin: '16px' }}>
           {children}
         </Content>

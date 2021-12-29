@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 
 import './styles.css';
+import { userTypes } from '../../../../constants/user';
 import mobileLogo from '../../../../assets/images/logo@1x.png';
 import logo from '../../../../assets/images/logo.png';
 
@@ -28,9 +29,15 @@ export default function Login() {
       const { success, user, token } = await response.json();
 
       if (success) {
-        localStorage.setItem('@buscabelo_client/user', JSON.stringify(user));
-        localStorage.setItem('@buscabelo_client/token', token);
-        history.push('/');
+        if (user.type === userTypes.Provider) {
+          localStorage.setItem('@buscabelo-estabelecimento/me', JSON.stringify(user));
+          localStorage.setItem('@buscabelo-estabelecimento/token', token);
+          history.push('/painel');
+        } else {
+          localStorage.setItem('@buscabelo_client/user', JSON.stringify(user));
+          localStorage.setItem('@buscabelo_client/token', token);
+          history.push('/');
+        }
       }
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -53,9 +60,15 @@ export default function Login() {
         const { success, user, token } = await response.json();
 
         if (success) {
-          localStorage.setItem('@buscabelo_client/user', JSON.stringify(user));
-          localStorage.setItem('@buscabelo_client/token', token);
-          history.push('/');
+          if (user.type === userTypes.Provider) {
+            localStorage.setItem('@buscabelo-estabelecimento/me', JSON.stringify(user));
+            localStorage.setItem('@buscabelo-estabelecimento/token', token);
+            history.push('/painel');
+          } else {
+            localStorage.setItem('@buscabelo_client/user', JSON.stringify(user));
+            localStorage.setItem('@buscabelo_client/token', token);
+            history.push('/');
+          }
         }
       } catch (error) {
         // eslint-disable-next-line no-console
