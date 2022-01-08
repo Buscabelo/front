@@ -5,7 +5,8 @@ services:
       context: .
     container_name: "buscabelo"
     working_dir: "/usr/src/app"
+    command: npm start
     volumes:
-      - ./:/usr/src/app
+      - .:/usr/src/app
     ports:
       - "3001:3000"
