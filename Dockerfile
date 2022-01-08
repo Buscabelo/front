@@ -1,5 +1,9 @@
 FROM node:16-slim
-WORKDIR /usr/src/app
-COPY . .
-RUN npm install
-CMD npm run start
+
+# Dependencies
+ADD ["./package*.json", "/usr/"]
+WORKDIR /usr/
+RUN npm install --silent
+ENV NODE_PATH=/usr/node_modules
+
+EXPOSE 3001
