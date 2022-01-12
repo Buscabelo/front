@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Route } from 'react-router-dom';
 
-import { AuthContext } from './context/AuthContext';
+import { AuthContext } from './modules/provider/context/AuthContext';
 import ListServices from './pages/ListServices/ListServices';
 import RegisterService from './pages/RegisterService/RegisterService';
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -9,7 +9,7 @@ import AuthPage from './pages/AuthPage/AuthPage';
 import LoadingPage from './pages/LoadingPage/LoadingPage';
 import ListAppointments from './pages/ListAppointments/ListAppointments';
 
-import DashboardLayout from './components/DashboardLayout/DashboardLayout';
+import DashboardLayout from './modules/provider/components/DashboardLayout/DashboardLayout';
 
 export default function DashboardRoutes() {
   const { isAuthenticated, isCheckingAuthentication } = useContext(AuthContext);

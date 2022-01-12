@@ -2,9 +2,9 @@ import { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 
 import './Appointments.css';
-import AppLayout from '../../components/AppLayout/AppLayout';
-import Divider from '../../components/Divider/Divider';
-import List from '../../components/List/List';
+import AppLayout from '../../../../components/AppLayout/AppLayout';
+import Divider from '../../../../components/Divider/Divider';
+import List from '../../../../components/List/List';
 
 const initialPath = 0;
 
