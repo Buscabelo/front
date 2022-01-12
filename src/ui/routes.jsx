@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Appointment from './pages/Appointment/Appointment';
-import Appointments from './pages/Appointments/Appointments';
+import Appointments from './modules/customer/pages/Appointments/Appointments';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Provider from './pages/Provider/Provider';
@@ -13,7 +13,7 @@ import Service from './pages/Service/Service';
 import AuthPage from './pages/AuthPage/AuthPage';
 
 import { ResponseHandlerProvider } from './context/ResponseHandlerContext';
-import AuthContextProvider from './context/AuthContext';
+import AuthContextProvider from './modules/provider/context/AuthContext';
 import DashboardRoutes from './dashboardRoutes';
 
 export default function Routes() {
