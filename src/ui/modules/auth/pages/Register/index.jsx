@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 
-import './Register.css';
+import './styles.css';
 import logo from '../../../../assets/images/logo.png';
 import Divider from '../../../customer/components/Divider/Divider';
 

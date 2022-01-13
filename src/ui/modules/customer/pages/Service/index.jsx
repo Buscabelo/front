@@ -9,7 +9,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
-import './Service.css';
+import './styles.css';
 import AppLayout from '../../components/AppLayout/AppLayout';
 import Divider from '../../components/Divider/Divider';
 import List from '../../components/List/List';

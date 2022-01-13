@@ -6,7 +6,7 @@ import { ResponseHandlerContext } from '../../context/ResponseHandlerContext';
 import Graph from './Graph';
 import { default as Calendar } from './Calendar';
 
-import './Dashboard.css';
+import './styles.css';
 
 const { Content } = Layout;
 const minAppointments = 1;

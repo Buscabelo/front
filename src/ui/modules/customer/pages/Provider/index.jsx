@@ -3,7 +3,7 @@ import { isMobile } from 'react-device-detect';
 import { MdGridOn, MdFormatListBulleted } from 'react-icons/md';
 import { useHistory, useParams } from 'react-router-dom';
 
-import './Provider.css';
+import './styles.css';
 import AppLayout from '../../components/AppLayout/AppLayout';
 import Divider from '../../components/Divider/Divider';
 import List from '../../components/List/List';

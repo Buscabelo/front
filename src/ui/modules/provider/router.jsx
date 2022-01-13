@@ -1,8 +1,8 @@
 import { Route } from 'react-router-dom';
 
-import Appointments from './pages/ListAppointments/ListAppointments';
-import Dashboard from './pages/Dashboard/Dashboard';
-import Services from './pages/ListServices/ListServices';
+import Appointments from './pages/Appointments';
+import Dashboard from './pages/Dashboard';
+import Services from './pages/Services';
 
 export default function ProviderRoutes() {
   return (
