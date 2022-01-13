@@ -1,7 +1,7 @@
 import { Route } from 'react-router-dom';
 
-import Login from './pages/Login/Login';
-import Register from './pages/Register/Register';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 export default function AuthRoutes() {
   return (
