@@ -4,7 +4,7 @@ import { GoogleLogin } from 'react-google-login';
 
 import './Register.css';
 import logo from '../../../../assets/images/logo.png';
-import Divider from '../../components/Divider/Divider';
+import Divider from '../../../customer/components/Divider/Divider';
 
 export default function Register() {
   const history = useHistory();
