@@ -13,7 +13,7 @@ import './Service.css';
 import AppLayout from '../../components/AppLayout/AppLayout';
 import Divider from '../../components/Divider/Divider';
 import List from '../../components/List/List';
-import { httpCode, minStackLength, decimalPlaces } from '../../constants';
+import { httpCode, minStackLength, decimalPlaces } from '../../../../constants';
 
 const MySwal = withReactContent(Swal);
 

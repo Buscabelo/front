@@ -2,12 +2,12 @@ import { useContext } from 'react';
 import { Route } from 'react-router-dom';
 
 import { AuthContext } from './modules/provider/context/AuthContext';
-import ListServices from './pages/ListServices/ListServices';
-import RegisterService from './pages/RegisterService/RegisterService';
-import Dashboard from './pages/Dashboard/Dashboard';
-import AuthPage from './pages/AuthPage/AuthPage';
-import LoadingPage from './pages/LoadingPage/LoadingPage';
-import ListAppointments from './pages/ListAppointments/ListAppointments';
+import ListServices from './modules/provider/pages/ListServices/ListServices';
+import RegisterService from './modules/provider/pages/RegisterService/RegisterService';
+import Dashboard from './modules/provider/pages/Dashboard/Dashboard';
+import AuthPage from './modules/auth/pages/AuthPage/AuthPage';
+import LoadingPage from './modules/provider/pages/LoadingPage/LoadingPage';
+import ListAppointments from './modules/provider/pages/ListAppointments/ListAppointments';
 
 import DashboardLayout from './modules/provider/components/DashboardLayout/DashboardLayout';
 

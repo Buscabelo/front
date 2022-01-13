@@ -1,18 +1,20 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Appointment from './pages/Appointment/Appointment';
+// auth
+import Login from './modules/auth/pages/Login/Login';
+import AuthPage from './modules/auth/pages/AuthPage/AuthPage';
+
+//customer
+import Appointment from './modules/customer/pages/Appointment/Appointment';
 import Appointments from './modules/customer/pages/Appointments/Appointments';
-import Home from './pages/Home/Home';
-import Login from './pages/Login/Login';
-import Provider from './pages/Provider/Provider';
-import Register from './pages/Register/Register';
-import Search from './pages/Search/Search';
-import Service from './pages/Service/Service';
+import Home from './modules/customer/pages/Home/Home';
+import Provider from './modules/customer/pages/Provider/Provider';
+import Register from './modules/customer/pages/Register/Register';
+import Search from './modules/customer/pages/Search/Search';
+import Service from './modules/customer/pages/Service/Service';
 
 // Provider
-import AuthPage from './pages/AuthPage/AuthPage';
-
-import { ResponseHandlerProvider } from './context/ResponseHandlerContext';
+import { ResponseHandlerProvider } from './modules/provider/context/ResponseHandlerContext';
 import AuthContextProvider from './modules/provider/context/AuthContext';
 import DashboardRoutes from './dashboardRoutes';
 

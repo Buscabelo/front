@@ -2,9 +2,9 @@ import { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Tabs, Row, Col, Layout, Typography, message } from 'antd';
 
-import { ResponseHandlerContext } from '../../context/ResponseHandlerContext';
-import { AuthContext } from '../../context/AuthContext';
-import { httpCode } from '../../constants';
+import { ResponseHandlerContext } from '../../../provider/context/ResponseHandlerContext';
+import { AuthContext } from '../../../provider/context/AuthContext';
+import { httpCode } from '../../../../constants';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 

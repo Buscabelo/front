@@ -2,7 +2,7 @@ import { message } from 'antd';
 import { createContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { httpCode } from '../constants';
+import { httpCode } from '../../../constants/http';
 
 export const ResponseHandlerContext = createContext();
 

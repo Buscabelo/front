@@ -1,7 +1,7 @@
 import { Form, Input, Button, InputNumber, message } from 'antd';
 import { useHistory } from 'react-router';
 
-import { httpCode } from '../../constants';
+import { httpCode } from '../../../../constants';
 
 export default function RegisterService() {
   const history = useHistory();
