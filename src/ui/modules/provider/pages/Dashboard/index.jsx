@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
+import { isMobile, isTablet } from 'react-device-detect';
 import { useHistory } from 'react-router';
 import { Row, Col, Layout, Card } from 'antd';
 // import UserReviewComponent from '../../components/UserReviewComponent/UserReviewComponent';
@@ -97,6 +98,10 @@ export default function Dashboard() {
   }, [history, query]);
 
   if (isLoading) return <div>Loading...</div>;
+
+  if (isMobile || isTablet) {
+    return <></>;
+  }
 
   return (
     <Layout>

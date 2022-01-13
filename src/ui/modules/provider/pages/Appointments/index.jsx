@@ -1,5 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
+import { isMobile, isTablet } from 'react-device-detect';
 import { Card, Typography, Modal } from 'antd';
+
 import FlexlistWrapper from '../../components/FlexlistWrapper/FlexlistWrapper';
 import { ResponseHandlerContext } from '../../context/ResponseHandlerContext';
 
@@ -71,6 +73,10 @@ export default function ListAppointments() {
       responseMessage({ statusCode });
       setIsModalVisible(false);
     }
+  }
+
+  if (isMobile || isTablet) {
+    return <></>;
   }
 
   return (

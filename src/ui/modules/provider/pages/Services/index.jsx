@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import { isMobile, isTablet } from 'react-device-detect';
 import { Card, Typography } from 'antd';
 
 import { ResponseHandlerContext } from '../../context/ResponseHandlerContext';
@@ -27,6 +28,10 @@ export default function ListServices() {
   }, [query, responseMessage]);
 
   if (isLoading) return <div>Loading...</div>;
+
+  if (isMobile || isTablet) {
+    return <></>;
+  }
 
   return (
     <div style={{ maxWidth: '100vw' }}>

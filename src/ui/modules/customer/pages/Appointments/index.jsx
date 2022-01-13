@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { isMobile, isTablet } from 'react-device-detect';
 import { useHistory } from 'react-router';
 
 import './styles.css';
@@ -81,6 +82,10 @@ export default function Appointments() {
   useEffect(() => {
     loadAppointments();
   }, [loadAppointments]);
+
+  if (isMobile || isTablet) {
+    return <></>;
+  }
 
   return (
     <AppLayout>
