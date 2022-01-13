@@ -7,7 +7,7 @@ import AppLayout from '../../components/AppLayout/AppLayout';
 import Divider from '../../components/Divider/Divider';
 import List from '../../components/List/List';
 import Provider from '../../components/Service/Service';
-import { decimalPlaces } from '../../constants';
+import { decimalPlaces } from '../../../../constants';
 
 function Service({ data }) {
   return (

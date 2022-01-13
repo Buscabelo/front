@@ -3,8 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 
 import './Login.css';
-import Divider from '../../components/Divider/Divider';
-import logo from '../../assets/images/logo.png';
+import Divider from '../../../customer/components/Divider/Divider';
+import logo from '../../../../assets/images/logo.png';
 
 export default function Login() {
   const history = useHistory();

@@ -8,7 +8,7 @@ import AppLayout from '../../components/AppLayout/AppLayout';
 import Divider from '../../components/Divider/Divider';
 import List from '../../components/List/List';
 import Service from '../../components/Service/Service';
-import { minStackLength } from '../../constants';
+import { minStackLength } from '../../../../constants';
 
 export default function Provider() {
   const history = useHistory();
