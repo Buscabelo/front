@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { isMobile, isTablet } from 'react-device-detect';
 import { useHistory, useParams } from 'react-router-dom';
 
 import './styles.css';
@@ -115,6 +116,10 @@ export default function Appointment() {
       </>
     );
   };
+
+  if (isMobile || isTablet) {
+    return <></>;
+  }
 
   return (
     <AppLayout>

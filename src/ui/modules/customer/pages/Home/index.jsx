@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { isMobile } from 'react-device-detect';
+import { isMobile, isTablet } from 'react-device-detect';
 
 import AppLayout from '../../components/AppLayout/AppLayout';
 import Carousel from '../../components/Carousel/Carousel';
@@ -27,6 +27,10 @@ export default function Home() {
   useEffect(() => {
     loadProviders();
   }, [loadProviders]);
+
+  if (isMobile || isTablet) {
+    return <></>;
+  }
 
   return (
     <AppLayout>

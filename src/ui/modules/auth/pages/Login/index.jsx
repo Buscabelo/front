@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { isMobile, isTablet } from 'react-device-detect';
 import { useHistory } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 
@@ -67,6 +68,10 @@ export default function Login() {
     // eslint-disable-next-line no-console
     console.error(response);
   };
+
+  if (isMobile || isTablet) {
+    return <></>;
+  }
 
   return (
     <article className="login-wrapper">

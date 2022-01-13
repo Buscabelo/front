@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
+import { isMobile, isTablet } from 'react-device-detect';
 import { useHistory, useLocation } from 'react-router-dom';
-import { isMobile } from 'react-device-detect';
 
 import './styles.css';
 import AppLayout from '../../components/AppLayout/AppLayout';
@@ -96,6 +96,10 @@ export default function Search() {
       </>
     );
   };
+
+  if (isMobile || isTablet) {
+    return <></>;
+  }
 
   return (
     <AppLayout>

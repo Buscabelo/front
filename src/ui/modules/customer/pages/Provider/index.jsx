@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { isMobile } from 'react-device-detect';
+import { isMobile, isTablet } from 'react-device-detect';
 import { MdGridOn, MdFormatListBulleted } from 'react-icons/md';
 import { useHistory, useParams } from 'react-router-dom';
 
@@ -62,6 +62,10 @@ export default function Provider() {
 
   if (!data) {
     return null;
+  }
+
+  if (isMobile || isTablet) {
+    return <></>;
   }
 
   return (

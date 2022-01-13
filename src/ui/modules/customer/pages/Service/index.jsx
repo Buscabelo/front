@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { isMobile } from 'react-device-detect';
+import { isMobile, isTablet } from 'react-device-detect';
 import Modal from 'react-modal';
 import { useHistory, useParams } from 'react-router';
 import FullCalendar, { formatDate } from '@fullcalendar/react';
@@ -149,6 +149,10 @@ export default function Service() {
 
   if (!data) {
     return null;
+  }
+
+  if (isMobile || isTablet) {
+    return <></>;
   }
 
   return (
