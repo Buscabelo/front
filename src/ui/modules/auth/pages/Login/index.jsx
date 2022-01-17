@@ -70,7 +70,7 @@ export default function Login() {
   };
 
   if (isMobile || isTablet) {
-    return <></>;
+    return null;
   }
 
   return (

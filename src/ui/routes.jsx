@@ -8,9 +8,9 @@ export default function Routes() {
   return (
     <Router>
       <Switch>
-        <CustomerRoutes />
-        <ProviderRoutes />
-        <AuthRoutes />
+        {AuthRoutes}
+        {CustomerRoutes}
+        {ProviderRoutes}
       </Switch>
     </Router>
   );

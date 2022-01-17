@@ -84,7 +84,7 @@ export default function Appointments() {
   }, [loadAppointments]);
 
   if (isMobile || isTablet) {
-    return <></>;
+    return null;
   }
 
   return (

@@ -98,7 +98,7 @@ export default function Search() {
   };
 
   if (isMobile || isTablet) {
-    return <></>;
+    return null;
   }
 
   return (

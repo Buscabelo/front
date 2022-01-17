@@ -7,15 +7,11 @@ import Provider from './pages/Provider';
 import Search from './pages/Search';
 import Service from './pages/Service';
 
-export default function CustomerRoutes() {
-  return (
-    <>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/agendamentos" component={Appointments} />
-      <Route exact path="/agendamento/:id" component={Appointment} />
-      <Route exact path="/estabelecimento/:id" component={Provider} />
-      <Route exact path="/pesquisa" component={Search} />
-      <Route exact path="/servico/:id" component={Service} />
-    </>
-  );
-}
+export default [
+  <Route key="inicio" exact path="/" component={Home} />,
+  <Route key="agendamentos" exact path="/agendamentos" component={Appointments} />,
+  <Route key="agendamento" exact path="/agendamento/:id" component={Appointment} />,
+  <Route key="estabelecimento" exact path="/estabelecimento/:id" component={Provider} />,
+  <Route key="pesquisa" exact path="/pesquisa" component={Search} />,
+  <Route key="servico" exact path="/servico/:id" component={Service} />,
+];
