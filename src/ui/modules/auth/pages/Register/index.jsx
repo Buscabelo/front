@@ -28,7 +28,7 @@ export default function Register() {
       body
     })
       .then(() => {
-        history.push('/login');
+        history.push('/acesso');
       })
       .catch(error => {
         // eslint-disable-next-line no-console
@@ -68,7 +68,7 @@ export default function Register() {
   };
 
   if (isMobile || isTablet) {
-    return <></>;
+    return null;
   }
 
   return (
@@ -113,7 +113,7 @@ export default function Register() {
         <Divider size={1} />
         <section className="login-cta">
           Tem uma conta?
-          <a href="/login">Conecte-se</a>
+          <a href="/acesso">Conecte-se</a>
         </section>
       </main>
     </article>

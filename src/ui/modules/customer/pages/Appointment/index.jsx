@@ -118,7 +118,7 @@ export default function Appointment() {
   };
 
   if (isMobile || isTablet) {
-    return <></>;
+    return null;
   }
 
   return (

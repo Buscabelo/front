@@ -152,7 +152,7 @@ export default function Service() {
   }
 
   if (isMobile || isTablet) {
-    return <></>;
+    return null;
   }
 
   return (

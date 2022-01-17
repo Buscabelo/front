@@ -18,7 +18,7 @@ export default function AuthInfo({ user, showMenu }) {
     );
 
   return (
-    <a href="/login">
+    <a href="/acesso">
       <IoMdLogIn /> Entrar
     </a>
   );

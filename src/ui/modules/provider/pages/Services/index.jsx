@@ -30,7 +30,7 @@ export default function ListServices() {
   if (isLoading) return <div>Loading...</div>;
 
   if (isMobile || isTablet) {
-    return <></>;
+    return null;
   }
 
   return (

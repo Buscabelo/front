@@ -76,7 +76,7 @@ export default function ListAppointments() {
   }
 
   if (isMobile || isTablet) {
-    return <></>;
+    return null;
   }
 
   return (

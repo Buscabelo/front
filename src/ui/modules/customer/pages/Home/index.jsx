@@ -29,7 +29,7 @@ export default function Home() {
   }, [loadProviders]);
 
   if (isMobile || isTablet) {
-    return <></>;
+    return null;
   }
 
   return (

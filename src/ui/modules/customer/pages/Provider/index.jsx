@@ -65,7 +65,7 @@ export default function Provider() {
   }
 
   if (isMobile || isTablet) {
-    return <></>;
+    return null;
   }
 
   return (
