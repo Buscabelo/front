@@ -1,0 +1,27 @@
+.menu-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 2vh 8vw;
+  box-shadow: 0 -1px 6px #c9c9c9;
+}
+
+.menu-container a {
+  font-size: 1rem;
+  color: #9c9c9c;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5vh;
+  align-items: center;
+}
+
+.menu-container a.active {
+  color: #212121;
+}
+
+.menu-container a svg {
+  font-size: 2rem;
+}

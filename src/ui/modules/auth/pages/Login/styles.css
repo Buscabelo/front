@@ -11,6 +11,8 @@
     height: 100vh;
     background-color: #9c9c9c;
     position: relative;
+    overflow: overlay;
+    max-height: 88vh;
   }
 
   .login-wrapper .card {
@@ -140,7 +142,7 @@
     appearance: none;
     padding: 2.4vh 1.5vw;
     background-color: #727272;
-    color:#fff;
+    color: #fff;
     border: none;
     font-size: 0.9rem;
     font-weight: bold;
@@ -163,7 +165,7 @@
     text-decoration: none;
   }
 
-  .button-google{
+  .button-google {
     width: 100%;
     justify-content: center;
   }

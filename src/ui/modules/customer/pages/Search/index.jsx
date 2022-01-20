@@ -5,6 +5,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import './styles.css';
 import AppLayout from '../../components/AppLayout/AppLayout';
 import Divider from '../../components/Divider/Divider';
+import FloatMenu from '../../../common/components/FloatMenu';
 import List from '../../components/List/List';
 import Provider from '../../components/Service/Service';
 import { decimalPlaces } from '../../../../constants';
@@ -98,7 +99,7 @@ export default function Search() {
   };
 
   if (isMobile || isTablet) {
-    return null;
+    return <FloatMenu />;
   }
 
   return (
