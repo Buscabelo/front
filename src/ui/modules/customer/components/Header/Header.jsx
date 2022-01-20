@@ -3,7 +3,8 @@ import { isMobile } from 'react-device-detect';
 import { MdMenu, MdSearch } from 'react-icons/md';
 
 import './Header.css';
-import logo from '../../../../assets/images/logo.png';
+// eslint-disable-next-line
+import logo from '../../../../assets/images/logo@1x.png';
 import AuthInfo from './AuthInfo';
 import SearchInput from './SearchInput';
 import Submenu from './Submenu';
