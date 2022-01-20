@@ -5,6 +5,7 @@ import { GoogleLogin } from 'react-google-login';
 
 import './styles.css';
 import { userTypes } from '../../../../constants/user';
+import FloatMenu from '../../../common/components/FloatMenu';
 import mobileLogo from '../../../../assets/images/logo@1x.png';
 import logo from '../../../../assets/images/logo.png';
 
@@ -87,38 +88,41 @@ export default function Login() {
 
   if (isMobile || isTablet) {
     return (
-      <article className="login-wrapper">
-        <main className="card">
-          <img src={mobileLogo} alt="Logo Buscabelo" />
+      <>
+        <article className="login-wrapper">
+          <main className="card">
+            <img src={mobileLogo} alt="Logo Buscabelo" />
 
-          <form onSubmit={handleSubmit}>
-            <fieldset>
-              <label>Email</label>
-              <input name="email" placeholder="Ex: yanvictor@example.com" value={email} onChange={({ target }) => setEmail(target.value)} required />
-            </fieldset>
+            <form onSubmit={handleSubmit}>
+              <fieldset>
+                <label>Email</label>
+                <input name="email" placeholder="Ex: yanvictor@example.com" value={email} onChange={({ target }) => setEmail(target.value)} required />
+              </fieldset>
 
-            <fieldset>
-              <label>Senha</label>
-              <input name="password" placeholder="Ex: ******" value={password} onChange={({ target }) => setPassword(target.value)} required />
-              <a href="#">Esqueceu sua senha?</a>
-            </fieldset>
+              <fieldset>
+                <label>Senha</label>
+                <input name="password" placeholder="Ex: ******" value={password} onChange={({ target }) => setPassword(target.value)} required />
+                <a href="#">Esqueceu sua senha?</a>
+              </fieldset>
 
-            <GoogleLogin
-              clientId="698519431370-hqbblgqr7v6vl3vd96itd98j0d4a3ibv.apps.googleusercontent.com"
-              buttonText="Entrar usando Google"
-              onSuccess={handleGoogleLoginSuccess}
-              onFailure={handleGoogleLoginFailure}
-              cookiePolicy={'single_host_origin'}
-            />
+              <GoogleLogin
+                clientId="698519431370-hqbblgqr7v6vl3vd96itd98j0d4a3ibv.apps.googleusercontent.com"
+                buttonText="Entrar usando Google"
+                onSuccess={handleGoogleLoginSuccess}
+                onFailure={handleGoogleLoginFailure}
+                cookiePolicy={'single_host_origin'}
+              />
 
-            <button type="submit">Entrar</button>
-          </form>
+              <button type="submit">Entrar</button>
+            </form>
 
-          <p>
-            Não tem uma conta? <a href="/cadastro">Cadastre-se aqui</a>
-          </p>
-        </main>
-      </article>
+            <p>
+              Não tem uma conta? <a href="/cadastro">Cadastre-se aqui</a>
+            </p>
+          </main>
+        </article>
+        <FloatMenu />
+      </>
     );
   }
 
