@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 
 import './styles.css';
-import logo from '../../../../assets/images/logo.png';
+import logo from '../../../../assets/images/logo@1x.png';
 import Divider from '../../../customer/components/Divider/Divider';
 
 export default function Register() {

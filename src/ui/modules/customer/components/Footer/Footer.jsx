@@ -2,7 +2,8 @@ import { isMobile } from 'react-device-detect';
 import { FaFacebookF, FaInstagram } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 
-import logo from '../../../../assets/images/logo.png';
+// eslint-disable-next-line
+import logo from '../../../../assets/images/logo@1x.png';
 import './Footer.css';
 
 export default function Footer() {
