@@ -5,6 +5,7 @@ import { GoogleLogin } from 'react-google-login';
 
 import './styles.css';
 import mobileLogo from '../../../../assets/images/logo@1x.png';
+import logo from '../../../../assets/images/logo.png';
 
 export default function Login() {
   const history = useHistory();
@@ -106,39 +107,36 @@ export default function Login() {
   }
 
   return (
-    <></>
-    // <article className="login-wrapper">
-    //   <aside className="cta">
-    //     <img src={logo} alt="Logo Buscabelo" />
-    //     Os melhores salões da região estão aqui
-    //   </aside>
-    //   <main>
-    //     <form onSubmit={handleSubmit}>
-    //       <h1 id="login-title">Login</h1>
-    //       <div className="input-group">
-    //         <label>Email:</label>
-    //         <input type="email" placeholder="Ex: yanvictor@example.com" value={email} onChange={({target}) => setEmail(target.value)} required />
-    //       </div>
-    //       <div className="input-group">
-    //         <label>Senha:</label>
-    //         <input type="password" placeholder="Ex: ******" value={password} onChange={({target}) => setPassword(target.value)} required />
-    //       </div>
-    //       <button className="btn-block" type="submit">Entrar</button>
-    //       <Divider size={1} />
-    //       <GoogleLogin
-    //         clientId="698519431370-hqbblgqr7v6vl3vd96itd98j0d4a3ibv.apps.googleusercontent.com"
-    //         buttonText="Entrar usando Google"
-    //         onSuccess={handleGoogleLoginSuccess}
-    //         onFailure={handleGoogleLoginFailure}
-    //         cookiePolicy={'single_host_origin'}
-    //         style={{margin: '0 auto'}}
-    //       />
-    //       <Divider size={1} />
-    //       <section className="register-cta">
-    //         Não tem uma conta? <a href="/cadastrar">Cadastre-se aqui!</a>
-    //       </section>
-    //     </form>
-    //   </main>
-    // </article>
+    <article className="login-wrapper">
+      <aside className="cta">
+        <img src={logo} alt="Logo Buscabelo" />
+        <h3>Os melhores salões da região estão aqui.</h3>
+      </aside>
+      <main>
+        <form onSubmit={handleSubmit}>
+          <h1 id="login-title">Entrar no Buscabelo</h1>
+          <div className="input-group">
+            <label>Email :</label>
+            <input type="email" placeholder="Ex: yanvictor@example.com" value={email} onChange={({target}) => setEmail(target.value)} required />
+          </div>
+          <div className="input-group">
+            <label>Senha :</label>
+            <input type="password" placeholder="Ex: ******" value={password} onChange={({target}) => setPassword(target.value)} required />
+          </div>
+          <button className="btn-block" type="submit">Entrar</button>
+          <GoogleLogin
+            clientId="698519431370-hqbblgqr7v6vl3vd96itd98j0d4a3ibv.apps.googleusercontent.com"
+            buttonText="Entrar usando Google"
+            onSuccess={handleGoogleLoginSuccess}
+            onFailure={handleGoogleLoginFailure}
+            cookiePolicy={'single_host_origin'}
+            className="button-google"
+          />
+          <section className="register-cta">
+            Não tem uma conta? <a href="/cadastrar">Cadastre-se aqui!</a>
+          </section>
+        </form>
+      </main>
+    </article>
   );
 }
