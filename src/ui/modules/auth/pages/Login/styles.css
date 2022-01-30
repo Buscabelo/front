@@ -77,7 +77,7 @@
 
 /* desktop */
 
-/* @media (hover: hover) {
+@media (hover: hover) {
   .login-wrapper {
     display: flex;
     justify-content: space-between;
@@ -98,6 +98,10 @@
     max-width: 50%;
   }
 
+  .login-wrapper .cta h3 {
+    margin: 5vh 2vw 2vh 2vw;
+  }
+
   .login-wrapper main {
     width: 35%;
     display: flex;
@@ -112,7 +116,8 @@
   }
 
   .login-wrapper main form #login-title {
-    margin-bottom: 0.5rem;
+    text-align: center;
+    padding-bottom: 7vh;
   }
 
   .login-wrapper main form .input-group {
@@ -139,6 +144,8 @@
     font-size: 0.9rem;
     font-weight: bold;
     cursor: pointer;
+    height: 3em;
+    border-radius: 6px;
   }
 
   .login-wrapper main form button.btn-block {
@@ -148,9 +155,16 @@
 
   .login-wrapper main form .register-cta {
     text-align: center;
+    font: message-box;
+    margin-top: 2vw;
   }
 
   .login-wrapper main form .register-cta a {
     text-decoration: none;
   }
-} */
+
+  .button-google{
+    width: 100%;
+    justify-content: center;
+  }
+}
