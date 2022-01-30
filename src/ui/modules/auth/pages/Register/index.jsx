@@ -70,6 +70,7 @@ export default function Register() {
       <article className="register-wrapper">
         <img src={logo} alt="Logo Buscabelo" />
         <form onSubmit={handleSubmit}>
+          <h1 className='title-form'>Inscreva-se no Buscabelo agora mesmo.</h1>
           <fieldset>
             <label>Nome</label>
             <input type="text" placeholder="Ex: Yan" name="nome" value={name} onChange={({ target }) => setName(target.value)} required />
@@ -107,51 +108,45 @@ export default function Register() {
   }
 
   return (
-    <></>
-    // <article className="register-wrapper">
-    //   <aside className="cta">
-    //     <img src={logo} alt="Logo Buscabelo" />
-    //     Encontre os melhores salões da região aqui
-    //   </aside>
-    //   <main>
-    //     <form onSubmit={handleSubmit}>
-    //       <div className="input-group">
-    //         <label>Nome:</label>
-    //         <input placeholder="Ex: Yan" value={name} onChange={({target}) => setName(target.value)} required />
-    //       </div>
-    //       <div className="input-group">
-    //         <label>Sobrenome:</label>
-    //         <input placeholder="Ex: Victor" value={lastname} onChange={({target}) => setLastname(target.value)} required />
-    //       </div>
-    //       <div className="input-group">
-    //         <label>Nome de usuário:</label>
-    //         <input placeholder="Ex: yan_victor" value={nick} onChange={({target}) => setNick(target.value)} />
-    //       </div>
-    //       <div className="input-group">
-    //         <label>Email:</label>
-    //         <input type="email" placeholder="Ex: yanvictor@example.com" value={email} onChange={({target}) => setEmail(target.value)} required />
-    //       </div>
-    //       <div className="input-group">
-    //         <label>Senha:</label>
-    //         <input type="password" placeholder="Ex: ******" value={password} onChange={({target}) => setPassword(target.value)} required />
-    //       </div>
-    //       <button type="submit">Cadastrar</button>
-    //     </form>
-    //     <Divider size={1} />
-    //     <GoogleLogin
-    //       clientId="698519431370-hqbblgqr7v6vl3vd96itd98j0d4a3ibv.apps.googleusercontent.com"
-    //       buttonText="Cadastrar usando Google"
-    //       onSuccess={handleGoogleLoginSuccess}
-    //       onFailure={handleGoogleLoginFailure}
-    //       cookiePolicy={'single_host_origin'}
-    //       style={{margin: '0 auto'}}
-    //     />
-    //     <Divider size={1} />
-    //     <section className="login-cta">
-    //       Tem uma conta?
-    //       <a href="/acesso">Conecte-se</a>
-    //     </section>
-    //   </main>
-    // </article>
+    <article className="register-wrapper">
+      <aside className="cta">
+        <img src={logo} alt="Logo Buscabelo" />
+        <h3>Encontre os melhores salões da região aqui.</h3>
+      </aside>
+      <main>
+        <form onSubmit={handleSubmit}>
+          <h1 className='title-form'>Inscreva-se no Buscabelo agora mesmo.</h1>
+          <div className="input-group">
+            <label>Nome: *</label>
+            <input placeholder="Ex: Yan" value={name} onChange={({target}) => setName(target.value)} required />
+          </div>
+          <div className="input-group">
+            <label>Sobrenome: *</label>
+            <input placeholder="Ex: Victor" value={lastname} onChange={({target}) => setLastname(target.value)} required />
+          </div>
+          <div className="input-group">
+            <label>Email: *</label>
+            <input type="email" placeholder="Ex: yanvictor@example.com" value={email} onChange={({target}) => setEmail(target.value)} required />
+          </div>
+          <div className="input-group">
+            <label>Senha: *</label>
+            <input type="password" placeholder="Ex: ******" value={password} onChange={({target}) => setPassword(target.value)} required />
+          </div>
+          <button type="submit">Cadastrar</button>
+        </form>
+        <GoogleLogin
+          clientId="698519431370-hqbblgqr7v6vl3vd96itd98j0d4a3ibv.apps.googleusercontent.com"
+          buttonText="Cadastrar usando Google"
+          onSuccess={handleGoogleLoginSuccess}
+          onFailure={handleGoogleLoginFailure}
+          cookiePolicy={'single_host_origin'}
+          className="button-google"
+        />
+        <section className="login-cta">
+          Tem uma conta?
+          <a href="/acesso">Conecte-se</a>
+        </section>
+      </main>
+    </article>
   );
 }
