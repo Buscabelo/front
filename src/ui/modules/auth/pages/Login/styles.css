@@ -138,13 +138,13 @@
 
   .login-wrapper main form button {
     appearance: none;
-    padding: 1.3vh 1.5vw;
-    background-color: var(--primary);
+    padding: 2.4vh 1.5vw;
+    background-color: #727272;
+    color:#fff;
     border: none;
     font-size: 0.9rem;
     font-weight: bold;
     cursor: pointer;
-    height: 3em;
     border-radius: 6px;
   }
 
