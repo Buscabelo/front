@@ -133,7 +133,7 @@ export default function Login() {
             className="button-google"
           />
           <section className="register-cta">
-            Não tem uma conta? <a href="/cadastrar">Cadastre-se aqui!</a>
+            Não tem uma conta? <a href="/cadastro">Cadastre-se aqui!</a>
           </section>
         </form>
       </main>
