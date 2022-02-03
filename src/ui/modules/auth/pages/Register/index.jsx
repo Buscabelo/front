@@ -5,7 +5,7 @@ import { GoogleLogin } from 'react-google-login';
 
 import './styles.css';
 import logo from '../../../../assets/images/logo.png';
-import mobilelogo from '../../../../assets/images/logo@1x.png';
+import mobileLogo from '../../../../assets/images/logo@1x.png';
 
 export default function Register() {
   const history = useHistory();
@@ -68,7 +68,7 @@ export default function Register() {
   if (isMobile || isTablet) {
     return (
       <article className="register-wrapper">
-        <img src={logo} alt="Logo Buscabelo" />
+        <img src={mobileLogo} alt="Logo Buscabelo" />
         <form onSubmit={handleSubmit}>
           <h1 className='title-form'>Inscreva-se no Buscabelo agora mesmo.</h1>
           <fieldset>
