@@ -13,24 +13,45 @@ export default function Register() {
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isProvider, setIsProvider] = useState(false);
+  const [description, setDescription] = useState('');
+  const [address, setAddress] = useState('');
 
   const handleSubmit = async event => {
     event.preventDefault();
-    const body = JSON.stringify({ name: `${name} ${lastname}`, email, password, avatar: null });
+    const route = isProvider ? 'providers' : 'customers' ;
+    const body = {
+      name: isProvider ? name : `${name} ${lastname}`,
+      email,
+      password,
+    };
+
+    if (isProvider) {
+      body.address = address;
+      body.description = description;
+    } else {
+      body.avatar = null;
+    }
 
     try {
-      await fetch(`${process.env.REACT_APP_API}/customers`, {
+      const response = await fetch(`${process.env.REACT_APP_API}/${route}`, {
         method: 'POST',
         mode: 'cors',
         headers: {
           'Content-Type': 'application/json'
         },
-        body
+        body: JSON.stringify(body)
       });
-      history.push('/acesso');
+      const { success, message } = await response.json();
+
+      if (success) {
+        history.push('/acesso');
+      } else {
+        throw new Error(message);
+      }
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(error);
+      // eslint-disable-next-line no-alert
+      alert(error);
     }
   };
 
@@ -71,36 +92,57 @@ export default function Register() {
         <img src={mobileLogo} alt="Logo Buscabelo" />
         <form onSubmit={handleSubmit}>
           <h1 className='title-form'>Inscreva-se no Buscabelo agora mesmo.</h1>
-          <fieldset>
-            <label>Nome</label>
-            <input type="text" placeholder="Ex: Yan" name="nome" value={name} onChange={({ target }) => setName(target.value)} required />
-          </fieldset>
-
-          <fieldset>
-            <label>Sobrenome</label>
-            <input type="text" placeholder="Ex: Victor" name="sobrenome" value={lastname} onChange={({ target }) => setLastname(target.value)} required />
-          </fieldset>
+          {isProvider ?
+            <fieldset>
+              <label>Nome</label>
+              <input type="text" placeholder="Ex: Yan" name="nome" value={name} onChange={({ target }) => setName(target.value)} required />
+            </fieldset>
+            : <>
+              <fieldset>
+                <label>Nome</label>
+                <input type="text" placeholder="Ex: Yan" value={name} onChange={({ target }) => setName(target.value)} required />
+              </fieldset>
+              <fieldset>
+                <label>Sobrenome</label>
+                <input type="text" placeholder="Ex: Victor" value={lastname} onChange={({ target }) => setLastname(target.value)} required />
+              </fieldset>
+            </>
+          }
 
           <fieldset>
             <label>Email</label>
             <input type="email" placeholder="Ex: yanvictor@example.com" value={email} onChange={({ target }) => setEmail(target.value)} required />
           </fieldset>
-
           <fieldset>
             <label>Senha</label>
             <input type="password" placeholder="Ex: ******" value={password} onChange={({ target }) => setPassword(target.value)} required />
           </fieldset>
+          {isProvider && <>
+            <fieldset>
+              <label>Descrição</label>
+              <textarea rows="3" onChange={({target}) => setDescription(target.value)} required />
+            </fieldset>
+            <fieldset>
+              <label>Endereço</label>
+              <input type="text" placeholder="Rua do Marechal, 126" value={address} onChange={({ target }) => setAddress(target.value)} required />
+            </fieldset>
+          </>}
+          <fieldset>
+            <label>
+              <input type="checkbox" checked={isProvider} onChange={({ target }) => setIsProvider(target.checked)} />
+              Possui um estabelecimento?
+            </label>
+          </fieldset>
 
-          <GoogleLogin
+          {!isProvider && <GoogleLogin
             clientId="698519431370-hqbblgqr7v6vl3vd96itd98j0d4a3ibv.apps.googleusercontent.com"
             buttonText="Cadastrar usando Google"
             onSuccess={handleGoogleLoginSuccess}
             onFailure={handleGoogleLoginFailure}
             cookiePolicy={'single_host_origin'}
-          />
+          />}
 
           <button type="submit">Cadastrar</button>
-
           <p>Possui uma conta? <a href="/acess">Conecte-se</a></p>
         </form>
       </article>
@@ -116,14 +158,22 @@ export default function Register() {
       <main>
         <form onSubmit={handleSubmit}>
           <h1 className='title-form'>Inscreva-se no Buscabelo agora mesmo.</h1>
-          <div className="input-group">
-            <label>Nome: *</label>
-            <input placeholder="Ex: Yan" value={name} onChange={({target}) => setName(target.value)} required />
-          </div>
-          <div className="input-group">
-            <label>Sobrenome: *</label>
-            <input placeholder="Ex: Victor" value={lastname} onChange={({target}) => setLastname(target.value)} required />
-          </div>
+          {isProvider ?
+            <div className="input-group">
+              <label>Nome: *</label>
+              <input placeholder="Ex: Yan" value={name} onChange={({target}) => setName(target.value)} required />
+            </div>
+            : <>
+              <div className="input-group">
+                <label>Nome: *</label>
+                <input placeholder="Ex: Yan" value={name} onChange={({target}) => setName(target.value)} required />
+              </div>
+              <div className="input-group">
+                <label>Sobrenome: *</label>
+                <input placeholder="Ex: Victor" value={lastname} onChange={({target}) => setLastname(target.value)} required />
+              </div>
+            </>
+          }
           <div className="input-group">
             <label>Email: *</label>
             <input type="email" placeholder="Ex: yanvictor@example.com" value={email} onChange={({target}) => setEmail(target.value)} required />
@@ -132,16 +182,32 @@ export default function Register() {
             <label>Senha: *</label>
             <input type="password" placeholder="Ex: ******" value={password} onChange={({target}) => setPassword(target.value)} required />
           </div>
+          {isProvider && <>
+            <div className="input-group">
+              <label>Descrição: *</label>
+              <textarea onChange={({target}) => setDescription(target.value)} required />
+            </div>
+            <div className="input-group">
+              <label>Endereço: *</label>
+              <input placeholder="Rua do Marechal, 126" value={address} onChange={({target}) => setAddress(target.value)} required />
+            </div>
+          </>}
+          <div className="input-group">
+            <label>
+              <input type="checkbox" checked={isProvider} onChange={({ target }) => setIsProvider(target.checked)} />
+              Possui um estabelecimento?
+            </label>
+          </div>
           <button type="submit">Cadastrar</button>
         </form>
-        <GoogleLogin
+        {!isProvider && <GoogleLogin
           clientId="698519431370-hqbblgqr7v6vl3vd96itd98j0d4a3ibv.apps.googleusercontent.com"
           buttonText="Cadastrar usando Google"
           onSuccess={handleGoogleLoginSuccess}
           onFailure={handleGoogleLoginFailure}
           cookiePolicy={'single_host_origin'}
           className="button-google"
-        />
+        />}
         <section className="login-cta">
           Tem uma conta?
           <a href="/acesso">Conecte-se</a>

@@ -50,6 +50,19 @@
     border-color: #666;
   }
 
+  .register-wrapper form fieldset input[type="checkbox"],
+  .register-wrapper form fieldset input[type="radio"] {
+    margin-right: 2vw;
+  }
+
+  .register-wrapper form fieldset textarea {
+    padding: 1vh 2vw;
+    border-radius: 5px;
+    border: 1px solid var(--gray-1);
+    resize: none;
+    font-size: 1rem;
+  }
+
   .register-wrapper form button {
     border-radius: 5px;
     background-color: #c4c4c4;
@@ -68,7 +81,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 7vh 4vw;
+  padding: 3vh 4vw;
+  height: 100vh;
 }
 
 .register-wrapper .cta {
@@ -79,7 +93,7 @@
   width: 50%;
 }
 
-.register-wrapper .cta  h3{
+.register-wrapper .cta h3 {
   margin: 5vh 2vw 2vh 2vw;
 }
 
@@ -118,12 +132,24 @@
   border: 1px solid var(--gray-1);
 }
 
+.register-wrapper main form .input-group input[type="checkbox"],
+.register-wrapper main form .input-group input[type="radio"] {
+  margin-right: 0.5vw;
+}
+
+.register-wrapper main form .input-group textarea {
+  padding: 1.75vh 1vw;
+  border-radius: 5px;
+  border: 1px solid var(--gray-1);
+  resize: none;
+  font-size: 0.85rem;
+}
+
 .register-wrapper main form button {
   appearance: none;
   padding: 1.3vh 1.5vw;
   background-color: var(--primary);
   border: none;
-  border-radius: 10%;
   font-size: 0.9rem;
   font-weight: bold;
   cursor: pointer;
@@ -148,7 +174,7 @@
   text-decoration: none;
 }
 
-.button-google{
+.button-google {
   width: 100%;
   justify-content: center;
 }
