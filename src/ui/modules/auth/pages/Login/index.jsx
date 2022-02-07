@@ -20,13 +20,12 @@ export default function Login() {
     try {
       const response = await fetch(`${process.env.REACT_APP_API}/sessions`, {
         method: 'POST',
-        mode: 'cors',
         headers: {
           'Content-Type': 'application/json'
         },
         body
       });
-      const { success, user, token } = await response.json();
+      const { success, user, token, message } = await response.json();
 
       if (success) {
         if (user.type === userTypes.Provider) {
@@ -38,10 +37,12 @@ export default function Login() {
           localStorage.setItem('@buscabelo_client/token', token);
           history.push('/');
         }
+      } else {
+        throw Error(message);
       }
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(error);
+      // eslint-disable-next-line no-alert
+      alert(error.message);
     }
   };
 
@@ -57,7 +58,7 @@ export default function Login() {
           },
           body: JSON.stringify({ name, email })
         });
-        const { success, user, token } = await response.json();
+        const { success, user, token, message } = await response.json();
 
         if (success) {
           if (user.type === userTypes.Provider) {
@@ -69,10 +70,12 @@ export default function Login() {
             localStorage.setItem('@buscabelo_client/token', token);
             history.push('/');
           }
+        } else {
+          throw Error(message);
         }
       } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error(error);
+        // eslint-disable-next-line no-alert
+        alert(error);
       }
     }
   };
@@ -129,11 +132,11 @@ export default function Login() {
         <form onSubmit={handleSubmit}>
           <h1 id="login-title">Entrar no Buscabelo</h1>
           <div className="input-group">
-            <label>Email :</label>
+            <label>Email</label>
             <input type="email" placeholder="Ex: yanvictor@example.com" value={email} onChange={({target}) => setEmail(target.value)} required />
           </div>
           <div className="input-group">
-            <label>Senha :</label>
+            <label>Senha</label>
             <input type="password" placeholder="Ex: ******" value={password} onChange={({target}) => setPassword(target.value)} required />
           </div>
           <button className="btn-block" type="submit">Entrar</button>
