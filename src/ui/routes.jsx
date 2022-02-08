@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import AuthRoutes from './modules/auth/router';
 import CustomerRoutes from './modules/customer/router';
 import ProviderRoutes from './modules/provider/router';
+import { ResponseHandlerProvider } from './modules/provider/context/ResponseHandlerContext';
+import AuthContextProvider from './modules/provider/context/AuthContext';
 
 export default function Routes() {
   return (
@@ -10,7 +12,11 @@ export default function Routes() {
       <Switch>
         {AuthRoutes}
         {CustomerRoutes}
-        {ProviderRoutes}
+        <ResponseHandlerProvider>
+          <AuthContextProvider>
+            {ProviderRoutes}
+          </AuthContextProvider>
+        </ResponseHandlerProvider>
       </Switch>
     </Router>
   );

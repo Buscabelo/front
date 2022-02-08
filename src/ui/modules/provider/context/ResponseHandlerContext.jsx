@@ -21,7 +21,7 @@ export function ResponseHandlerProvider({children}) {
     }
 
     if (auth) {
-      const token = await JSON.parse(localStorage.getItem('@buscabelo-estabelecimento/token') || 'null');
+      const token = await localStorage.getItem('@buscabelo-estabelecimento/token') || null;
 
       // pode ser separado em metodo deny() em authcontext
       if (!token) {
