@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { isMobile, isTablet } from 'react-device-detect';
 import { useHistory } from 'react-router';
+import { MdChevronRight } from 'react-icons/md';
+import { parseISO, format } from 'date-fns';
 
 import './styles.css';
 import AppLayout from '../../components/AppLayout/AppLayout';
@@ -84,7 +86,40 @@ export default function Appointments() {
   }, [loadAppointments]);
 
   if (isMobile || isTablet) {
-    return null;
+    return (
+      <article className="appointments-wrapper">
+        <h1>Histórico</h1>
+        {data.length ?
+          <ol>
+            {data.map(appointment => (
+              <li key={appointment.id}>
+                <header>
+                  <a href={`/agendamento/${appointment.id}`}>
+                    <section className="provider">
+                      <img src={appointment.provider.avatar || 'https://picsum.photos/30/30'} />
+                      {appointment.provider.name}
+                    </section>
+                    <MdChevronRight />
+                  </a>
+                </header>
+                <main>
+                  <ul>
+                    <li>
+                      <strong>{appointment.service.name}</strong>
+                      <span>
+                        {format(parseISO(appointment.appointment_to), 'dd/MM/y')}
+                      </span>
+                    </li>
+                  </ul>
+                </main>
+              </li>
+            ))}
+          </ol>
+          :
+          <p>Você ainda não fez agendamentos</p>
+        }
+      </article>
+    );
   }
 
   return (
