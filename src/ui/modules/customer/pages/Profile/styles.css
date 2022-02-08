@@ -1,0 +1,45 @@
+/* mobile/table */
+@media (hover: none) {
+  .profile-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15vh;
+    max-height: 88vh;
+    padding-bottom: 2vh;
+    overflow: overlay;
+  }
+
+  .profile-wrapper header {
+    display: flex;
+    justify-content: center;
+    padding-top: 5vh;
+    background-color: #727272;
+  }
+
+  .profile-wrapper header img {
+    border-radius: 50%;
+    max-width: 30vw;
+    transform: translateY(50%);
+  }
+
+  .profile-wrapper main nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3vh;
+  }
+
+  .profile-wrapper main nav a {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: #212121;
+    display: flex;
+    align-items: center;
+    padding: 2vh 10vw;
+  }
+
+  .profile-wrapper main nav a svg {
+    margin-right: 5vw;
+    font-size: 1.75rem;
+  }
+}
