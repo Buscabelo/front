@@ -27,7 +27,7 @@ export default function Dashboard() {
   useEffect(() => {
     (async () => {
       const user = await JSON.parse(localStorage.getItem('@buscabelo-estabelecimento/me'));
-      const token = await JSON.parse(localStorage.getItem('@buscabelo-estabelecimento/token'));
+      const token = await localStorage.getItem('@buscabelo-estabelecimento/token');
 
       // shallow check
       if (!user || !token) return history.push('sessions/');
