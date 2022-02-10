@@ -9,4 +9,13 @@ services:
     volumes:
       - .:/usr/src/app
     ports:
-      - "3001:3000"
+      - "3000:3000"
+  nginx:
+    build:
+      context: ./nginx
+    container_name: nginx
+    hostname: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - app
