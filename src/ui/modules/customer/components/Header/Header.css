@@ -1,19 +1,16 @@
 .topbar {
   display: flex;
   justify-content: space-between;
-  background: var(--primary);
   border-bottom: 2px solid var(--gray-2);
-  position: relative;
 }
 
-.navbar button {
-  display: none;
+.topbar a {
+  margin: 2vh 2vw;
 }
 
 .navbar {
+  width: 39vw;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .navbar a {
@@ -21,6 +18,28 @@
   color: inherit;
   display: flex;
   align-items: center;
+  margin-left: 5vh;
+  font-size: initial;
+}
+
+.downbar {
+  width: 60vw;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.downbar .createConta {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  margin-right: 5vh;
+}
+
+/*
+
+.navbar button {
+  display: none;
 }
 
 .navbar a svg {
@@ -59,7 +78,7 @@
   text-decoration: none;
   color: inherit;
 }
-
+*/
 @media screen and (max-width: 425px) {
   .topbar {
     padding: 2vh 5vw;
@@ -111,14 +130,14 @@
   }
 }
 
-@media screen and (min-width: 768px) {}
+/* @media screen and (min-width: 768px) {} */
 
 @media screen and (min-width: 1024px) {
   .topbar {
-    padding: 2vh 2vw;
+    padding: 1vh 1vw;
   }
 
-  .searchbar {
+  /* .searchbar {
     width: 50%;
     position: relative;
   }
@@ -145,5 +164,5 @@
 
   .submenu a:hover {
     background-color: var(--gray-2);
-  }
+  } */
 }

@@ -1,4 +1,3 @@
-import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 
 export default function AppLayout({ children }) {
@@ -8,7 +7,6 @@ export default function AppLayout({ children }) {
       <main>
         {children}
       </main>
-      <Footer />
     </>
   );
 }

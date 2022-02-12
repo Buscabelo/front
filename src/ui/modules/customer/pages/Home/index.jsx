@@ -1,35 +1,36 @@
-// import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { isMobile, isTablet } from 'react-device-detect';
 import { FaInstagram, FaMapMarkerAlt, FaStar } from 'react-icons/fa';
 
 import './Home.css';
-// import AppLayout from '../../components/AppLayout/AppLayout';
 import Carousel from '../../components/Carousel/Carousel';
 import FloatMenu from '../../../common/components/FloatMenu';
-// import Divider from '../../components/Divider/Divider';
-// import List from '../../components/List/List';
-// import Service from '../../components/Service/Service';
+
+import AppLayout from '../../components/AppLayout/AppLayout';
+import Divider from '../../components/Divider/Divider';
+import List from '../../components/List/List';
+import Service from '../../components/Service/Service';
 
 export default function Home() {
-  // const [providers, setProviders] = useState([]);
+  const [providers, setProviders] = useState([]);
 
-  // const loadProviders = useCallback(() => {
-  //   fetch(`${process.env.REACT_APP_API}/providers`)
-  //     .then(response => response.json())
-  //     .then(({ success, providers }) => {
-  //       if (success) {
-  //         setProviders(providers);
-  //       }
-  //     })
-  //     .catch(error => {
-  //       // eslint-disable-next-line no-console
-  //       console.error(error);
-  //     });
-  // }, [setProviders]);
+  const loadProviders = useCallback(() => {
+    fetch(`${process.env.REACT_APP_API}/providers`)
+      .then(response => response.json())
+      .then(({ success, providers }) => {
+        if (success) {
+          setProviders(providers);
+        }
+      })
+      .catch(error => {
+        // eslint-disable-next-line no-console
+        console.error(error);
+      });
+  }, [setProviders]);
 
-  // useEffect(() => {
-  //   loadProviders();
-  // }, [loadProviders]);
+  useEffect(() => {
+    loadProviders();
+  }, [loadProviders]);
 
   if (isMobile || isTablet) {
     return (
@@ -109,18 +110,17 @@ export default function Home() {
   }
 
   return (
-    <></>
-    // <AppLayout>
-    //   <Divider size={1} />
-    //   <Carousel />
-    //   <Divider size={1} />
-    //   <List
-    //     direction={isMobile ? 'vertical' : 'horizontal'}
-    //     itemsPerLine={3}
-    //     ItemComponent={Service}
-    //     items={providers}
-    //   />
-    //   <Divider size={1} />
-    // </AppLayout>
+    <AppLayout>
+      <Divider size={1} />
+      <Carousel />
+      <Divider size={1} />
+      <List
+        direction={isMobile ? 'vertical' : 'horizontal'}
+        itemsPerLine={3}
+        ItemComponent={Service}
+        items={providers}
+      />
+      <Divider size={1} />
+    </AppLayout>
   );
 }
