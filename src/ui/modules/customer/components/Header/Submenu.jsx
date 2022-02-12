@@ -8,10 +8,10 @@ export default function Submenu({ user, isShow, hide }) {
 
   if (user && isShow) {
     return (
-      <nav className="submenu">
+      <ul className="submenu">
         <a href="/agendamentos">Agendamentos</a>
         <a href="/" onClick={handleLogout}>Sair</a>
-      </nav>
+      </ul>
     );
   }
 
