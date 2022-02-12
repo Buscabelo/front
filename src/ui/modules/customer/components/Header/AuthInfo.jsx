@@ -1,6 +1,8 @@
 import { isMobile } from 'react-device-detect';
 import { IoMdLogIn } from 'react-icons/io';
 
+import './AuthInfo.css';
+
 export default function AuthInfo({ user, showMenu }) {
   if (isMobile)
     return null;
@@ -12,14 +14,14 @@ export default function AuthInfo({ user, showMenu }) {
 
   if (user)
     return (
-      <a href="/" onClick={handleShowMenu}>
+      <a className='btnUser' href="/" onClick={handleShowMenu}>
         {user.name}
       </a>
     );
 
   return (
-    <a href="/acesso">
-      <IoMdLogIn /> Entrar
+    <a className='btnLogin' href="/acesso">
+      <IoMdLogIn />&nbsp;&nbsp;Entrar
     </a>
   );
 }
