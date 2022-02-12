@@ -3,14 +3,18 @@ import { isMobile, isTablet } from 'react-device-detect';
 import { FaInstagram, FaMapMarkerAlt, FaStar } from 'react-icons/fa';
 
 import './Home.css';
+
 import Carousel from '../../components/Carousel/Carousel';
 import FloatMenu from '../../../common/components/FloatMenu';
 
 import AppLayout from '../../components/AppLayout/AppLayout';
+import SearchInput from '../../components/Header/SearchInput';
 import List from '../../components/List/List';
 import Service from '../../components/Service/Service';
 
 export default function Home() {
+  const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
+  const [showSearch, setShowSearch] = useState(true);
   const [providers, setProviders] = useState([]);
 
   const loadProviders = useCallback(() => {
@@ -110,12 +114,20 @@ export default function Home() {
 
   return (
     <AppLayout>
-      <List
-        direction={isMobile ? 'vertical' : 'horizontal'}
-        itemsPerLine={3}
-        ItemComponent={Service}
-        items={providers}
-      />
+      <div className='searchInputHome'>
+        {!user && <SearchInput
+          isShow={showSearch}
+          hide={() => setShowSearch(false)}
+        />}
+      </div>
+      <div className='listActiveOption'>
+        <List
+          direction={isMobile ? 'vertical' : 'horizontal'}
+          itemsPerLine={3}
+          ItemComponent={Service}
+          items={providers}
+        />
+      </div>
     </AppLayout>
   );
 }

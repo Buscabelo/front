@@ -101,3 +101,14 @@
     max-width: 100%;
   }
 }
+
+.searchInputHome .searchbar {
+  width: 30vw;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 5vh;
+}
+
+.listActiveOption {
+  margin-top: 10vh;
+}
