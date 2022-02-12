@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
-// import { MdMenu, MdSearch } from 'react-icons/md';
 
 import './Header.css';
 // eslint-disable-next-line
@@ -25,23 +24,17 @@ export default function Header() {
       <a href="/">
         <img src={logo} width="80" alt="Logo Buscabelo" />
       </a>
-      <SearchInput
-        isShow={showSearch}
-        hide={() => setShowSearch(false)}
-      />
       <nav className="navbar">
         <a href='#'>Serviços</a>
         <a href='#'>Estabelecimentos</a>
-        <a href='#'>Sobre o Buscabelo</a>
-        {/* <button type="button" onClick={() => setShowSearch(true)}>
-          <MdSearch />
-        </button>
-        <button type="button" onClick={() => setOpenMenu(!openMenu)}>
-          <MdMenu />
-        </button> */}
+        {!user && <a href='#'>Sobre o Buscabelo</a>}
       </nav>
+      {user && <SearchInput
+        isShow={showSearch}
+        hide={() => setShowSearch(false)}
+      />}
       <div className="downbar">
-        <a className='createConta' href='/cadastro'>Criar conta</a>
+        {!user && <a className='createConta' href='/cadastro'>Criar conta</a>}
         <AuthInfo
           user={user}
           showMenu={() => setOpenMenu(!openMenu)}

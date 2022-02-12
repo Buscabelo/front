@@ -7,7 +7,6 @@ import Carousel from '../../components/Carousel/Carousel';
 import FloatMenu from '../../../common/components/FloatMenu';
 
 import AppLayout from '../../components/AppLayout/AppLayout';
-import Divider from '../../components/Divider/Divider';
 import List from '../../components/List/List';
 import Service from '../../components/Service/Service';
 
@@ -111,16 +110,12 @@ export default function Home() {
 
   return (
     <AppLayout>
-      <Divider size={1} />
-      <Carousel />
-      <Divider size={1} />
       <List
         direction={isMobile ? 'vertical' : 'horizontal'}
         itemsPerLine={3}
         ItemComponent={Service}
         items={providers}
       />
-      <Divider size={1} />
     </AppLayout>
   );
 }

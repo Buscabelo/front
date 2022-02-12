@@ -1,7 +1,7 @@
 import { isMobile } from 'react-device-detect';
-import { IoMdLogIn } from 'react-icons/io';
+import { IoMdLogIn} from 'react-icons/io';
 
-import './AuthInfo.css';
+import { FaUserAlt } from 'react-icons/fa';
 
 export default function AuthInfo({ user, showMenu }) {
   if (isMobile)
@@ -15,7 +15,7 @@ export default function AuthInfo({ user, showMenu }) {
   if (user)
     return (
       <a className='btnUser' href="/" onClick={handleShowMenu}>
-        {user.name}
+        <FaUserAlt />
       </a>
     );
 
