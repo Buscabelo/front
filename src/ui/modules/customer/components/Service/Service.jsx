@@ -5,7 +5,8 @@ import './Service.css';
 export default function Service({ data }) {
   return (
     <div className="service-container">
-      {data.avatar && <img src={data.avatar} className="service-icon" alt={data.name} />}
+      <img src="https://picsum.photos/270/165" className="service-icon" alt={data.name} />
+      {/* {data.avatar && <img src={data.avatar} className="service-icon" alt={data.name} />} */}
       <div className="service-body">
         <div className="service-content">
           <h3 className="service-title">
