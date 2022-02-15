@@ -8,6 +8,7 @@ import { userTypes } from '../../../../constants/user';
 import FloatMenu from '../../../common/components/FloatMenu';
 import mobileLogo from '../../../../assets/images/logo@1x.png';
 import logo from '../../../../assets/images/Buscabelo_logo.png';
+import { fetchAdapter as fetch } from '../../../../../infra/http';
 
 export default function Login() {
   const history = useHistory();
@@ -19,12 +20,8 @@ export default function Login() {
     const body = JSON.stringify({ email, password });
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API}/sessions`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body
+      const response = await fetch(`${process.env.REACT_APP_API}/sessions`, 'post', body, null, {
+        'Content-Type': 'application/json'
       });
       const { success, user, token, message } = await response.json();
 
@@ -44,7 +41,7 @@ export default function Login() {
           }
         }
       } else {
-        throw Error(message);
+        throw new Error(message);
       }
     } catch (error) {
       // eslint-disable-next-line no-alert
@@ -57,12 +54,10 @@ export default function Login() {
       const { name, email } = g_response.profileObj;
 
       try {
-        const response = await fetch(`${process.env.REACT_APP_API}/customers/googleAuth`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ name, email })
+        const response = await fetch(`${process.env.REACT_APP_API}/customers/googleAuth`, 'post', JSON.stringify({
+          name, email
+        }), null, {
+          'Content-Type': 'application/json'
         });
         const { success, user, token, message } = await response.json();
 
@@ -77,7 +72,7 @@ export default function Login() {
             history.push('/');
           }
         } else {
-          throw Error(message);
+          throw new Error(message);
         }
       } catch (error) {
         // eslint-disable-next-line no-alert

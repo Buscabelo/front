@@ -6,6 +6,7 @@ import { GoogleLogin } from 'react-google-login';
 import './styles.css';
 import logo from '../../../../assets/images/Buscabelo_logo.png';
 import mobileLogo from '../../../../assets/images/logo@1x.png';
+import { fetchAdapter as fetch } from '../../../../../infra/http';
 
 export default function Register() {
   const history = useHistory();
@@ -34,13 +35,8 @@ export default function Register() {
     }
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API}/${route}`, {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
+      const response = await fetch(`${process.env.REACT_APP_API}/${route}`, 'post', JSON.stringify(body), null, {
+        'Content-Type': 'application/json'
       });
       const { success, message } = await response.json();
 
@@ -60,12 +56,10 @@ export default function Register() {
       const { name, email } = response.profileObj;
 
       try {
-        const response = await fetch(`${process.env.REACT_APP_API}/customers/googleAuth`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ name, email })
+        const response = await fetch(`${process.env.REACT_APP_API}/customers/googleAuth`, 'post', JSON.stringify({
+          name, email
+        }), null, {
+          'Content-Type': 'application/json'
         });
         const { success, user, token } = await response.json();
 
