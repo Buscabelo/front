@@ -6,7 +6,7 @@ import { format, formatISO, parseISO } from 'date-fns';
 
 import './styles.css';
 import backgroundNoAppointmentList from '../../../../assets/images/undraw/calendar.svg';
-import AppLayout from '../../components/AppLayout/AppLayout';
+import Layout from '../../../common/components/CustomerLayout';
 import List from '../../components/List/List';
 
 const initialPath = 0;
@@ -111,9 +111,9 @@ export default function Appointments() {
       return <span>Aberto</span>;
     };
 
-    const cancelAppointment = async () => {
+    const cancelAppointment = async id => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API}/appointments/cancel/${data.id}`, {
+        const response = await fetch(`${process.env.REACT_APP_API}/appointments/cancel/${id}`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
@@ -133,49 +133,51 @@ export default function Appointments() {
     };
 
     return (
-      <article className="appointments-wrapper">
-        <h1>Histórico</h1>
-        {data.length ?
-          <ol>
-            {data.map(appointment => (
-              <li key={appointment.id}>
-                <header>
-                  <a href={`/agendamento/${appointment.id}`}>
-                    <section className="provider">
-                      <img src={appointment.provider.avatar || 'https://picsum.photos/30/30'} />
-                      <div className="appointment-info">
-                        <b>{appointment.provider.name}</b>
-                        {renderStatus(appointment)}
-                      </div>
-                    </section>
-                    <MdChevronRight />
-                  </a>
-                </header>
-                <main>
-                  <ul>
-                    <li>
-                      <strong>{appointment.service.name}</strong>
-                      <span>
-                        {format(parseISO(appointment.appointment_to), 'dd/MM/y')}
-                      </span>
-                    </li>
-                  </ul>
-                </main>
-                {!appointment.time_done_at && !appointment.canceled_at && <footer>
-                  <button type="button" onClick={() => cancelAppointment()}>Cancelar</button>
-                </footer>}
-              </li>
-            ))}
-          </ol>
-          :
-          <p>Você ainda não fez agendamentos</p>
-        }
-      </article>
+      <Layout>
+        <article className="appointments-wrapper">
+          <h1>Histórico</h1>
+          {data.length ?
+            <ol>
+              {data.map(appointment => (
+                <li key={appointment.id}>
+                  <header>
+                    <a href={`/agendamento/${appointment.id}`}>
+                      <section className="provider">
+                        <img src={appointment.provider.avatar || 'https://picsum.photos/30/30'} />
+                        <div className="appointment-info">
+                          <b>{appointment.provider.name}</b>
+                          {renderStatus(appointment)}
+                        </div>
+                      </section>
+                      <MdChevronRight />
+                    </a>
+                  </header>
+                  <main>
+                    <ul>
+                      <li>
+                        <strong>{appointment.service.name}</strong>
+                        <span>
+                          {format(parseISO(appointment.appointment_to), 'dd/MM/y')}
+                        </span>
+                      </li>
+                    </ul>
+                  </main>
+                  {!appointment.time_done_at && !appointment.canceled_at && <footer>
+                    <button type="button" onClick={() => cancelAppointment(appointment.id)}>Cancelar</button>
+                  </footer>}
+                </li>
+              ))}
+            </ol>
+            :
+            <p>Você ainda não fez agendamentos</p>
+          }
+        </article>
+      </Layout>
     );
   }
 
   return (
-    <AppLayout>
+    <Layout>
       {data.length ?
         <div>
           <h1 className='title'>Agendamentos</h1>
@@ -192,6 +194,6 @@ export default function Appointments() {
           <h2 className='subtitle'>Você ainda não fez agendamentos</h2>
         </div>
       }
-    </AppLayout>
+    </Layout>
   );
 }

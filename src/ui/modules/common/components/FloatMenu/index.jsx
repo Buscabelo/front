@@ -1,14 +1,19 @@
-import { MdExplore, MdHome, MdLogin } from 'react-icons/md';
+import { MdExplore, MdHome, MdLogin, MdPerson } from 'react-icons/md';
 import { useHistory } from 'react-router-dom';
 
 import './style.css';
 
-export default function FloatMenu({ user }) {
+export default function FloatMenu() {
   const { location } = useHistory();
   const authPaths = [
     '/acesso',
     '/cadastro'
   ];
+  const profilePaths = [
+    '/perfil',
+    '/agendamentos'
+  ];
+  const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
 
   return (
     <nav className="menu-container">
@@ -20,7 +25,8 @@ export default function FloatMenu({ user }) {
         Explorar
       </a>
       {user ?
-        <a className={'menu-item' + (location.pathname === '/perfil' ? ' active' : '')} href="/perfil">
+        <a className={'menu-item' + (profilePaths.includes(location.pathname) ? ' active' : '')} href="/perfil">
+          <MdPerson />
           Perfil
         </a>
         :

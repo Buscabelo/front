@@ -4,10 +4,8 @@ import { FaInstagram, FaMapMarkerAlt, FaStar } from 'react-icons/fa';
 
 import './Home.css';
 
+import Layout from '../../../common/components/CustomerLayout';
 import Carousel from '../../components/Carousel/Carousel';
-import FloatMenu from '../../../common/components/FloatMenu';
-
-import AppLayout from '../../components/AppLayout/AppLayout';
 import SearchInput from '../../components/Header/SearchInput';
 import List from '../../components/List/List';
 import Service from '../../components/Service/Service';
@@ -37,7 +35,7 @@ export default function Home() {
 
   if (isMobile || isTablet) {
     return (
-      <>
+      <Layout>
         <article className="home-wrapper">
           <Carousel />
           <section className="service-types">
@@ -107,13 +105,12 @@ export default function Home() {
             </ol>
           </section>
         </article>
-        <FloatMenu />
-      </>
+      </Layout>
     );
   }
 
   return (
-    <AppLayout>
+    <Layout>
       <div className='searchInputHome'>
         {!user && <SearchInput
           isShow={showSearch}
@@ -128,6 +125,6 @@ export default function Home() {
           items={providers}
         />
       </div>
-    </AppLayout>
+    </Layout>
   );
 }
