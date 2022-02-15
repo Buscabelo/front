@@ -1,3 +1,5 @@
+import { IoIosSettings, IoMdLogOut, IoIosCalendar } from 'react-icons/io';
+
 export default function Submenu({ user, isShow, hide }) {
   const handleLogout = event => {
     event.preventDefault();
@@ -8,10 +10,14 @@ export default function Submenu({ user, isShow, hide }) {
 
   if (user && isShow) {
     return (
-      <ul className="submenu">
-        <a href="/agendamentos">Agendamentos</a>
-        <a href="/" onClick={handleLogout}>Sair</a>
-      </ul>
+      <div className="submenu">
+        <span>Olá, {user.name}</span>
+        <ol className="submenu-list">
+          <li><a href="#"><IoIosSettings />&nbsp;&nbsp;Editar dados</a></li>
+          <li><a href="/agendamentos"><IoIosCalendar />&nbsp;&nbsp;Agendamentos</a></li>
+          <li><a href="/" onClick={handleLogout}><IoMdLogOut />&nbsp;&nbsp;Sair</a></li>
+        </ol>
+      </div>
     );
   }
 
