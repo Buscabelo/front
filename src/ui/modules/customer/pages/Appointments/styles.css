@@ -50,6 +50,12 @@
     border-radius: 50%;
   }
 
+  .appointments-wrapper ol > li header .provider .appointment-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+  }
+
   .appointments-wrapper ol > li header svg {
     font-size: 1.25rem;
     color: #000;
@@ -84,6 +90,22 @@
 
   .appointments-wrapper ol > li main ul li span {
     margin-left: auto;
+  }
+
+  .appointments-wrapper ol > li footer {
+    padding: 1.5vh 3vw;
+    margin: 0;
+    font-size: inherit;
+    justify-content: flex-end;
+    gap: 3vw;
+  }
+
+  .appointments-wrapper ol > li footer button {
+    border-radius: 5px;
+    background-color: #c4c4c4;
+    font-weight: bold;
+    border-color: transparent;
+    padding: 6px 12px;
   }
 }
 
@@ -162,12 +184,12 @@
     text-align: center;
     padding: 2vh;
   }
+}
 
-  .success {
-    color: var(--success);
-  }
+.success {
+  color: var(--success);
+}
 
-  .faild {
-    color: var(--danger);
-  }
+.canceled {
+  color: var(--danger);
 }
