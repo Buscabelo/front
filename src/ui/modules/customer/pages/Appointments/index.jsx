@@ -5,8 +5,8 @@ import { MdChevronRight } from 'react-icons/md';
 import { parseISO, format } from 'date-fns';
 
 import './styles.css';
+import backgroundNoAppointmentList from '../../../../assets/images/undraw/calendar.svg';
 import AppLayout from '../../components/AppLayout/AppLayout';
-import Divider from '../../components/Divider/Divider';
 import List from '../../components/List/List';
 
 const initialPath = 0;
@@ -37,26 +37,41 @@ function Appointment({ data }) {
 
   const renderStatus = () => {
     if (data.time_done_at)
-      return <p><b>Finalizado:</b> {data.time_done_at}</p>;
+      return <p className='success'><b>Finalizado</b> - {format(parseISO(data.time_done_at), 'dd/MM/y')}</p>;
 
     if (data.canceled_at)
-      return <p><b>Cancelado:</b> {data.canceled_at}</p>;
+      return <p className='faild'><b>Cancelado</b> - {format(parseISO(data.canceled_at), 'dd/MM/y')}</p>;
 
-    return <button type="button" onClick={() => cancelAppointment()}>Cancelar</button>;
+    return <p>Aberto</p>;
+  };
+
+  const renderCancel = () => {
+    if (data.time_done_at || data.canceled_at)
+      return null;
+
+    return <button type="button" className='button-footer' onClick={() => cancelAppointment()}>Cancelar</button>;
   };
 
   return (
     <div className="appointment-container">
       <main>
-        <h3>{service.name}</h3>
-        <p>Data: {data.appointment_to}</p>
-        <p><b>{provider.name}</b></p>
-        {renderStatus()}
-        <a href={`/agendamento/${data.id}`} style={{ display: 'inline-block', marginBottom: '10px' }}>Ver Detalhes</a>
+        <div className='container-header'>
+          <a href={`/estabelecimento/${provider.id}`}>
+            <img src="https://picsum.photos/100/100" alt="icone estabeleciemnto" />
+            <div>
+              <h2>{provider.name}</h2>
+              {renderStatus()}
+            </div>
+          </a>
+        </div>
+        <div className='container-item'>
+          <p>{service.name} • {format(parseISO(data.appointment_to), 'dd/MM/y')}</p>
+        </div>
+        <div className='container-footer'>
+          <a href={`/agendamento/${data.id}`} className='button-footer'>Ver Detalhes</a>
+          {renderCancel()}
+        </div>
       </main>
-      <aside>
-        <img src="https://picsum.photos/100/100" alt="icone serviço" />
-      </aside>
     </div>
   );
 }
@@ -124,18 +139,22 @@ export default function Appointments() {
 
   return (
     <AppLayout>
-      <Divider size={1} />
       {data.length ?
-        <List
-          direction={'horizontal'}
-          itemsPerLine={3}
-          ItemComponent={Appointment}
-          items={data}
-        />
+        <div>
+          <h1 className='title'>Agendamentos</h1>
+          <List
+            direction={'horizontal'}
+            itemsPerLine={3}
+            ItemComponent={Appointment}
+            items={data}
+          />
+        </div>
         :
-        <p>Você ainda não fez agendamentos</p>
+        <div className='noappointments'>
+          <img src={backgroundNoAppointmentList} className='image-fundo' alt="backgroundFundo" />
+          <h2 className='subtitle'>Você ainda não fez agendamentos</h2>
+        </div>
       }
-      <Divider size={1} />
     </AppLayout>
   );
 }
