@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { isMobile, isTablet } from 'react-device-detect';
 import { useHistory } from 'react-router';
 import { MdChevronRight } from 'react-icons/md';
-import { parseISO, format } from 'date-fns';
+import { format, formatISO, parseISO } from 'date-fns';
 
 import './styles.css';
 import backgroundNoAppointmentList from '../../../../assets/images/undraw/calendar.svg';
@@ -40,7 +40,7 @@ function Appointment({ data }) {
       return <p className='success'><b>Finalizado</b> - {format(parseISO(data.time_done_at), 'dd/MM/y')}</p>;
 
     if (data.canceled_at)
-      return <p className='faild'><b>Cancelado</b> - {format(parseISO(data.canceled_at), 'dd/MM/y')}</p>;
+      return <p className='canceled'><b>Cancelado</b> - {format(parseISO(data.canceled_at), 'dd/MM/y')}</p>;
 
     return <p>Aberto</p>;
   };
@@ -101,6 +101,37 @@ export default function Appointments() {
   }, [loadAppointments]);
 
   if (isMobile || isTablet) {
+    const renderStatus = appointment => {
+      if (appointment.time_done_at)
+        return <span className="success">Finalizado</span>;
+
+      if (appointment.canceled_at)
+        return <span className="canceled">Cancelado</span>;
+
+      return <span>Aberto</span>;
+    };
+
+    const cancelAppointment = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API}/appointments/cancel/${data.id}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ canceled_at: formatISO(new Date()) })
+        });
+        const { success } = await response.json();
+
+        if (success) {
+          history.go(initialPath);
+        }
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(error);
+      }
+    };
+
     return (
       <article className="appointments-wrapper">
         <h1>Histórico</h1>
@@ -112,7 +143,10 @@ export default function Appointments() {
                   <a href={`/agendamento/${appointment.id}`}>
                     <section className="provider">
                       <img src={appointment.provider.avatar || 'https://picsum.photos/30/30'} />
-                      {appointment.provider.name}
+                      <div className="appointment-info">
+                        <b>{appointment.provider.name}</b>
+                        {renderStatus(appointment)}
+                      </div>
                     </section>
                     <MdChevronRight />
                   </a>
@@ -127,6 +161,9 @@ export default function Appointments() {
                     </li>
                   </ul>
                 </main>
+                {!appointment.time_done_at && !appointment.canceled_at && <footer>
+                  <button type="button" onClick={() => cancelAppointment()}>Cancelar</button>
+                </footer>}
               </li>
             ))}
           </ol>
