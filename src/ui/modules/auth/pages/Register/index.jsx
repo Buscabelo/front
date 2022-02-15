@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 
 import './styles.css';
-import FloatMenu from '../../../common/components/FloatMenu';
 import logo from '../../../../assets/images/logo.png';
 import mobileLogo from '../../../../assets/images/logo@1x.png';
 
