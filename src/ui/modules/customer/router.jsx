@@ -4,11 +4,15 @@ import Appointment from './pages/Appointment';
 import Appointments from './pages/Appointments';
 import Home from './pages/Home';
 import Provider from './pages/Provider';
+import Providers from './pages/Providers';
 import Search from './pages/Search';
 import Service from './pages/Service';
+import Services from './pages/Services';
 
 export default [
   <Route key="inicio" exact path="/" component={Home} />,
+  <Route key="servicos" exact path="/servicos" component={Services} />,
+  <Route key="estabelecimentos" exact path="/estabelecimentos" component={Providers} />,
   <Route key="agendamentos" exact path="/agendamentos" component={Appointments} />,
   <Route key="agendamento" exact path="/agendamento/:id" component={Appointment} />,
   <Route key="estabelecimento" exact path="/estabelecimento/:id" component={Provider} />,

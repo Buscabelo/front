@@ -25,8 +25,8 @@ export default function Header() {
         <img src={logo} width="80" alt="Logo Buscabelo" />
       </a>
       <nav className="navbar">
-        <a href='#'>Serviços</a>
-        <a href='#'>Estabelecimentos</a>
+        <a href='/servicos'>Serviços</a>
+        <a href='/estabelecimentos'>Estabelecimentos</a>
         {!user && <a href='#'>Sobre o Buscabelo</a>}
       </nav>
       {user && <SearchInput
