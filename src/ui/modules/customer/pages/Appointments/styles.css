@@ -159,19 +159,6 @@
     justify-content: space-around;
   }
 
-  .appointment-container main .container-footer .button-footer {
-    font-family: sans-serif;
-    font-size: 16px;
-    color: #ffb600;
-    border: 1px solid #fff;
-    background-color: transparent;
-    font-weight: bold;
-  }
-
-  .appointment-container main .container-footer .button-footer:hover {
-    cursor: pointer;
-  }
-
   .title {
     padding: 2vh 0 2vh 2vw;
   }

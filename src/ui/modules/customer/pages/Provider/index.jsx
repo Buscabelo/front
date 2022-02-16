@@ -4,10 +4,10 @@ import { MdGridOn, MdFormatListBulleted } from 'react-icons/md';
 import { useHistory, useParams } from 'react-router-dom';
 
 import './styles.css';
-import AppLayout from '../../components/AppLayout/AppLayout';
-import Divider from '../../components/Divider/Divider';
+import Layout from '../../../common/components/CustomerLayout';
 import List from '../../components/List/List';
 import Service from '../../components/Service/Service';
+import About from '../../components/About/About';
 import { minStackLength } from '../../../../constants';
 
 export default function Provider() {
@@ -16,6 +16,7 @@ export default function Provider() {
   const [direction, setDirection] = useState('horizontal');
   const [data, setData] = useState(null);
   const [services, setServices] = useState(null);
+  const [openAbout, setOpenAbout] = useState(false);
 
   useEffect(() => {
     if (isMobile) {
@@ -69,28 +70,30 @@ export default function Provider() {
   }
 
   return (
-    <AppLayout>
+    <Layout>
+      <About
+        provider={data}
+        isShow={openAbout}
+        hide={() => setOpenAbout(false)}
+      />
       <div className="provider-banner">
         <img src="https://picsum.photos/1200/250" alt="Capa Estabelecimento" />
       </div>
-      <Divider size={1} />
       <header className="provider-header">
         <aside>
-          {data.avatar && <img src={data.avatar} alt={`Imagem do estabelecimento ${data.name}`} />}
+          {/* {data.avatar && <img src={data.avatar} alt={`Imagem do estabelecimento ${data.name}`} />} */}
+          <img src="https://picsum.photos/100/100" alt="icone estabeleciemnto" />
         </aside>
         <main>
-          <h2>{data.name}</h2>
-          {/* <p className="info">
-            <span className="opened">Aberto</span>
-            •
-            <span className="">Fecha às 17:00</span>
-          </p> */}
-          {!isMobile && <p>{data.description}</p>}
+          <h2>{data.name}{data.rating && <p> - {data.rating}</p>}</h2>
+          <a
+            href='#'
+            onClick={() => setOpenAbout(!openAbout)}
+            className='btn'>Ver mais</a>
         </main>
+        {/* vai virar um componente */}
       </header>
-      {isMobile && <p className="provider-description">{data.description}</p>}
       {services && <>
-        <Divider size={1} />
         <div className="services-header">
           <h3 className="services-title">Serviços</h3>
           <div className="services-views">
@@ -98,15 +101,15 @@ export default function Provider() {
             <MdFormatListBulleted className={`${direction === 'vertical' ? 'active' : '' }`} onClick={() => handleDirectionChange('vertical')} />
           </div>
         </div>
-        <Divider size={1} />
-        <List
-          direction={direction}
-          itemsPerLine={2}
-          ItemComponent={Service}
-          items={services}
-        />
+        <div className='service-main'>
+          <List
+            direction={direction}
+            itemsPerLine={2}
+            ItemComponent={Service}
+            items={services}
+          />
+        </div>
       </>}
-      <Divider size={1} />
-    </AppLayout>
+    </Layout>
   );
 }
