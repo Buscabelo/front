@@ -143,7 +143,7 @@ export default function Register() {
           />}
 
           <button type="submit">Cadastrar</button>
-          <p>Possui uma conta? <a href="/acess">Conecte-se</a></p>
+          <p>Possui uma conta? <a href="/acesso">Conecte-se</a></p>
         </form>
       </article>
     );
