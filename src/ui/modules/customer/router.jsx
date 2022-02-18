@@ -4,6 +4,7 @@ import AppointmentDetail from './pages/AppointmentDetail';
 import Appointments from './pages/Appointments';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
+import ProfileEdit from './pages/ProfileEdit';
 import Provider from './pages/Provider';
 import Providers from './pages/Providers';
 import Search from './pages/Search';
@@ -20,4 +21,5 @@ export default [
   <Route key="pesquisa" exact path="/pesquisa" component={Search} />,
   <Route key="servico" exact path="/servico/:id" component={Service} />,
   <Route key="perfil" exact path="/perfil" component={Profile} />,
+  <Route key="perfil:edicao" exact path="/perfil/editar" component={ProfileEdit} />,
 ];

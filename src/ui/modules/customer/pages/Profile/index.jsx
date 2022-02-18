@@ -20,11 +20,11 @@ export default function Profile() {
       <Layout>
         <article className="profile-wrapper">
           <header>
-            <img src={user.avatar || 'https://picsum.photos/300/300'} />
+            <img src={user.avatar || 'https://picsum.photos/150/150'} />
           </header>
           <main>
             <nav>
-              <a href="#">
+              <a href="/perfil/editar">
                 <MdEdit />
                 Editar Perfil
               </a>
