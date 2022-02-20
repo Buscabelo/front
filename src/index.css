@@ -3,7 +3,7 @@
 :root {
   --primary: #d98e04;
   --secondary: #f2b705;
-  --success: #1ed400;
+  --success: #50a773;
   --danger: #ea3030;
   --warning: #f0b607;
   --info: #5d0a8c;
@@ -54,7 +54,7 @@ img {
   user-select: none;
 }
 
-.btn {
+.btn-link {
   font-family: sans-serif;
   font-size: 16px;
   color: var(--primary);
@@ -63,7 +63,7 @@ img {
   font-weight: bold;
 }
 
-.btn:hover {
+.btn-link:hover {
   cursor: pointer;
   color: #40a9ff;
 }

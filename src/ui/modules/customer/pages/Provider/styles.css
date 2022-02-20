@@ -1,45 +1,38 @@
-.provider-banner {
-  width: 100%;
-}
-
-.provider-banner img {
-  width: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.provider-header {
+.banner {
   display: flex;
-  padding: 5vh 0;
+  padding: 3vh 3vw;
 }
 
-.provider-header aside img {
+.banner img {
+  width: 100%;
+  flex-shrink: 0;
+  border-radius: 15px;
+}
+
+.header {
+  display: flex;
+  padding-left: 3vw;
+  margin-top: 5px;
+}
+
+.header img {
   border-radius: 50%;
+  flex-shrink: 0;
 }
 
-.provider-header main p {
-  margin-top: 1.5vh;
-  color: #7b7b7b;
-}
-
-.provider-header main .info {
+.header main {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.provider-header main .info .opened {
-  color: #52e31e;
-}
-
-.provider-header main .info .closed {
-  color: #fe4747;
+  padding: 0 5vw 0 2vw;
 }
 
 .services-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  padding: 3vh 3vw;
 }
 
 .services-header .services-title {
@@ -57,120 +50,17 @@
 }
 
 .services-header .services-views .active {
-  color: #000;
+  color: var(--primary);
   cursor: default;
 }
 
-.container-aside .about-provider-button {
-  padding: 1vh;
-  text-align: left;
-  width: 32px;
-  font-size: x-large;
-}
-
-.container-aside .container-aside-info .about-provider-description {
-  margin-top: 1.5vh;
-  color: #7b7b7b;
-  padding: 0 4vw;
-  font-size: 1.1rem;
-}
-
-@media screen and (max-width: 425px) {
-  .provider-banner img {
-    height: 30vh;
+@media screen and (max-width: 1024px) {
+  .header img {
+    width: 75px;
+    height: 75px;
   }
 
-  .provider-header {
-    align-items: flex-start;
-  }
-
-  .provider-header aside {
-    padding: 0 4vw;
-  }
-
-  .provider-header aside img {
-    width: 18vw;
-    height: 18vw;
-  }
-
-  .provider-header main h2 {
-    font-size: 1.5rem;
-  }
-
-  .provider-header main .info {
-    width: 48vw;
-  }
-
-  .services-header {
-    padding: 0 4vw;
-  }
-
-  .services-header .services-views svg {
-    margin-left: 3vw;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .provider-banner img {
-    max-height: 40vh;
-  }
-
-  .provider-header aside {
-    padding: 0 2vw;
-  }
-
-  .provider-header aside img {
-    width: 6.25vw;
-    height: 6.25vw;
-  }
-
-  .provider-header main {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    padding: 2% 3% 0 0;
-  }
-
-  .provider-header main h2 {
-    font-size: 2rem;
-  }
-
-  .provider-header main .info {
-    width: 12.5vw;
-  }
-
-  .services-header {
-    padding: 5vh 2vw;
-  }
-
-  .services-header .services-views svg {
-    margin-left: 1vw;
-  }
-
-  .container-aside {
-    background-color: #fff;
-    border: 1px solid;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    width: 472px;
-    height: calc(100vh - 87px);
-  }
-
-  .container-aside .container-aside-info {
-    padding: 1vh 5vw;
-    height: 100%;
-  }
-
-  .container-aside .container-aside-info h1 {
-    text-align: center;
-  }
-
-  .container-aside .container-aside-info p {
-    text-align: start;
-    margin-top: 2vw;
-    margin-bottom: 2vw;
-    color: gray;
-    font-size: initial;
+  .services-header .services-views {
+    display: none;
   }
 }
