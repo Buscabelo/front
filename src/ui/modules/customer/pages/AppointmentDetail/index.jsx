@@ -12,7 +12,7 @@ import { minStackLength } from '../../../../constants/history';
 const starsLength = 5;
 const decimalPlaces = 2;
 
-export default function Appointment() {
+export default function AppointmentDetail() {
   const history = useHistory();
   const { id } = useParams();
   const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
