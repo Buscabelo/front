@@ -7,7 +7,6 @@ import './styles.css';
 import Layout from '../../../common/components/CustomerLayout';
 import List from '../../components/List/List';
 import Service from '../../components/Service/Service';
-import About from '../../components/About/About';
 import { minStackLength } from '../../../../constants';
 
 export default function Provider() {
@@ -16,7 +15,6 @@ export default function Provider() {
   const [direction, setDirection] = useState('horizontal');
   const [data, setData] = useState(null);
   const [services, setServices] = useState(null);
-  const [openAbout, setOpenAbout] = useState(false);
 
   useEffect(() => {
     if (isMobile) {
@@ -71,27 +69,19 @@ export default function Provider() {
 
   return (
     <Layout>
-      <About
-        provider={data}
-        isShow={openAbout}
-        hide={() => setOpenAbout(false)}
-      />
-      <div className="provider-banner">
+      <div className="banner">
         <img src="https://picsum.photos/1200/250" alt="Capa Estabelecimento" />
       </div>
-      <header className="provider-header">
-        <aside>
-          {/* {data.avatar && <img src={data.avatar} alt={`Imagem do estabelecimento ${data.name}`} />} */}
-          <img src="https://picsum.photos/100/100" alt="icone estabeleciemnto" />
-        </aside>
+      <header className="header">
+        {/* {data.avatar && <img src={data.avatar} alt={`Imagem do estabelecimento ${data.name}`} />} */}
+        <img src="https://picsum.photos/100/100" alt="icone estabeleciemnto" />
         <main>
           <h2>{data.name}{data.rating && <p> - {data.rating}</p>}</h2>
           <a
             href='#'
-            onClick={() => setOpenAbout(!openAbout)}
-            className='btn'>Ver mais</a>
+            // onClick={() => setOpenAbout(!openAbout)}
+            className='btn-link'>Ver mais</a>
         </main>
-        {/* vai virar um componente */}
       </header>
       {services && <>
         <div className="services-header">
