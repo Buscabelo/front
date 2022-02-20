@@ -3,11 +3,12 @@ import { isMobile, isTablet } from 'react-device-detect';
 import { MdGridOn, MdFormatListBulleted } from 'react-icons/md';
 import { useHistory, useParams } from 'react-router-dom';
 
-import './styles.css';
 import Layout from '../../../common/components/CustomerLayout';
 import List from '../../components/List/List';
 import Service from '../../components/Service/Service';
 import { minStackLength } from '../../../../constants';
+
+import './styles.css';
 
 export default function Provider() {
   const history = useHistory();
@@ -77,10 +78,8 @@ export default function Provider() {
         <img src="https://picsum.photos/100/100" alt="icone estabeleciemnto" />
         <main>
           <h2>{data.name}{data.rating && <p> - {data.rating}</p>}</h2>
-          <a
-            href='#'
-            // onClick={() => setOpenAbout(!openAbout)}
-            className='btn-link'>Ver mais</a>
+          <p>{data.description}</p>
+          <small>{data.address}</small>
         </main>
       </header>
       {services && <>
