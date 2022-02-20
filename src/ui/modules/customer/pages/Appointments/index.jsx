@@ -49,7 +49,7 @@ function Appointment({ data }) {
     if (data.time_done_at || data.canceled_at)
       return null;
 
-    return <button type="button" className='btn' onClick={() => cancelAppointment()}>Cancelar</button>;
+    return <button type="button" className='btn-link' onClick={() => cancelAppointment()}>Cancelar</button>;
   };
 
   return (
@@ -68,7 +68,7 @@ function Appointment({ data }) {
           <p>{service.name} • {format(parseISO(data.appointment_to), 'dd/MM/y')}</p>
         </div>
         <div className='container-footer'>
-          <a href={`/agendamento/${data.id}`} className='btn'>Ver Detalhes</a>
+          <a href={`/agendamento/${data.id}`} className='btn-link'>Ver Detalhes</a>
           {renderCancel()}
         </div>
       </main>

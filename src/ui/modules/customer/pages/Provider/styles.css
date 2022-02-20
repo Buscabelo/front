@@ -21,11 +21,10 @@
 }
 
 .header main {
-  width: 100%;
+  width: 50%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: 0 5vw 0 2vw;
+  flex-direction: column;
 }
 
 .services-header {
