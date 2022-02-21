@@ -155,7 +155,7 @@ export default function AppointmentDetail() {
                 <li>
                   <strong>{data.service.name}</strong>
                   <span>
-                    {format(parseISO(data.appointment_to), 'dd/MM/y')}
+                    {format(parseISO(data.appointment_to), 'dd/MM/y - HH:mm')}
                   </span>
                 </li>
               </ul>

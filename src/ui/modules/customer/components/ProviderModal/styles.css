@@ -19,6 +19,7 @@
   gap: 18vh;
   z-index: 1;
   padding: 1vh 3vw;
+  background-color: #fff;
 }
 
 .provider-modal header button {

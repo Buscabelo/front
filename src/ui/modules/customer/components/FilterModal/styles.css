@@ -1,0 +1,104 @@
+.filter-modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0009;
+}
+
+.filter-modal {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 10px;
+  outline: none;
+  padding: 3vh 5vw;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 4vh;
+}
+
+.filter-modal header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-modal header h2 {
+  font-weight: bold;
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.filter-modal header button {
+  display: inherit;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+}
+
+.filter-modal header button svg {
+  font-size: 1.5rem;
+}
+
+.filter-modal main {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+.filter-modal main section h3 {
+  font-size: 1.15rem;
+}
+
+.filter-modal main .service-types {
+  padding-left: 0;
+  padding-right: 3vw;
+}
+
+.filter-modal main .service-types ol {
+  gap: 0.5rem;
+  padding: 0;
+  padding-bottom: 1vh;
+  padding-right: 1vw;
+}
+
+.filter-modal main .service-types ol li {
+  flex: 0 0 25%;
+}
+
+.filter-modal main .service-types a {
+  font-size: 1rem;
+  padding-top: 1vh;
+}
+
+.filter-modal main .service-types a.active {
+  background-color: #212121;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.filter-modal main .service-types a.active h3 {
+  color: #fff;
+}
+
+.filter-modal main .service-types a svg {
+  font-size: 1.75rem;
+}
+
+.filter-modal footer {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.filter-modal footer button {
+  padding: 1.25vh 5vw;
+  border-color: transparent;
+  border-radius: 5px;
+  background-color: #c4c4c4;
+  font-size: 1rem;
+  font-weight: bold;
+}

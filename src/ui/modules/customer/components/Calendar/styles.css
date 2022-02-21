@@ -1,0 +1,73 @@
+.calendar-container {
+  text-transform: capitalize;
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 2vh 3vw;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+.calendar-container header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendar-container header button {
+  background-color: transparent;
+  border: none;
+  display: inherit;
+  font-size: 1.5rem;
+}
+
+.calendar-container header button:disabled {
+  color: #c4c4c4;
+}
+
+.calendar-container main table {
+  width: 100%;
+}
+
+.calendar-container main table thead {
+  color: #898989;
+}
+
+.calendar-container main table thead tr,
+.calendar-container main table tbody tr {
+  display: flex;
+  gap: 4vw;
+  padding: 0 1vw;
+  width: 100%;
+}
+
+.calendar-container main table td {
+  padding: 1vh 1.5vw;
+  margin-left: 3px;
+}
+
+.calendar-container main table th,
+.calendar-container main table td {
+  flex-basis: 11%;
+  text-align: center;
+}
+
+.calendar-container main table td.disabled {
+  color: #c4c4c4;
+}
+
+.calendar-container main table td.today {
+  background-color: #00f;
+}
+
+.calendar-container main table td.active {
+  background-color: #0f0;
+}
+
+.calendar-container main table td.today,
+.calendar-container main table td.active {
+  border-radius: 50%;
+  color: #fff;
+  font-weight: bold;
+}
