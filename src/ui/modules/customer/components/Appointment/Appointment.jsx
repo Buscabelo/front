@@ -23,7 +23,7 @@ const customStyles = {
 const decimalPlaces = 2;
 const initialPath = 0;
 
-Modal.setAppElement(document.getElementsByClassName('appointment-container'));
+Modal.setAppElement(document.getElementById('root'));
 
 export default function Appointment({ data }) {
   const history = useHistory();
