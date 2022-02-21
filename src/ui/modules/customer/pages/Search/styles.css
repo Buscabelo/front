@@ -1,3 +1,152 @@
+@media (hover: none) {
+  .search-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+    height: 100%;
+  }
+
+  .search-wrapper > header {
+    display: flex;
+    box-shadow: 0 0 6px #c4c4c4;
+    font-size: 1rem;
+  }
+
+  .search-wrapper header fieldset {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .search-wrapper header fieldset span {
+    padding: 1vh 3vw;
+    font-size: 1.5rem;
+  }
+
+  .search-wrapper header fieldset input {
+    width: 100%;
+    border: none;
+    padding-left: 2vw;
+  }
+
+  .search-wrapper header fieldset button {
+    padding: 1vh 3vw;
+    border: none;
+    background-color: transparent;
+    font-size: 1.5rem;
+  }
+
+  .search-wrapper > main {
+    height: 100%;
+    font-size: 1rem;
+  }
+
+  .search-wrapper main .react-tabs__tab-list {
+    border: none;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 4vh;
+  }
+
+  .search-wrapper main .react-tabs__tab-list .react-tabs__tab--selected {
+    background: #fff;
+    border: none;
+    font-weight: bold;
+    border-bottom: 2px solid #000;
+  }
+
+  .search-wrapper main .react-tabs__tab-panel--selected {
+    padding: 0 5vw;
+  }
+
+  .search-wrapper main .react-tabs__tab-panel--selected p {
+    text-align: center;
+  }
+
+  .search-wrapper main .react-tabs__tab-panel .services {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+  }
+
+  .search-wrapper main .react-tabs__tab-panel .services li {
+    display: flex;
+    box-shadow: 0 1px 6px #c4c4c4;
+  }
+
+  .search-wrapper main .react-tabs__tab-panel .services li main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: auto;
+    padding-left: 3vw;
+  }
+
+  .search-wrapper main .react-tabs__tab-panel .services li aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    margin-left: auto;
+    margin-right: 2vw;
+    font-size: 2rem;
+  }
+
+  .search-wrapper main .react-tabs__tab-panel .providers {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+  }
+
+  .search-wrapper main .react-tabs__tab-panel .providers li {
+    border-radius: 4vw;
+    box-shadow: 0 0 5px 2px #ddd;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .search-wrapper main .react-tabs__tab-panel .providers li img {
+    max-width: 100%;
+    border-top-left-radius: 4vw;
+    border-top-right-radius: 4vw;
+  }
+
+  .search-wrapper main .react-tabs__tab-panel .providers li header {
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+  }
+
+  .search-wrapper main .react-tabs__tab-panel .providers li header h3 {
+    margin: 0;
+  }
+
+  .search-wrapper main .react-tabs__tab-panel .providers li footer {
+    display: flex;
+    margin: 0;
+    font-size: 1rem;
+    align-items: initial;
+    border: none;
+    gap: 1vw;
+    padding: 0 1rem;
+  }
+
+  .search-wrapper main .react-tabs__tab-panel .providers li footer address {
+    margin: 0;
+    font-style: italic;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+}
+
 .search-header {
   padding: 0 2vw;
   display: flex;
