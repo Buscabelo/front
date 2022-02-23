@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { render } from 'react-dom';
 
+import 'react-tabs/style/react-tabs.css';
 import './index.css';
 import Ui from './ui/routes';
 // import reportWebVitals from './reportWebVitals';

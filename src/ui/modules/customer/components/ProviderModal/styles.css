@@ -1,0 +1,208 @@
+.ReactModal__Overlay--after-open {
+  z-index: 2;
+}
+
+.provider-modal {
+  height: 100%;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow: overlay;
+}
+
+.provider-modal header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18vh;
+  z-index: 1;
+  padding: 1vh 3vw;
+}
+
+.provider-modal header button {
+  background-color: #fff;
+  border: none;
+  font-size: 1.5rem;
+  color: #000;
+  padding: 1vh 2vw;
+  border-radius: 50%;
+  display: flex;
+}
+
+.provider-modal header img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  z-index: -1;
+  object-fit: cover;
+}
+
+.provider-modal header section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  color: #fff;
+}
+
+.provider-modal header section > span {
+  font-weight: bold;
+}
+
+.provider-modal header section div .closed {
+  padding: 0.5vh 1vw;
+  background-color: red;
+  color: #fff;
+  font-weight: bold;
+}
+
+.provider-modal main {
+  height: 100%;
+}
+
+.provider-modal main .react-tabs {
+  height: 100%;
+}
+
+.provider-modal main .react-tabs__tab-list {
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 0 6px #c4c4c4;
+  margin: 0;
+  background-color: #fff;
+}
+
+.provider-modal main .react-tabs__tab-list .react-tabs__tab {
+  padding: 2vh 4vw;
+}
+
+.provider-modal main .react-tabs__tab-list .react-tabs__tab--selected {
+  font-weight: bold;
+  border: none;
+}
+
+.provider-modal main .react-tabs__tab-panel--selected {
+  height: 100%;
+  padding-top: 3vh;
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+  background-color: #ddd;
+}
+
+.provider-modal main .react-tabs__tab-panel--selected .service-types {
+  padding-left: 0;
+  padding-right: 3vw;
+}
+
+.provider-modal main .react-tabs__tab-panel--selected .service-types ol {
+  gap: 1.5rem;
+  padding: 0;
+  padding-bottom: 1vh;
+}
+
+.provider-modal main .react-tabs__tab-panel--selected .service-types ol li {
+  flex: 0 0 calc(30% - 5vw);
+}
+
+.provider-modal main .react-tabs__tab-panel--selected .service-types a {
+  font-size: 1rem;
+}
+
+.provider-modal main .react-tabs__tab-panel--selected .service-types a svg {
+  font-size: 1.75rem;
+}
+
+.provider-modal main .react-tabs__tab-panel--selected .services {
+  padding: 0 3vw;
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+}
+
+.provider-modal main .react-tabs__tab-panel--selected .services h2 {
+  margin: 0;
+  font-weight: bold;
+}
+
+.provider-modal main .react-tabs__tab-panel--selected .services ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+}
+
+.provider-modal main .react-tabs__tab-panel--selected .services ul li {
+  display: flex;
+  box-shadow: 0 1px 6px #c4c4c4;
+  background-color: #fff;
+}
+
+.provider-modal main .react-tabs__tab-panel--selected .services ul li main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: auto;
+  padding-left: 3vw;
+}
+
+.provider-modal main .react-tabs__tab-panel--selected .services ul li aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: auto;
+  margin-left: auto;
+  margin-right: 2vw;
+  font-size: 2rem;
+}
+
+.provider-modal main .react-tabs__tab-panel--selected .about {
+  padding: 2vh 4vw 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+}
+
+.provider-modal main .react-tabs__tab-panel--selected .about .card {
+  background-color: #fff;
+  padding: 1.5vh 3vw;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  border-radius: 10px;
+}
+
+.provider-modal main .react-tabs__tab-panel--selected .about .card h3 {
+  font-weight: bold;
+  margin: 0;
+}
+
+.provider-modal main .react-tabs__tab-panel--selected .about .card p {
+  color: #888;
+}
+
+.provider-modal main .react-tabs__tab-panel--selected .about .card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.provider-modal main .react-tabs__tab-panel--selected .about .card ul li {
+  display: flex;
+  align-items: center;
+  gap: 3vw;
+}
+
+.provider-modal main .react-tabs__tab-panel--selected .about .card ul li svg {
+  font-size: 1.25rem;
+}
+
+.provider-modal main .react-tabs__tab-panel--selected .about .card iframe {
+  max-width: 100%;
+  border: 0;
+}
