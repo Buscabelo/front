@@ -158,5 +158,6 @@
     border-radius: 10px;
     height: 2em;
     padding: 0 1.5vw;
+    box-shadow: 0 0 1em var(--info);
   }
 }
