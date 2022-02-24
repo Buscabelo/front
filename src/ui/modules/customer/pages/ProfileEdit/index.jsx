@@ -93,7 +93,7 @@ export default function ProfileEdit() {
           <main>
             <form onSubmit={handleSubmit}>
               <fieldset className="avatar">
-                <img src={user.avatar} alt={`Avatar de ${user.name}`} />
+                <img src={user.avatar || 'https://picsum.photos/150/150'} alt={`Avatar de ${user.name}`} />
                 <input type="file" accept="image/*" ref={avatarRef} />
                 <button type="button" onClick={() => handleUpload()}>
                   <MdCameraAlt />
