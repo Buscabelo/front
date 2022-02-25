@@ -121,7 +121,9 @@ export default function Appointment({ data }) {
                 </section>
                 <section className="appointment">
                   Realizada às {format(parseISO(data.scheduled_at), 'H:mm - dd/MM/y')}
-                  <a href="#" className='btn-link'>Ver serviços</a>
+                  <a href={`/estabelecimento/${provider.id}`} className='btn-link'>
+                    Ver serviços
+                  </a>
                 </section>
                 <section className="status">
                   {renderIcon()} Serviço {renderStatus()}

@@ -16,10 +16,12 @@
 
   .appointment-wrapper nav a {
     font-size: 1.75rem;
+    display: inherit;
   }
 
   .appointment-wrapper nav h1 {
     justify-self: center;
+    margin: 0;
   }
 
   .appointment-wrapper header {
@@ -59,6 +61,7 @@
     background-color: #c4c4c4;
     padding: 1.5vh 2vw;
     font-size: 0.9rem;
+    justify-content: space-around;
   }
 
   .appointment-wrapper main {
