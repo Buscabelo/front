@@ -22,7 +22,9 @@ export default function Service({ data }) {
           {data.rating_average  && <p className="service-rate">
             <MdStar /> 4.0
           </p>}
-          <p className='price'>{data.value.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>
+          {data.value && <p className='price'>
+            {data.value.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
+          </p>}
         </div>
       </div>
     </div>
