@@ -67,3 +67,31 @@ img {
   cursor: pointer;
   color: #40a9ff;
 }
+
+.btn {
+  appearance: none;
+  background-color: var(--primary);
+  border: none;
+  padding: 1.5vh 1vw;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.btn:hover {
+  cursor: pointer;
+  color: var(--light);
+}
+
+.btn-outlined {
+  border: 2px solid var(--primary);
+  padding: 1.5vh 1vw;
+  border-radius: 10px;
+  font-weight: bold;
+  color: var(--primary);
+  background: transparent;
+}
+
+.btn-outlined:hover {
+  cursor: pointer;
+  color: var(--dark);
+}

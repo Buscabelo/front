@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { isMobile, isTablet } from 'react-device-detect';
-import Modal from 'react-modal';
 import { useHistory, useParams } from 'react-router';
+import { FaStar, FaRegCalendarCheck } from 'react-icons/fa';
+import { MdClose } from 'react-icons/md';
+import Modal from 'react-modal';
+
 import FullCalendar, { formatDate } from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -9,24 +12,43 @@ import interactionPlugin from '@fullcalendar/interaction';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
-import './styles.css';
-import AppLayout from '../../components/AppLayout/AppLayout';
-import Divider from '../../components/Divider/Divider';
+import Layout from '../../../common/components/CustomerLayout';
 import List from '../../components/List/List';
+
 import { httpCode, minStackLength, decimalPlaces } from '../../../../constants';
+
+import './styles.css';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: '0',
+    bottom: '-10%',
+    transform: 'translate(-50%, -50%)',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'end',
+  },
+};
 
 const MySwal = withReactContent(Swal);
 
 function ServiceItem({ data }) {
   return (
-    <a href={`/servico/${data.id}`} className="wrapper">
-      <aside>
-        <img src={data.icon} alt="Icone" />
-      </aside>
-      <main>
-        <p>{data.description}</p>
-      </main>
-    </a>
+    <div className='container-service-item'>
+      <a href={`/servico/${data.id}`} className="wrapper">
+        {/* <img src={data.icon} alt="Icone" /> */}
+        <aside>
+          <img src="https://picsum.photos/100/100" alt="icone estabeleciemnto" />
+        </aside>
+        <div className='service-info'>
+          <h2>{data.name}</h2>
+          <small><FaStar /> 4.0</small>
+          <small>R$ {data.value.toFixed(decimalPlaces).replace('.', ',')}</small>
+        </div>
+      </a>
+    </div>
   );
 }
 
@@ -45,6 +67,10 @@ export default function Service() {
   const openModal = () => {
     setShowModal(true);
   };
+
+  function closeModal() {
+    setShowModal(false);
+  }
 
   const loadService = useCallback(() => {
     fetch(`${process.env.REACT_APP_API}/services/${id}`, {
@@ -156,66 +182,70 @@ export default function Service() {
   }
 
   return (
-    <AppLayout>
-      <Divider size={1} />
+    <Layout>
       <article className="service-wrapper">
         <main>
           <h2>{data.name}</h2>
-          <p>R$ {data.value.toFixed(decimalPlaces).replace('.', ',')}</p>
-          <p><b>Estabelecimento:</b> {data.provider.name}</p>
-          <section>
-            <b>Descrição:</b>
-            <p>{data.description}</p>
+          <section className='service-info'>
+            <a href='#'>
+              <img src="https://picsum.photos/100/100" alt="icone estabeleciemnto" />
+              {data.provider.name}
+            </a>
+            <p><b>Descrição:</b> {data.description}</p>
+            <p>R$ {data.value.toFixed(decimalPlaces).replace('.', ',')}</p>
           </section>
           <section className="btn-group">
-            {user && <button type="button" onClick={() => openModal()}>Marcar Horário</button>}
-            {false && <button type="button" onClick={() => null}>Favoritar</button>}
+            {user && <button type="button" className='btn' onClick={() => openModal()}><FaRegCalendarCheck /> Marcar Horário</button>}
+            {true && <button type="button" className='btn' onClick={() => null}><FaStar /> Favoritar</button>}
           </section>
         </main>
         <aside>
-          Carrossel
+          <img src='https://picsum.photos/500/300' alt='serviço' />
         </aside>
       </article>
-      <Divider size={1} />
       <section className="other-services">
         <h3>Outros serviços de {data.provider.name}</h3>
-        <Divider size={1} />
         {services && <List
-          direction={isMobile ? 'vertical' : 'horizontal'}
-          itemsPerLine={2}
+          direction={'horizontal'}
+          itemsPerLine={4}
+          itemsMaxPerLine={4}
           ItemComponent={ServiceItem}
           items={services}
         />}
       </section>
-      <Divider size={1} />
       <Modal
         isOpen={showModal}
-        contentLabel="Teste"
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="agenda"
       >
-        <FullCalendar
-          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-          aspectRatio={2}
-          initialView="dayGridMonth"
-          businessHours={{
-            // eslint-disable-next-line no-magic-numbers
-            daysOfWeek: [1,2,3,4,5],
-            startTime: '07:00',
-            endTime: '20:00'
-          }}
-          weekends={false}
-          nowIndicator={true}
-          locale='pt'
-          selectable={true}
-          selectConstraint='businessHours'
-          selectOverlap={false}
-          headerToolbar={{
-            left: 'title',
-            right: 'prev,next'
-          }}
-          dateClick={handleDateClick}
-        />
-        {date && <button type="button" onClick={handleSubmit}>Finalizar Agendamento</button>}
+        <button onClick={closeModal} className='btn-link'><MdClose /></button>
+        <div className='fullCalendar'>
+          <FullCalendar
+            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+            aspectRatio={2}
+            initialView="dayGridMonth"
+            businessHours={{
+              // eslint-disable-next-line no-magic-numbers
+              daysOfWeek: [1,2,3,4,5],
+              startTime: '07:00',
+              endTime: '20:00'
+            }}
+            weekends={false}
+            nowIndicator={true}
+            locale='pt'
+            selectable={true}
+            selectConstraint='businessHours'
+            selectOverlap={false}
+            headerToolbar={{
+              left: 'title',
+              right: 'prev,next'
+            }}
+            dateClick={handleDateClick}
+          />
+        </div>
+        {date && <button type="button" className='btn btn-finalizar' onClick={handleSubmit}>Finalizar Agendamento</button>}
       </Modal>
-    </AppLayout>
+    </Layout>
   );
 }
