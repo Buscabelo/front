@@ -1,9 +1,10 @@
 .service-wrapper {
-  margin: 0 2vw;
+  margin: 5vh 2vw;
   padding: 4vh 2vw;
   display: flex;
   justify-content: space-between;
-  background-color: var(--gray-2);
+  border: 1px solid var(--dark);
+  border-radius: 10px;
 }
 
 .service-wrapper main {
@@ -15,27 +16,43 @@
   margin-bottom: 2vh;
 }
 
+.service-wrapper main .service-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.service-wrapper main .service-info a {
+  display: flex;
+  justify-content: flex-start;
+  padding-right: 15vw;
+  margin-bottom: 2vh;
+  font-size: x-large;
+  color: var(--dark);
+}
+
+.service-wrapper main .service-info a img {
+  border-radius: 50%;
+  margin-right: 2vw;
+  width: 50px;
+  height: 50px;
+}
+
 .service-wrapper main b {
   line-height: 4vh;
 }
 
 .service-wrapper main p {
   margin-bottom: 2vh;
-  line-height: 4vh;
+}
+
+.service-wrapper main .service-info p + p {
+  color: var(--success);
+  font-weight: 500;
 }
 
 .service-wrapper main .btn-group {
   display: flex;
-}
-
-.service-wrapper main .btn-group button {
-  appearance: none;
-  background-color: var(--primary);
-  border: none;
-  padding: 1.5vh 1vw;
-  border-radius: 15%;
-  cursor: pointer;
-  font-weight: bold;
+  padding: 2vh 0;
 }
 
 .service-wrapper main .btn-group button:first-child {
@@ -44,44 +61,58 @@
 
 .service-wrapper aside {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40%;
-  background-color: gray;
-  color: white;
+  flex-shrink: 0;
 }
 
 .other-services h3 {
   font-size: 1.4rem;
-  padding: 0 2vw;
+  padding: 2vh 2vw;
 }
 
-.other-services .wrapper {
+.other-services .container-service-item {
+  width: 20vw;
+  max-height: 160px;
+  border-radius: 10px;
+  background: #5f9ea063;
+}
+
+.other-services .container-service-item:hover {
+  background: #5f9ea0a2;
+}
+
+.other-services .container-service-item .wrapper {
   display: flex;
-  text-decoration: none;
-  color: initial;
+  justify-content: center;
+  padding: 3vh;
+  height: 200px;
 }
 
-.other-services .wrapper aside {
-  height: 100%;
+.other-services .container-service-item .wrapper aside {
+  margin-right: 10px;
 }
 
-.other-services .wrapper aside img {
-  max-width: 8vw;
-  margin-bottom: -2px;
+.other-services .container-service-item .wrapper aside img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
 }
 
-.other-services .wrapper main {
-  padding: 1vh 1vw 0 1vw;
-  background: gray;
+.other-services .container-service-item .wrapper .service-info small {
+  color: var(--primary);
+}
+
+.other-services .container-service-item .wrapper .service-info small + small {
+  display: flex;
+  flex-direction: column;
+  color: black;
+}
+
+.fullCalendar {
   width: 100%;
+  height: 100%;
+  margin-top: 15px;
 }
 
-.other-services .wrapper main p {
-  overflow: hidden;
-  font-size: 1rem;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  line-height: 1.4rem;
-  -webkit-line-clamp: 4;
+.btn-finalizar {
+  margin-top: 2vh;
 }
