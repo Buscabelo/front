@@ -6,7 +6,7 @@ import './Home.css';
 
 import Layout from '../../../common/components/CustomerLayout';
 import Carousel from '../../components/Carousel/Carousel';
-import SearchInput from '../../components/Header/SearchInput';
+import SearchInput from '../../components/SearchInput/SearchInput';
 import List from '../../components/List/List';
 import Service from '../../components/Service/Service';
 

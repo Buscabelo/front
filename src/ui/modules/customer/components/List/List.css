@@ -19,7 +19,10 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 1024px) {
+  .list-container.grid {
+    padding: 20px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
