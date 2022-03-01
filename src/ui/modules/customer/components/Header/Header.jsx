@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
 
 import './Header.css';
-// eslint-disable-next-line
-import logo from '../../../../assets/images/logo.png';
+
+import logo from '../../../../assets/images/Buscabelo_logo.png';
 import AuthInfo from './AuthInfo';
 import SearchInput from './SearchInput';
 import Submenu from './Submenu';
@@ -25,8 +25,8 @@ export default function Header() {
         <img src={logo} width="80" alt="Logo Buscabelo" />
       </a>
       <nav className="navbar">
-        <a href='/servicos'>Serviços</a>
         <a href='/estabelecimentos'>Estabelecimentos</a>
+        <a href='/servicos'>Serviços</a>
         {!user && <a href='#'>Sobre o Buscabelo</a>}
       </nav>
       {user && <SearchInput

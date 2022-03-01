@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 
 import './styles.css';
-import logo from '../../../../assets/images/logo.png';
+import logo from '../../../../assets/images/Buscabelo_logo.png';
 import mobileLogo from '../../../../assets/images/logo@1x.png';
 
 export default function Register() {
