@@ -1,12 +1,15 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import './Providers.css';
-import AppLayout from '../../components/AppLayout/AppLayout';
+import Layout from '../../../common/components/CustomerLayout';
 import List from '../../components/List/List';
-import Service from '../../components/Service/Service';
+import Provider from '../../components/Provider/Provider';
+import SearchInput from '../../components/SearchInput/SearchInput';
 
 export default function Providers() {
   const [data, setData] = useState([]);
+  const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
+  const [showSearch, setShowSearch] = useState(true);
 
   const loadProviders = useCallback(() => {
     fetch(`${process.env.REACT_APP_API}/providers`, {
@@ -23,14 +26,20 @@ export default function Providers() {
     loadProviders();
   }, [loadProviders]);
   return (
-    <AppLayout>
+    <Layout>
+      <div className='searchInputHome'>
+        {!user && <SearchInput
+          isShow={showSearch}
+          hide={() => setShowSearch(false)}
+        />}
+      </div>
       <h1 className='title'>Estabelecimentos</h1>
       <List
         direction={'horizontal'}
         itemsPerLine={3}
-        ItemComponent={Service}
+        ItemComponent={Provider}
         items={data}
       />
-    </AppLayout>
+    </Layout>
   );
 }
