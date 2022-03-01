@@ -1,8 +1,8 @@
-a {
+.link-provider {
   color: black;
 }
 
-a:hover {
+.link-provider:hover {
   color: var(--dark);
 }
 
@@ -17,7 +17,7 @@ a .provider-container {
 
 a .provider-container:hover {
   background-color: var(--gray);
-  opacity: 50%;
+  opacity: 70%;
   transition: 700ms;
 }
 

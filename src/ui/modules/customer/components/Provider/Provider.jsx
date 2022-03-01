@@ -4,7 +4,7 @@ import './Provider.css';
 
 export default function Provider({ data }) {
   return (
-    <a href={`/estabelecimento/${data.id}`}>
+    <a className='link-provider' href={`/estabelecimento/${data.id}`}>
       <div className="provider-container">
         <img src="https://picsum.photos/270/165" className='provider-banner' alt={data.name} />
         {/* {data.avatar && <img src={data.avatar} className='provider-banner' alt={data.name} />} */}

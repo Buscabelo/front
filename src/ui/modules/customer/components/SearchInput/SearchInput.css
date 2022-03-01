@@ -9,13 +9,20 @@
   font-size: 14px;
   padding: 0 10px 0 20px;
   border-radius: 19.5px;
-  border-color: var(--primary);
+  border: none;
+  background: var(--light);
+}
+
+.searchbar .searchinput:focus {
+  outline: none;
+  border: 1px solid var(--primary);
 }
 
 .searchbar .searchicon {
   position: relative;
   z-index: 1;
   right: 25px;
+  font-size: 19.5px;
 }
 
 .searchbar .searchinput::placeholder {
@@ -23,6 +30,12 @@
 }
 
 @media screen and (max-width: 426px) {
+  .searchbar {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 769px) {
   .searchbar {
     display: none;
   }

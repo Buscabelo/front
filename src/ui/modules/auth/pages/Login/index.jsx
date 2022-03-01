@@ -36,7 +36,12 @@ export default function Login() {
         } else {
           localStorage.setItem('@buscabelo_client/user', JSON.stringify(user));
           localStorage.setItem('@buscabelo_client/token', token);
-          history.push('/estabelecimentos');
+
+          if (isMobile || isTablet){
+            history.push('/');
+          } else {
+            history.push('/estabelecimentos');
+          }
         }
       } else {
         throw Error(message);

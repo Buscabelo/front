@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 
 import logo from '../../../../assets/images/Buscabelo_logo.png';
@@ -12,6 +13,7 @@ export default function Header() {
   const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
   const [showSearch, setShowSearch] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     if (!isMobile) {
@@ -25,8 +27,8 @@ export default function Header() {
         <img src={logo} width="80" alt="Logo Buscabelo" />
       </a>
       <nav className="navbar">
-        <a href='/estabelecimentos' className='active'>Estabelecimentos</a>
-        <a href='/servicos'>Serviços</a>
+        <a href='/estabelecimentos' className={location.pathname === '/estabelecimentos' ? 'active' : ' '}>Estabelecimentos</a>
+        <a href='/servicos' className={location.pathname === '/servicos' ? 'active' : ' '}>Serviços</a>
         {!user && <a href='#'>Sobre o Buscabelo</a>}
         {user && <SearchInput
           isShow={showSearch}
