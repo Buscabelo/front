@@ -43,6 +43,7 @@ export default function SearchInput({ isShow, hide }) {
   return (
     <form className="searchbar" onSubmit={handleSubmit}>
       <input
+        type="text"
         className="searchinput"
         placeholder="Busque por um serviço ou estabelecimento"
         onChange={({ target }) => setValue(target.value)}
