@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
 
-import './Header.css';
-
 import logo from '../../../../assets/images/Buscabelo_logo.png';
+import SearchInput from '../SearchInput/SearchInput';
 import AuthInfo from './AuthInfo';
-import SearchInput from './SearchInput';
 import Submenu from './Submenu';
+
+import './Header.css';
 
 export default function Header() {
   const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
@@ -21,20 +21,20 @@ export default function Header() {
 
   return (
     <header className="topbar">
-      <a href="/">
+      <a href="/estabelecimentos">
         <img src={logo} width="80" alt="Logo Buscabelo" />
       </a>
       <nav className="navbar">
-        <a href='/estabelecimentos'>Estabelecimentos</a>
+        <a href='/estabelecimentos' className='active'>Estabelecimentos</a>
         <a href='/servicos'>Serviços</a>
         {!user && <a href='#'>Sobre o Buscabelo</a>}
+        {user && <SearchInput
+          isShow={showSearch}
+          hide={() => setShowSearch(false)}
+        />}
       </nav>
-      {user && <SearchInput
-        isShow={showSearch}
-        hide={() => setShowSearch(false)}
-      />}
       <div className="downbar">
-        {!user && <a className='createConta' href='/cadastro'>Criar conta</a>}
+        {!user && <a className='btn-link' href='/cadastro'>Criar conta</a>}
         <AuthInfo
           user={user}
           showMenu={() => setOpenMenu(!openMenu)}

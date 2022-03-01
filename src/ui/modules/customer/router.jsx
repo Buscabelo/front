@@ -2,7 +2,6 @@ import { Route } from 'react-router-dom';
 
 import AppointmentDetail from './pages/AppointmentDetail';
 import Appointments from './pages/Appointments';
-import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Provider from './pages/Provider';
 import Providers from './pages/Providers';
@@ -11,7 +10,6 @@ import Service from './pages/Service';
 import Services from './pages/Services';
 
 export default [
-  <Route key="inicio" exact path="/" component={Home} />,
   <Route key="servicos" exact path="/servicos" component={Services} />,
   <Route key="estabelecimentos" exact path="/estabelecimentos" component={Providers} />,
   <Route key="agendamentos" exact path="/agendamentos" component={Appointments} />,
