@@ -9,7 +9,7 @@ import {
 import { AuthContext } from '../../context/AuthContext';
 
 import './DashboardLayout.css';
-import logo from '../../../../assets/images/logo.png';
+import logo from '../../../../assets/images/Buscabelo_logo.png';
 
 const { Content, Footer, Sider } = Layout;
 

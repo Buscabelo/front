@@ -7,7 +7,7 @@ import './styles.css';
 import { userTypes } from '../../../../constants/user';
 import FloatMenu from '../../../common/components/FloatMenu';
 import mobileLogo from '../../../../assets/images/logo@1x.png';
-import logo from '../../../../assets/images/logo.png';
+import logo from '../../../../assets/images/Buscabelo_logo.png';
 
 export default function Login() {
   const history = useHistory();
