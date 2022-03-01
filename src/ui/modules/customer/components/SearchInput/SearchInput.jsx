@@ -3,6 +3,8 @@ import { isMobile } from 'react-device-detect';
 import { MdClose, MdSearch } from 'react-icons/md';
 import { useHistory } from 'react-router-dom';
 
+import './SearchInput.css';
+
 export default function SearchInput({ isShow, hide }) {
   const history = useHistory();
   const [value, setValue] = useState('');
@@ -29,7 +31,7 @@ export default function SearchInput({ isShow, hide }) {
       );
 
     return (
-      <button type="submit" className="searchicon">
+      <button type="submit" className="btn-link searchicon">
         <MdSearch />
       </button>
     );

@@ -1,7 +1,8 @@
 .topbar {
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px solid var(--gray-2);
+  border-bottom: 2px solid var(--primary);
+  align-items: center;
 }
 
 .topbar a {
@@ -9,12 +10,10 @@
 }
 
 .navbar {
-  width: 39vw;
+  width: 100%;
   display: flex;
-}
-
-.navbar button {
-  display: none;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .navbar a svg {
@@ -23,65 +22,32 @@
 }
 
 .navbar a {
-  text-decoration: none;
-  color: inherit;
+  color: black;
   display: flex;
-  align-items: center;
   margin-left: 5vh;
   font-size: initial;
 }
 
+.navbar a:hover {
+  color: rgb(88, 88, 88);
+}
+
 .downbar {
-  width: 60vw;
+  width: 25em;
   display: flex;
   justify-content: flex-end;
-}
-
-.downbar .createConta {
-  text-decoration: none;
-  color: inherit;
-  display: flex;
   align-items: center;
-  margin-right: 5vh;
-}
-
-.btnLogin {
-  padding: 1vh 1vw;
-  background-color: #a3a3a3;
-  color: #fff;
-  font-size: 0.9rem;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 6px;
 }
 
 .btnUser {
   text-decoration: none;
   color: inherit;
   display: flex;
-  align-items: center;
   margin-right: 5vh;
   font-size: x-large;
 }
 
-.searchbar .searchinput {
-  width: 30vw;
-  height: 2.5em;
-  border: 1px solid;
-  font-size: 0.95rem;
-}
-
-.searchbar .searchicon {
-  background: transparent;
-  position: absolute;
-  right: 2%;
-  font-size: 1.6rem;
-  border: none;
-  padding-left: 2%;
-  display: flex;
-}
-
-.submenu {
+.topbar .submenu {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -90,7 +56,7 @@
   z-index: 1;
 }
 
-.submenu a {
+.topbar .submenu a {
   margin-left: 1vw;
   text-decoration: none;
   color: inherit;
@@ -102,37 +68,7 @@
   }
 
   .navbar {
-    width: 20%;
-  }
-
-  .navbar button {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    appearance: none;
-    border: none;
-    background-color: transparent;
-    font-size: 1.5rem;
-  }
-
-  .navbar a {
     display: none;
-  }
-
-  .searchbar {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-  }
-
-  .searchbar .searchinput {
-    padding: 0 13% 0 4%;
-  }
-
-  .searchbar .searchicon {
-    top: 30%;
   }
 }
 
@@ -141,23 +77,7 @@
     padding: 1vh 1vw;
   }
 
-  .searchbar {
-    width: 50%;
-    position: relative;
-    margin-top: 1vh;
-  }
-
-  .searchbar .searchinput {
-    padding: 5px 10% 5px 2%;
-    border-radius: 7px;
-  }
-
-  .searchbar .searchicon {
-    top: 15%;
-    border-left: 1px solid var(--gray-2);
-  }
-
-  .submenu {
+  .topbar .submenu {
     top: 7vh;
     right: 3vw;
     border: 1px solid;
@@ -165,22 +85,22 @@
     font-size: 1rem;
   }
 
-  .submenu span {
+  .topbar .submenu span {
     width: 100%;
     border-bottom: 1px solid;
     padding: 3vh 1vw;
   }
 
-  .submenu ol li {
+  .topbar .submenu ol li {
     height: 5vh;
     padding-top: 1.5vh;
   }
 
-  .submenu ol li:hover {
+  .topbar .submenu ol li:hover {
     background-color: var(--gray-2);
   }
 
-  .submenu-list {
+  .topbar .submenu-list {
     list-style-type: none;
     width: 100%;
   }

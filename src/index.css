@@ -65,7 +65,7 @@ img {
 
 .btn-link:hover {
   cursor: pointer;
-  color: #40a9ff;
+  color: var(--secondary);
 }
 
 .btn {
@@ -75,6 +75,9 @@ img {
   padding: 1.5vh 1vw;
   border-radius: 10px;
   font-weight: bold;
+  max-height: 35px;
+  color: var(--dark);
+  width: 100%;
 }
 
 .btn:hover {
