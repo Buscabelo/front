@@ -7,21 +7,22 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import './styles.css';
 import Layout from '../../../common/components/CustomerLayout';
-import Divider from '../../components/Divider/Divider';
 import List from '../../components/List/List';
 import Provider from '../../components/Provider/Provider';
 import FilterModal from '../../components/FilterModal';
 import ProviderModal from '../../components/ProviderModal';
+import ServiceDesktop from '../../components/Service/Service';
 import { decimalPlaces } from '../../../../constants';
+import backgroundSearchingFile from '../../../../assets/images/undraw/file_searching.svg';
 
-function Service({ data }) {
-  return (
-    <div className="service-item">
-      <p><a href={`/servico/${data.id}`}>{data.name}</a></p>
-      <p>R$ {data.value.toFixed(decimalPlaces).replace('.', ',')}</p>
-    </div>
-  );
-}
+// function Service({ data }) {
+//   return (
+//     <div className="service-item">
+//       <p><a href={`/servico/${data.id}`}>{data.name}</a></p>
+//       <p>R$ {data.value.toFixed(decimalPlaces).replace('.', ',')}</p>
+//     </div>
+//   );
+// }
 
 const initialIndex = 0;
 const timeoutDebounce = 1000;
@@ -113,36 +114,6 @@ export default function Search() {
     }
   }, [search, tab, loadServices, loadProviders]);
 
-  const renderContent = () => {
-    if ((!providers || providers && !providers.length) && (!services || services && !services.length)) {
-      return <>Não foram encontrados serviços ou estabelecimentos com o(s) termo(s) pesquisado(s)</>;
-    }
-
-    return (
-      <>
-        {services && services.length && <>
-          <h3 className="search-title"><i>Serviços encontrados:</i></h3>
-          <List
-            direction="vertical"
-            itemsPerLine={2}
-            ItemComponent={Service}
-            items={services}
-          />
-          <Divider size={0.5} />
-        </>}
-        {providers && providers.length && <>
-          <h3 className="search-title"><i>Estabelecimentos encontrados:</i></h3>
-          <List
-            direction={isMobile ? 'vertical' : 'horizontal'}
-            itemsPerLine={2}
-            ItemComponent={Provider}
-            items={providers}
-          />
-          <Divider size={1} />
-        </>}
-      </>
-    );
-  };
   useEffect(() => {
     setSearch('');
     setMinPrice(null);
@@ -256,13 +227,47 @@ export default function Search() {
 
   return (
     <Layout>
-      <Divider size={1} />
-      <header className="search-header">
-        <h2>Resultados para &quot;{search}&quot;</h2>
-        {false && 'filtro'}
+      <header>
+        <h2>Resultados para <p>{search}</p></h2>
       </header>
-      <Divider size={0.5} />
-      {renderContent()}
+      <div className='content'>
+        <Tabs selectedIndex={tab} onSelect={index => setTab(index)}>
+          <TabList>
+            <Tab>Estabelecimentos ({providers.length})</Tab>
+            <Tab>Serviços ({services.length})</Tab>
+          </TabList>
+          <TabPanel>
+            {providers.length ?
+              <List
+                direction={'horizontal'}
+                itemsPerLine={3}
+                ItemComponent={Provider}
+                items={providers}
+              />
+              :
+              <div className='noappointments'>
+                <h2 className='subtitle'>O que pesquisou não foi encontrado, pesquise novamente</h2>
+                <img src={backgroundSearchingFile} className='image-fundo' alt="backgroundFundo" />
+              </div>
+            }
+          </TabPanel>
+          <TabPanel>
+            {services.length ?
+              <List
+                direction={'horizontal'}
+                itemsPerLine={2}
+                ItemComponent={ServiceDesktop}
+                items={services}
+              />
+              :
+              <div className='noappointments'>
+                <h2 className='subtitle'>O que pesquisou não foi encontrado, pesquise novamente</h2>
+                <img src={backgroundSearchingFile} className='image-fundo' alt="backgroundFundo" />
+              </div>
+            }
+          </TabPanel>
+        </Tabs>
+      </div>
     </Layout>
   );
 }
