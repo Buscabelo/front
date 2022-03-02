@@ -219,7 +219,7 @@ export default function Service() {
         style={customStyles}
         contentLabel="agenda"
       >
-        <button onClick={closeModal} className='btn-link'><MdClose /></button>
+        <button type='button' onClick={closeModal} className='btn-link'><MdClose /></button>
         <div className='fullCalendar'>
           <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}

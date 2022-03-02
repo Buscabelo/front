@@ -1,6 +1,7 @@
 import './List.css';
 
 const defaultLineCount = 1;
+const inicialItems = 0;
 
 export default function List({ direction = 'horizontal', items, ItemComponent = null, itemsPerLine = defaultLineCount, itemsMaxPerLine = null}) {
   let type = 'grid';
@@ -18,12 +19,11 @@ export default function List({ direction = 'horizontal', items, ItemComponent = 
   return (
     <ol className={`list-container ${type}`} style={{'--grid-num-rows': itemsPerLine}}>
       {itemsMaxPerLine
-        ?items.slice(0, itemsMaxPerLine).map(item => (
+        ?items.slice(inicialItems, itemsMaxPerLine).map(item => (
           <li key={item.id}>
             {ItemComponent && <ItemComponent data={item} />}
           </li>
         ))
-
         :items.map(item => (
           <li key={item.id}>
             {ItemComponent && <ItemComponent data={item} />}
