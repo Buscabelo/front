@@ -33,7 +33,6 @@ export default function AppointmentModal({ show, service, provider, onHide }) {
 
   const handleAppointment = async step_pass => {
     if (step === lastIndex && step_pass === after) {
-      // eslint-disable-next-line no-console
       const body = JSON.stringify({
         scheduled_at: formatISO(new Date()),
         appointment_to: formatISO(addHours(startOfDay(selectedDate), +selectedHour)),
