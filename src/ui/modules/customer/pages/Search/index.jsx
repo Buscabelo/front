@@ -115,12 +115,14 @@ export default function Search() {
   }, [search, tab, loadServices, loadProviders]);
 
   useEffect(() => {
-    setSearch('');
-    setMinPrice(null);
-    setMaxPrice(null);
-    setServiceType(null);
-    setServices([]);
-    setProviders([]);
+    if (isMobile || isTablet) {
+      setSearch('');
+      setMinPrice(null);
+      setMaxPrice(null);
+      setServiceType(null);
+      setServices([]);
+      setProviders([]);
+    }
   }, [tab]);
 
   useEffect(() => {
@@ -162,7 +164,7 @@ export default function Search() {
                 <img src={provider.avatar || 'https://picsum.photos/270/165'} />
                 <header>
                   <h3>{provider.name}</h3>
-                  {provider.rating && <span>{provider.rating.replace('.', ',')} <FaStar /></span>}
+                  {provider.rating && <span>{provider.rating} <FaStar /></span>}
                 </header>
                 {provider.description && <main>
                   {provider.description}
