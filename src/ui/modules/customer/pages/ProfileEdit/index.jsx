@@ -57,13 +57,13 @@ export default function ProfileEdit() {
 
     if (dataChanged) {
       try {
-        const editResponse = await fetch(`${process.env.REACT_APP_API}/customers/${user.id}/edit`, {
-          method: 'PUT',
+        const editResponse = await fetch(`${process.env.REACT_APP_API}/users/${user.id}`, {
+          method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
           },
-          body
+          body: JSON.stringify(body)
         });
         const { success, user: userChanged } = await editResponse.json();
 
