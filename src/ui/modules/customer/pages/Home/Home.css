@@ -1,5 +1,3 @@
-/* common */
-
 /* mobile/tablet */
 @media (hover: none) {
   .home-wrapper {
@@ -26,8 +24,8 @@
     gap: 1.75rem;
     flex-wrap: nowrap;
     max-width: 100vw;
-    padding: 0 1rem 2vh 1rem;
-    overflow-x: overlay;
+    padding: 0 1rem 2vh;
+    overflow-x: auto;
     overflow-y: hidden;
   }
 
@@ -36,11 +34,11 @@
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 
   .service-types ol li a svg {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
   }
 
   .service-types ol li a h3 {
@@ -81,6 +79,7 @@
   }
 
   .best-providers ol li footer {
+    display: flex;
     margin: 0;
     font-size: 1rem;
     align-items: initial;
