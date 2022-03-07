@@ -1,5 +1,6 @@
 .wrapper {
-  height: 88vh;
+  min-height: 90vh;
+  max-height: 100vh;
+  overflow: auto;
   padding-bottom: 2vh;
-  overflow: overlay;
 }
