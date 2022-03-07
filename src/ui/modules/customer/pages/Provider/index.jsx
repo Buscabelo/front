@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { isMobile, isTablet } from 'react-device-detect';
 import { MdGridOn, MdFormatListBulleted } from 'react-icons/md';
 import { useHistory, useParams } from 'react-router-dom';
+import clsx from 'clsx';
 
 import Layout from '../../../common/components/CustomerLayout';
 import List from '../../components/List/List';
@@ -86,8 +87,8 @@ export default function Provider() {
         <div className="services-header">
           <h3 className="services-title">Serviços</h3>
           <div className="services-views">
-            <MdGridOn className={`${direction === 'horizontal' ? 'active' : '' }`} onClick={() => handleDirectionChange('horizontal')} />
-            <MdFormatListBulleted className={`${direction === 'vertical' ? 'active' : '' }`} onClick={() => handleDirectionChange('vertical')} />
+            <MdGridOn className={clsx({ active: direction === 'horizontal' })} onClick={() => handleDirectionChange('horizontal')} />
+            <MdFormatListBulleted className={clsx({ active: direction === 'vertical' })} onClick={() => handleDirectionChange('vertical')} />
           </div>
         </div>
         <div className='service-main'>

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { isMobile, isTablet } from 'react-device-detect';
 import { useHistory, useParams } from 'react-router-dom';
 import { MdCheckCircle, MdChevronLeft, MdClose, MdStar } from 'react-icons/md';
+import clsx from 'clsx';
 import { format, parseISO } from 'date-fns';
 
 import './styles.css';
@@ -105,7 +106,7 @@ export default function AppointmentDetail() {
             {[...Array(starsLength)].map((_, index) => (
               <span
                 key={++index}
-                className={++index <= data.rate ? 'on' : ''}
+                className={clsx({ on: ++index <= data.rate })}
               >
                 <MdStar />
               </span>
