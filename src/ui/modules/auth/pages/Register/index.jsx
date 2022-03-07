@@ -4,8 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 
 import './styles.css';
+import Layout from '../../../common/components/CustomerLayout';
 import logo from '../../../../assets/images/Buscabelo_logo.png';
-import mobileLogo from '../../../../assets/images/logo@1x.png';
 
 export default function Register() {
   const history = useHistory();
@@ -88,64 +88,63 @@ export default function Register() {
 
   if (isMobile || isTablet) {
     return (
-      <article className="register-wrapper">
-        <img src={mobileLogo} alt="Logo Buscabelo" />
-        <form onSubmit={handleSubmit}>
-          <h1 className='title-form'>Inscreva-se no Buscabelo agora mesmo.</h1>
-          {isProvider ?
-            <fieldset>
-              <label>Nome</label>
-              <input type="text" placeholder="Ex: Yan" name="nome" value={name} onChange={({ target }) => setName(target.value)} required />
-            </fieldset>
-            : <>
+      <Layout>
+        <article className="register-wrapper">
+          <img src={logo} alt="Logo Buscabelo" />
+          <form onSubmit={handleSubmit}>
+            <h1 className='title-form'>Inscreva-se no Buscabelo agora mesmo</h1>
+            {isProvider ?
               <fieldset>
                 <label>Nome</label>
                 <input type="text" placeholder="Ex: Yan" value={name} onChange={({ target }) => setName(target.value)} required />
               </fieldset>
+              : <>
+                <fieldset>
+                  <label>Nome</label>
+                  <input type="text" placeholder="Ex: Yan" value={name} onChange={({ target }) => setName(target.value)} required />
+                </fieldset>
+                <fieldset>
+                  <label>Sobrenome</label>
+                  <input type="text" placeholder="Ex: Victor" value={lastname} onChange={({ target }) => setLastname(target.value)} required />
+                </fieldset>
+              </>
+            }
+            <fieldset>
+              <label>Email</label>
+              <input type="email" placeholder="Ex: yanvictor@example.com" value={email} onChange={({ target }) => setEmail(target.value)} required />
+            </fieldset>
+            <fieldset>
+              <label>Senha</label>
+              <input type="password" placeholder="Ex: ******" value={password} onChange={({ target }) => setPassword(target.value)} required />
+            </fieldset>
+            {isProvider && <>
               <fieldset>
-                <label>Sobrenome</label>
-                <input type="text" placeholder="Ex: Victor" value={lastname} onChange={({ target }) => setLastname(target.value)} required />
+                <label>Descrição</label>
+                <textarea rows="3" onChange={({target}) => setDescription(target.value)} required />
               </fieldset>
-            </>
-          }
-
-          <fieldset>
-            <label>Email</label>
-            <input type="email" placeholder="Ex: yanvictor@example.com" value={email} onChange={({ target }) => setEmail(target.value)} required />
-          </fieldset>
-          <fieldset>
-            <label>Senha</label>
-            <input type="password" placeholder="Ex: ******" value={password} onChange={({ target }) => setPassword(target.value)} required />
-          </fieldset>
-          {isProvider && <>
+              <fieldset>
+                <label>Endereço</label>
+                <input type="text" placeholder="Rua do Marechal, 126" value={address} onChange={({ target }) => setAddress(target.value)} required />
+              </fieldset>
+            </>}
             <fieldset>
-              <label>Descrição</label>
-              <textarea rows="3" onChange={({target}) => setDescription(target.value)} required />
+              <label>
+                <input type="checkbox" checked={isProvider} onChange={({ target }) => setIsProvider(target.checked)} />
+                Possui um estabelecimento?
+              </label>
             </fieldset>
-            <fieldset>
-              <label>Endereço</label>
-              <input type="text" placeholder="Rua do Marechal, 126" value={address} onChange={({ target }) => setAddress(target.value)} required />
-            </fieldset>
-          </>}
-          <fieldset>
-            <label>
-              <input type="checkbox" checked={isProvider} onChange={({ target }) => setIsProvider(target.checked)} />
-              Possui um estabelecimento?
-            </label>
-          </fieldset>
-
-          {!isProvider && <GoogleLogin
-            clientId="698519431370-hqbblgqr7v6vl3vd96itd98j0d4a3ibv.apps.googleusercontent.com"
-            buttonText="Cadastrar usando Google"
-            onSuccess={handleGoogleLoginSuccess}
-            onFailure={handleGoogleLoginFailure}
-            cookiePolicy={'single_host_origin'}
-          />}
-
-          <button type="submit">Cadastrar</button>
-          <p>Possui uma conta? <a href="/acesso">Conecte-se</a></p>
-        </form>
-      </article>
+            {!isProvider && <GoogleLogin
+              clientId="698519431370-hqbblgqr7v6vl3vd96itd98j0d4a3ibv.apps.googleusercontent.com"
+              buttonText="Cadastrar usando Google"
+              onSuccess={handleGoogleLoginSuccess}
+              onFailure={handleGoogleLoginFailure}
+              cookiePolicy={'single_host_origin'}
+            />}
+            <button type="submit">Cadastrar</button>
+            <p>Possui uma conta? <a href="/acesso">Conecte-se</a></p>
+          </form>
+        </article>
+      </Layout>
     );
   }
 
