@@ -47,6 +47,8 @@
   .profile-edit-wrapper main form .avatar img {
     max-width: 30vw;
     border-radius: 50%;
+    aspect-ratio: 1;
+    object-fit: cover;
   }
 
   .profile-edit-wrapper main form .avatar input {
@@ -93,14 +95,14 @@
     margin: 2vw 4vh;
   }
 
-  form {
+  .profile-edit {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 10vh;
   }
 
-  form .avatar {
+  .profile-edit .avatar {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -108,18 +110,18 @@
     margin-right: 5vw;
   }
 
-  form .avatar img {
+  .profile-edit .avatar img {
     max-width: 30vw;
     width: 25vw;
     border-radius: 10px;
     flex-shrink: 0;
   }
 
-  form .avatar input {
+  .profile-edit .avatar input {
     display: none;
   }
 
-  form .avatar button {
+  .profile-edit .avatar button {
     position: absolute;
     right: 0;
     border: none;
@@ -128,13 +130,13 @@
     background-color: transparent;
   }
 
-  form .avatar button:hover {
+  .profile-edit .avatar button:hover {
     color: #f4f4f4;
     border-color: #212121;
     cursor: pointer;
   }
 
-  form .form-group {
+  .profile-edit .form-group {
     width: 25vw;
     height: 30vh;
     display: flex;
@@ -142,18 +144,18 @@
     justify-content: space-between;
   }
 
-  form .form-group .input-group {
+  .profile-edit .form-group .input-group {
     display: flex;
     flex-direction: column;
   }
 
-  form .form-group .input-group label {
+  .profile-edit .form-group .input-group label {
     margin-bottom: 10px;
     font-weight: bold;
     font-size: 0.9rem;
   }
 
-  form .form-group .input-group input {
+  .profile-edit .form-group .input-group input {
     border: 0;
     border-radius: 10px;
     height: 2em;

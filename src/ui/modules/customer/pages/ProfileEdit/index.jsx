@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { isMobile, isTablet } from 'react-device-detect';
 import { MdCameraAlt, MdChevronLeft, MdModeEdit } from 'react-icons/md';
 import { useHistory } from 'react-router-dom';
@@ -11,6 +11,7 @@ export default function ProfileEdit() {
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
   const token = localStorage.getItem('@buscabelo_client/token');
+  const [avatar, setAvatar] = useState(user.avatar);
   const avatarRef = useRef();
   const name = useRef();
   const email = useRef();
@@ -81,6 +82,15 @@ export default function ProfileEdit() {
   };
 
   if (isMobile || isTablet) {
+    const showPreviousAvatar = () => {
+      if (avatarRef.current.files.length) {
+        const [_avatar,] = avatarRef.current.files;
+        setAvatar(URL.createObjectURL(_avatar));
+      } else {
+        setAvatar(user.avatar);
+      }
+    };
+
     return (
       <Layout>
         <article className="profile-edit-wrapper">
@@ -93,8 +103,8 @@ export default function ProfileEdit() {
           <main>
             <form onSubmit={handleSubmit}>
               <fieldset className="avatar">
-                <img src={user.avatar || 'https://picsum.photos/150/150'} alt={`Avatar de ${user.name}`} />
-                <input type="file" accept="image/*" ref={avatarRef} />
+                <img src={avatar || 'https://picsum.photos/150/150'} alt={`Avatar de ${user.name}`} />
+                <input type="file" accept="image/*" ref={avatarRef} onChange={() => showPreviousAvatar()} />
                 <button type="button" onClick={() => handleUpload()}>
                   <MdCameraAlt />
                 </button>
@@ -122,7 +132,7 @@ export default function ProfileEdit() {
   return (
     <Layout>
       <h1>Editar Dados</h1>
-      <form onSubmit={handleSubmit}>
+      <form className="profile-edit" onSubmit={handleSubmit}>
         <div className="avatar">
           <img src={user.avatar || 'https://picsum.photos/150/150'} alt={`Avatar de ${user.name}`} />
           <input type="file" accept="image/*" ref={avatarRef} />
