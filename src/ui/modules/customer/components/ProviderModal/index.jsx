@@ -109,18 +109,6 @@ export default function ProviderModal({ show = false, providerId = null, onHide 
                       <h3>Maquiagem</h3>
                     </a>
                   </li>
-                  <li>
-                    <a href="#">
-                      <FaInstagram />
-                      <h3>Skin Care</h3>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <FaInstagram />
-                      <h3>Skin Care</h3>
-                    </a>
-                  </li>
                 </ol>
               </section>
               <section className="services">

@@ -1,6 +1,7 @@
 .appointment-modal {
   background-color: #ccc;
   height: 100%;
+  overflow: auto;
 }
 
 .appointment-modal .react-tabs {
@@ -84,6 +85,11 @@
   display: flex;
   padding: 1vh 3vw;
   font-size: 1.25rem;
+}
+
+.appointment-modal .react-tabs > header p {
+  text-align: center;
+  margin: 0;
 }
 
 .appointment-modal .react-tabs > main {
