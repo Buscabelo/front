@@ -147,19 +147,21 @@
   }
 }
 
-main header {
-  padding: 15px 20px;
-}
+@media (hover: hover) {
+  main .search-results {
+    padding: 15px 20px;
+  }
 
-main header h2 {
-  display: flex;
-}
+  main .search-results h2 {
+    display: flex;
+  }
 
-main header h2 p {
-  color: var(--primary);
-  margin-left: 10px;
-}
+  main .search-results h2 p {
+    color: var(--primary);
+    margin-left: 10px;
+  }
 
-main .content {
-  padding: 10px 20px;
+  main .content {
+    padding: 10px 20px;
+  }
 }

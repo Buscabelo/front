@@ -105,6 +105,7 @@ export default function AppointmentModal({ show, service, provider, onHide }) {
               Confirmar pedido
             </Tab>
           </TabList>
+          {!user && <p>Você precisa estar cadastrado para realizar agendamentos</p>}
         </header>
         <main>
           <TabPanel>
@@ -148,18 +149,20 @@ export default function AppointmentModal({ show, service, provider, onHide }) {
             </div>
           </TabPanel>
         </main>
-        {selectedHour && <footer>
-          <button type="button" onClick={() => handleAppointment(after)}>
-            {step === lastIndex ? <>
-              Finalizar Pedido <MdDone />
-            </> : <>
-              Avançar <MdChevronRight />
-            </>}
-          </button>
-          {step > firstIndex && <button type="button" onClick={() => handleAppointment(before)}>
-            <MdChevronLeft /> Voltar
-          </button>}
-        </footer>}
+        {user && <>
+          {selectedHour && <footer>
+            <button type="button" onClick={() => handleAppointment(after)}>
+              {step === lastIndex ? <>
+                Finalizar Pedido <MdDone />
+              </> : <>
+                Avançar <MdChevronRight />
+              </>}
+            </button>
+            {step > firstIndex && <button type="button" onClick={() => handleAppointment(before)}>
+              <MdChevronLeft /> Voltar
+            </button>}
+          </footer>}
+        </>}
       </Tabs>
     </Modal>
   );

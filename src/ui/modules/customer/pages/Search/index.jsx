@@ -229,7 +229,7 @@ export default function Search() {
 
   return (
     <Layout>
-      <header>
+      <header className="search-results">
         <h2>Resultados para <p>{search}</p></h2>
       </header>
       <div className='content'>
