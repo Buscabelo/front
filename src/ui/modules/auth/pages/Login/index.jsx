@@ -5,8 +5,7 @@ import { GoogleLogin } from 'react-google-login';
 
 import './styles.css';
 import { userTypes } from '../../../../constants/user';
-import FloatMenu from '../../../common/components/FloatMenu';
-import mobileLogo from '../../../../assets/images/logo@1x.png';
+import Layout from '../../../common/components/CustomerLayout';
 import logo from '../../../../assets/images/Buscabelo_logo.png';
 
 export default function Login() {
@@ -93,20 +92,20 @@ export default function Login() {
 
   if (isMobile || isTablet) {
     return (
-      <>
+      <Layout>
         <article className="login-wrapper">
           <main className="card">
-            <img src={mobileLogo} alt="Logo Buscabelo" />
+            <img src={logo} alt="Logo Buscabelo" />
 
             <form onSubmit={handleSubmit}>
               <fieldset>
                 <label>Email</label>
-                <input name="email" placeholder="Ex: yanvictor@example.com" value={email} onChange={({ target }) => setEmail(target.value)} required />
+                <input type="email" placeholder="Ex: yanvictor@example.com" value={email} onChange={({ target }) => setEmail(target.value)} required />
               </fieldset>
 
               <fieldset>
                 <label>Senha</label>
-                <input name="password" placeholder="Ex: ******" value={password} onChange={({ target }) => setPassword(target.value)} required />
+                <input type="password" placeholder="Ex: ******" value={password} onChange={({ target }) => setPassword(target.value)} required />
                 <a href="#">Esqueceu sua senha?</a>
               </fieldset>
 
@@ -126,8 +125,7 @@ export default function Login() {
             </p>
           </main>
         </article>
-        <FloatMenu />
-      </>
+      </Layout>
     );
   }
 
