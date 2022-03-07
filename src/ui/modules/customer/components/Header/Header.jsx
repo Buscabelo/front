@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
+import clsx from 'clsx';
 
 import logo from '../../../../assets/images/Buscabelo_logo.png';
 import SearchInput from '../SearchInput/SearchInput';
@@ -27,8 +28,8 @@ export default function Header() {
         <img src={logo} width="80" alt="Logo Buscabelo" />
       </a>
       <nav className="navbar">
-        <a href='/estabelecimentos' className={location.pathname === '/estabelecimentos' ? 'active' : ' '}>Estabelecimentos</a>
-        <a href='/servicos' className={location.pathname === '/servicos' ? 'active' : ' '}>Serviços</a>
+        <a href='/estabelecimentos' className={clsx({ active: location.pathname === '/estabelecimentos' })}>Estabelecimentos</a>
+        <a href='/servicos' className={clsx({ active: location.pathname === '/servicos' })}>Serviços</a>
         {!user && <a href='#'>Sobre o Buscabelo</a>}
         {user && <SearchInput
           isShow={showSearch}

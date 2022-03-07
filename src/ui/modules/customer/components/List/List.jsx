@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import './List.css';
 
 const defaultLineCount = 1;
@@ -17,7 +18,7 @@ export default function List({ direction = 'horizontal', items, ItemComponent = 
   }
 
   return (
-    <ol className={`list-container ${type}`} style={{'--grid-num-rows': itemsPerLine}}>
+    <ol className={clsx('list-container', type)} style={{'--grid-num-rows': itemsPerLine}}>
       {itemsMaxPerLine
         ?items.slice(inicialItems, itemsMaxPerLine).map(item => (
           <li key={item.id}>

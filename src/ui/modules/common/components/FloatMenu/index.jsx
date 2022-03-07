@@ -1,5 +1,6 @@
 import { MdExplore, MdHome, MdLogin, MdPerson } from 'react-icons/md';
 import { useRouteMatch } from 'react-router-dom';
+import clsx from 'clsx';
 
 import './style.css';
 
@@ -19,20 +20,20 @@ export default function FloatMenu() {
 
   return (
     <nav className="menu-container">
-      <a className={'menu-item' + (path === '/' ? ' active' : '')} href="/">
+      <a className={clsx('menu-item', { 'active': path === '/' })} href="/">
         <MdHome /> Home
       </a>
-      <a className={'menu-item' + (path === '/pesquisa' ? ' active' : '')} href="/pesquisa">
+      <a className={clsx('menu-item', { 'active': path === '/pesquisa' })} href="/pesquisa">
         <MdExplore />
         Explorar
       </a>
       {user ?
-        <a className={'menu-item' + (profilePaths.includes(path) ? ' active' : '')} href="/perfil">
+        <a className={clsx('menu-item', { 'active': profilePaths.includes(path) })} href="/perfil">
           <MdPerson />
           Perfil
         </a>
         :
-        <a className={'menu-item' + (authPaths.includes(path) ? ' active' : '')} href="/acesso">
+        <a className={clsx('menu-item', { 'active': authPaths.includes(path) })} href="/acesso">
           <MdLogin /> Entrar
         </a>
       }
