@@ -11,6 +11,7 @@ export default function FloatMenu() {
   ];
   const profilePaths = [
     '/perfil',
+    '/perfil/editar',
     '/agendamentos',
     '/agendamento/:id'
   ];
