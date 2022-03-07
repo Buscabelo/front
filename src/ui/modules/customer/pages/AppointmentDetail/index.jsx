@@ -6,6 +6,7 @@ import { format, parseISO } from 'date-fns';
 
 import './styles.css';
 import Layout from '../../../common/components/CustomerLayout';
+import ProviderModal from '../../components/ProviderModal';
 import { minStackLength, decimalPlaces } from '../../../../constants';
 
 const starsLength = 5;
@@ -16,6 +17,7 @@ export default function AppointmentDetail() {
   const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
   const token = localStorage.getItem('@buscabelo_client/token');
   const [data, setData] = useState(null);
+  const [provider, setProvider] = useState(null);
 
   const loadAppointment = useCallback(() => {
     fetch(`${process.env.REACT_APP_API}/appointments/${id}`, {
@@ -143,7 +145,7 @@ export default function AppointmentDetail() {
             </section>
             <section className="appointment">
               Realizada às {format(parseISO(data.scheduled_at), 'H:mm - dd/MM/y')}
-              <a href="#">Ver serviços</a>
+              <a href="#" onClick={() => setProvider(data.provider.id)}>Ver serviços</a>
             </section>
             <section className="status">
               {renderIcon()} Serviço {renderStatus()}
@@ -171,6 +173,11 @@ export default function AppointmentDetail() {
             </section>
           </footer>}
         </article>
+        <ProviderModal
+          show={provider !== null}
+          providerId={provider}
+          onHide={() => setProvider(null)}
+        />
       </Layout>
     );
   }
