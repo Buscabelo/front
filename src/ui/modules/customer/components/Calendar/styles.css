@@ -58,11 +58,11 @@
 }
 
 .calendar-container main table td.today {
-  background-color: #00f;
+  background-color: var(--info);
 }
 
 .calendar-container main table td.active {
-  background-color: #0f0;
+  background-color: var(--success);
 }
 
 .calendar-container main table td.today,

@@ -59,9 +59,18 @@
   gap: 1vw;
 }
 
+.provider-modal header section div svg {
+  color: var(--secondary);
+}
+
+.provider-modal header section div svg path:not([fill="none"]) {
+  stroke: #000;
+  stroke-width: 1px;
+}
+
 .provider-modal header section div .closed {
   padding: 0.5vh 1vw;
-  background-color: red;
+  background-color: var(--danger);
   color: #fff;
   font-weight: bold;
 }

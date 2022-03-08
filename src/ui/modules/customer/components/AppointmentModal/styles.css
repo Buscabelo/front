@@ -73,7 +73,8 @@
 }
 
 .appointment-modal .react-tabs > header .react-tabs__tab-list .react-tabs__tab--selected::before {
-  background-color: #000;
+  background-color: var(--primary);
+  border-color: var(--primary);
 }
 
 .appointment-modal .react-tabs > header button {
@@ -133,7 +134,8 @@
 }
 
 .appointment-modal .react-tabs > main .card .schedules li.active {
-  background-color: #000;
+  border-color: var(--success);
+  background-color: var(--success);
   color: #fff;
 }
 

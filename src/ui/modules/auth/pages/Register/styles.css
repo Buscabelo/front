@@ -66,7 +66,8 @@
 
   .register-wrapper form button {
     border-radius: 5px;
-    background-color: #c4c4c4;
+    background-color: var(--primary);
+    color: var(--light);
     font-weight: bold;
     border-color: transparent;
     padding: 10px 0;

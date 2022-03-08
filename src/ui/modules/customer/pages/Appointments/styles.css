@@ -104,7 +104,8 @@
 
   .appointments-wrapper ol > li footer button {
     border-radius: 5px;
-    background-color: #c4c4c4;
+    background-color: var(--danger);
+    color: var(--light);
     font-weight: bold;
     border-color: transparent;
     padding: 6px 12px;
