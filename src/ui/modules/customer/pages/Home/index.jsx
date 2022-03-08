@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { isMobile, isTablet } from 'react-device-detect';
-import { FaInstagram, FaMapMarkerAlt, FaStar } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaStar } from 'react-icons/fa';
 
 import './Home.css';
 
@@ -9,9 +9,11 @@ import Carousel from '../../components/Carousel/Carousel';
 import SearchInput from '../../components/SearchInput/SearchInput';
 import List from '../../components/List/List';
 import Service from '../../components/Service/Service';
+import { getCategoryIcon } from '../../../common/utils/index';
+import { AppContext } from '../../../common/context/AppContext';
 
 export default function Home() {
-  const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
+  const { categories, user } = useContext(AppContext);
   const [showSearch, setShowSearch] = useState(true);
   const [providers, setProviders] = useState([]);
 
@@ -41,40 +43,12 @@ export default function Home() {
           <section className="service-types">
             <h2>Serviços</h2>
             <ol>
-              <li>
+              {categories.map(category => <li key={category}>
                 <a href="#">
-                  <FaInstagram />
-                  <h3>Corte</h3>
+                  {getCategoryIcon(category)}
+                  <h3>{category}</h3>
                 </a>
-              </li>
-
-              <li>
-                <a href="#">
-                  <FaInstagram />
-                  <h3>Corte</h3>
-                </a>
-              </li>
-
-              <li>
-                <a href="#">
-                  <FaInstagram />
-                  <h3>Corte</h3>
-                </a>
-              </li>
-
-              <li>
-                <a href="#">
-                  <FaInstagram />
-                  <h3>Corte</h3>
-                </a>
-              </li>
-
-              <li>
-                <a href="#">
-                  <FaInstagram />
-                  <h3>Corte</h3>
-                </a>
-              </li>
+              </li>)}
             </ol>
           </section>
           <section className="best-providers">
