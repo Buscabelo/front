@@ -83,7 +83,7 @@
 }
 
 .slider__range {
-  background-color: #0f0;
+  background-color: var(--success);
   z-index: 2;
 }
 

@@ -19,7 +19,7 @@
 }
 
 .menu-container a.active {
-  color: #212121;
+  color: var(--primary);
 }
 
 .menu-container a svg {

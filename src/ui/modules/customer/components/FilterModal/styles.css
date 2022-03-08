@@ -75,7 +75,7 @@
 }
 
 .filter-modal main .service-types a.active {
-  background-color: #212121;
+  background-color: var(--info);
   color: #fff;
   border-radius: 5px;
 }
@@ -97,7 +97,8 @@
   padding: 1.25vh 5vw;
   border-color: transparent;
   border-radius: 5px;
-  background-color: #c4c4c4;
+  background-color: var(--primary);
+  color: var(--light);
   font-size: 1rem;
   font-weight: bold;
 }
