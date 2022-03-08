@@ -19,7 +19,7 @@ export default function AppContextProvider({ children }) {
       // eslint-disable-next-line no-console
       console.error(error);
     }
-  });
+  }, []);
 
   useEffect(() => {
     loadCategories();

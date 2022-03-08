@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { MdChevronLeft, MdChevronRight, MdClose, MdDone } from 'react-icons/md';
 import Modal from 'react-modal';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import './styles.css';
 import Calendar from '../Calendar';
 import { decimalPlaces } from '../../../../constants';
+import { AppContext } from '../../../common/context/AppContext';
 
 const firstIndex = 0;
 const lastIndex = 1;
@@ -22,8 +23,7 @@ export default function AppointmentModal({ show, service, provider, onHide }) {
   const [step, setStep] = useState(firstIndex);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedHour, setSelectedHour] = useState(null);
-  const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
-  const token = localStorage.getItem('@buscabelo_client/token');
+  const { user, token } = useContext(AppContext);
 
   useEffect(() => {
     if (selectedDate === null) {

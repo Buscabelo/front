@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { isMobile, isTablet } from 'react-device-detect';
 import { useHistory, useParams } from 'react-router-dom';
 import { MdCheckCircle, MdChevronLeft, MdClose, MdStar } from 'react-icons/md';
@@ -8,6 +8,7 @@ import { format, parseISO } from 'date-fns';
 import './styles.css';
 import Layout from '../../../common/components/CustomerLayout';
 import ProviderModal from '../../components/ProviderModal';
+import { AppContext } from '../../../common/context/AppContext';
 import { minStackLength, decimalPlaces } from '../../../../constants';
 
 const starsLength = 5;
@@ -15,8 +16,7 @@ const starsLength = 5;
 export default function AppointmentDetail() {
   const history = useHistory();
   const { id } = useParams();
-  const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
-  const token = localStorage.getItem('@buscabelo_client/token');
+  const { user, token } = useContext(AppContext);
   const [data, setData] = useState(null);
   const [provider, setProvider] = useState(null);
 

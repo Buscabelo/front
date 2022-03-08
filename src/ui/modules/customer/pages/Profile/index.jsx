@@ -1,13 +1,15 @@
+import { useContext } from 'react';
 import { isMobile, isTablet } from 'react-device-detect';
 import { MdEdit, MdCalendarToday, MdLogout } from 'react-icons/md';
 import { useHistory } from 'react-router-dom';
 
 import './styles.css';
 import Layout from '../../../common/components/CustomerLayout';
+import { AppContext } from '../../../common/context/AppContext';
 
 export default function Profile() {
   const history = useHistory();
-  const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
+  const { user } = useContext(AppContext);
 
   const logout = () => {
     localStorage.removeItem('@buscabelo_client/user');

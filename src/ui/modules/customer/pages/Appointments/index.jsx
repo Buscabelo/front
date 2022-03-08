@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { isMobile, isTablet } from 'react-device-detect';
 import { MdChevronRight } from 'react-icons/md';
 import { format, formatISO, parseISO } from 'date-fns';
@@ -7,14 +7,14 @@ import backgroundNoAppointmentList from '../../../../assets/images/undraw/calend
 import Layout from '../../../common/components/CustomerLayout';
 import List from '../../components/List/List';
 import Appointment from '../../components/Appointment/Appointment';
+import { AppContext } from '../../../common/context/AppContext';
 
 import './styles.css';
 
 const initialPath = 0;
 
 export default function Appointments() {
-  const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
-  const token = localStorage.getItem('@buscabelo_client/token');
+  const { user, token } = useContext(AppContext);
   const [data, setData] = useState([]);
 
   const loadAppointments = useCallback(() => {

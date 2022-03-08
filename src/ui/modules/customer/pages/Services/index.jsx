@@ -1,14 +1,15 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 
 import './Services.css';
 import Layout from '../../../common/components/CustomerLayout';
 import List from '../../components/List/List';
 import Service from '../../components/Service/Service';
 import SearchInput from '../../components/SearchInput/SearchInput';
+import { AppContext } from '../../../common/context/AppContext';
 
 export default function Services() {
   const [data, setData] = useState([]);
-  const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
+  const { user } = useContext(AppContext);
   const [showSearch, setShowSearch] = useState(true);
 
   const loadServices = useCallback(() => {

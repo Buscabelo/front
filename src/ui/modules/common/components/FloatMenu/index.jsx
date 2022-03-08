@@ -1,11 +1,15 @@
+import { useContext } from 'react';
 import { MdExplore, MdHome, MdLogin, MdPerson } from 'react-icons/md';
 import { useRouteMatch } from 'react-router-dom';
 import clsx from 'clsx';
 
 import './style.css';
+import { AppContext } from '../../context/AppContext';
 
 export default function FloatMenu() {
   const { path } = useRouteMatch();
+  const { user } = useContext(AppContext);
+
   const authPaths = [
     '/acesso',
     '/cadastro'
@@ -16,7 +20,6 @@ export default function FloatMenu() {
     '/agendamentos',
     '/agendamento/:id'
   ];
-  const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
 
   return (
     <nav className="menu-container">

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { isMobile, isTablet } from 'react-device-detect';
 import { MdCameraAlt, MdChevronLeft, MdModeEdit } from 'react-icons/md';
 import { useHistory } from 'react-router-dom';
@@ -6,11 +6,11 @@ import { useHistory } from 'react-router-dom';
 import './styles.css';
 import { minStackLength } from '../../../../constants';
 import Layout from '../../../common/components/CustomerLayout';
+import { AppContext } from '../../../common/context/AppContext';
 
 export default function ProfileEdit() {
   const history = useHistory();
-  const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
-  const token = localStorage.getItem('@buscabelo_client/token');
+  const { user, token } = useContext(AppContext);
   const [avatar, setAvatar] = useState(user.avatar);
   const avatarRef = useRef();
   const name = useRef();
