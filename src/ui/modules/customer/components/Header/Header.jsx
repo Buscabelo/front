@@ -1,17 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 import clsx from 'clsx';
 
 import logo from '../../../../assets/images/Buscabelo_logo.png';
 import SearchInput from '../SearchInput/SearchInput';
+import { AppContext } from '../../../common/context/AppContext';
 import AuthInfo from './AuthInfo';
 import Submenu from './Submenu';
 
 import './Header.css';
 
 export default function Header() {
-  const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
+  const { user } = useContext(AppContext);
   const [showSearch, setShowSearch] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const location = useLocation();

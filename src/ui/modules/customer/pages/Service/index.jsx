@@ -1,10 +1,9 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { isMobile, isTablet } from 'react-device-detect';
 import { useHistory, useParams } from 'react-router';
 import { FaStar, FaRegCalendarCheck } from 'react-icons/fa';
 import { MdClose } from 'react-icons/md';
 import Modal from 'react-modal';
-
 import FullCalendar, { formatDate } from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -14,10 +13,10 @@ import withReactContent from 'sweetalert2-react-content';
 
 import Layout from '../../../common/components/CustomerLayout';
 import List from '../../components/List/List';
-
-import { httpCode, minStackLength, decimalPlaces } from '../../../../constants';
+import { AppContext } from '../../../common/context/AppContext';
 
 import './styles.css';
+import { httpCode, minStackLength, decimalPlaces } from '../../../../constants';
 
 const customStyles = {
   content: {
@@ -57,8 +56,7 @@ Modal.setAppElement('#root');
 export default function Service() {
   const history = useHistory();
   const { id } = useParams();
-  const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
-  const token = localStorage.getItem('@buscabelo_client/token');
+  const { user, token } = useContext(AppContext);
   const [data, setData] = useState(null);
   const [services, setServices] = useState(null);
   const [showModal, setShowModal] = useState(false);
