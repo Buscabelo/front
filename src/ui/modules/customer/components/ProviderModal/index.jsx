@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
-import { FaInstagram } from 'react-icons/fa';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { MdArrowBack, MdChevronRight, MdEmail, MdStar } from 'react-icons/md';
 import Modal from 'react-modal';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
@@ -7,12 +6,15 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import './styles.css';
 
 import AppointmentModal from '../AppointmentModal';
+import { getCategoryIcon } from '../../../common/utils/index';
+import { AppContext } from '../../../common/context/AppContext';
 import { decimalPlaces } from '../../../../constants';
 
 export default function ProviderModal({ show = false, providerId = null, onHide }) {
   const [provider, setProvider] = useState(null);
   const [services, setServices] = useState([]);
   const [selectedService, setSelectedService] = useState(null);
+  const { categories } = useContext(AppContext);
 
   const loadProvider = useCallback(async () => {
     try {
@@ -89,28 +91,16 @@ export default function ProviderModal({ show = false, providerId = null, onHide 
               </Tab>
             </TabList>
             <TabPanel>
-              <section className="service-types">
+              {services.some(service => categories.includes(service.type)) && <section className="service-types">
                 <ol>
-                  <li>
+                  {categories.map(category => <li key={category}>
                     <a href="#">
-                      <FaInstagram />
-                      <h3>Corte</h3>
+                      {getCategoryIcon(category)}
+                      <h3>{category}</h3>
                     </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <FaInstagram />
-                      <h3>Tintura</h3>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <FaInstagram />
-                      <h3>Maquiagem</h3>
-                    </a>
-                  </li>
+                  </li>)}
                 </ol>
-              </section>
+              </section>}
               <section className="services">
                 <h2>Todos os Serviços</h2>
                 <ul>

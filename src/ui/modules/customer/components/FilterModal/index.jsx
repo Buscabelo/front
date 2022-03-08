@@ -1,11 +1,12 @@
-import { useState } from 'react';
-import { FaInstagram } from 'react-icons/fa';
+import { useContext, useState } from 'react';
 import { MdClose } from 'react-icons/md';
 import Modal from 'react-modal';
 import clsx from 'clsx';
 
 import './styles.css';
 import RangeSlider from '../RangeSlider';
+import { getCategoryIcon } from '../../../common/utils/index';
+import { AppContext } from '../../../common/context/AppContext';
 
 const minPrice = 0;
 const maxPrice = 1000;
@@ -14,6 +15,7 @@ export default function FilterModal({ show, onHide, changeMinPrice, changeMaxPri
   const [serviceType, setServiceType] = useState(null);
   const [minValue, setMinValue] = useState(null);
   const [maxValue, setMaxValue] = useState(null);
+  const { categories } = useContext(AppContext);
 
   const handleFilter = () => {
     changeServiceType(serviceType);
@@ -53,24 +55,12 @@ export default function FilterModal({ show, onHide, changeMinPrice, changeMaxPri
         <section className="service-types">
           <h3>Categorias</h3>
           <ol>
-            <li>
-              <a className={clsx({ 'active': serviceType === 'Corte' })} onClick={() => handleTypeChange('Corte')}>
-                <FaInstagram />
-                <h3>Corte</h3>
+            {categories.map(category => <li key={category}>
+              <a className={clsx({ 'active': serviceType === category })} onClick={() => handleTypeChange(category)}>
+                {getCategoryIcon(category)}
+                <h3>{category}</h3>
               </a>
-            </li>
-            <li>
-              <a className={clsx({ 'active': serviceType === 'Tratamento' })} onClick={() => handleTypeChange('Tratamento')}>
-                <FaInstagram />
-                <h3>Tratamento</h3>
-              </a>
-            </li>
-            <li>
-              <a className={clsx({ 'active': serviceType === 'Barba' })} onClick={() => handleTypeChange('Barba')}>
-                <FaInstagram />
-                <h3>Barba</h3>
-              </a>
-            </li>
+            </li>)}
           </ol>
         </section>
         <section>
