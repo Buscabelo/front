@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { isMobile, isTablet } from 'react-device-detect';
-import { FaMapMarkerAlt, FaStar } from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa';
 
 import './Home.css';
 
@@ -31,9 +31,27 @@ export default function Home() {
       });
   }, [setProviders]);
 
+  const loadTopProviders = useCallback(async () => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API}/top`);
+      const { success, providers } = await response.json();
+
+      if (success) {
+        setProviders(providers);
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
+  }, [setProviders]);
+
   useEffect(() => {
-    loadProviders();
-  }, [loadProviders]);
+    if (isMobile || isTablet) {
+      loadTopProviders();
+    } else {
+      loadProviders();
+    }
+  }, [loadProviders, loadTopProviders]);
 
   if (isMobile || isTablet) {
     return (
@@ -51,33 +69,18 @@ export default function Home() {
               </li>)}
             </ol>
           </section>
-          <section className="best-providers">
+          {!!providers.length && <section className="best-providers">
             <h2>Estabelecimentos do Momento</h2>
             <ol>
-              <li>
-                <img src="https://picsum.photos/270/165" />
+              {providers.map(provider => <li key={provider.id}>
+                <img src={provider.avatar || 'https://picsum.photos/270/165'} />
                 <main>
-                  <h3>Dom Manuel</h3>
-                  <span>4,3 <FaStar /></span>
+                  <h3>{provider.name}</h3>
+                  {provider.rating_number && <span>{provider.rating_number} <FaStar /></span>}
                 </main>
-                <footer>
-                  <FaMapMarkerAlt />
-                  <address>Avenida Senador Salgado Filho, 1559, Tirol...</address>
-                </footer>
-              </li>
-              <li>
-                <img src="https://picsum.photos/270/165" />
-                <main>
-                  <h3>Dom Manuel</h3>
-                  <span>4,3 <FaStar /></span>
-                </main>
-                <footer>
-                  <FaMapMarkerAlt />
-                  <address>Avenida Senador Salgado Filho, 1559, Tirol...</address>
-                </footer>
-              </li>
+              </li>)}
             </ol>
-          </section>
+          </section>}
         </article>
       </Layout>
     );
