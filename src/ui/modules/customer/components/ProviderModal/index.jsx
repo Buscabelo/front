@@ -13,6 +13,7 @@ import { decimalPlaces } from '../../../../constants';
 export default function ProviderModal({ show = false, providerId = null, onHide }) {
   const [provider, setProvider] = useState(null);
   const [services, setServices] = useState([]);
+  const [images, setImages] = useState([]);
   const [selectedService, setSelectedService] = useState(null);
   const { categories } = useContext(AppContext);
 
@@ -42,12 +43,38 @@ export default function ProviderModal({ show = false, providerId = null, onHide 
     }
   }, [providerId]);
 
+  const loadImages = useCallback(async service => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API}/${service}/images`);
+      const { success, images } = response.json();
+
+      if (success) {
+        return images;
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
+  }, []);
+
   useEffect(() => {
     if (providerId) {
       loadProvider();
       loadServices();
     }
   }, [providerId, loadProvider, loadServices]);
+
+  useEffect(() => {
+    if (Array.isArray(services) && services.length) {
+      const _images = [];
+      services.map(async service => {
+        const serviceImages = await loadImages(service.id);
+        _images.push(serviceImages);
+      });
+
+      setImages(_images);
+    }
+  }, [services, loadImages]);
 
   const renderStatus = () => <span className="closed">Fechado</span>;
 
@@ -120,7 +147,9 @@ export default function ProviderModal({ show = false, providerId = null, onHide 
               </section>
             </TabPanel>
             <TabPanel>
-              Ainda não implementado
+              <section className="gallery">
+                {images.map(image => <img key={image.url} src={image.url} />)}
+              </section>
             </TabPanel>
             <TabPanel>
               <article className="about">

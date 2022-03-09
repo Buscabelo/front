@@ -176,6 +176,12 @@
   font-size: 2rem;
 }
 
+.provider-modal main .react-tabs__tab-panel--selected .gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: masonry;
+}
+
 .provider-modal main .react-tabs__tab-panel--selected .about {
   padding: 2vh 4vw 0;
   height: 100%;
