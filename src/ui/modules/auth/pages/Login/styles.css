@@ -134,7 +134,7 @@
   .login-wrapper main form .input-group input {
     padding: 1.5vh 1vw;
     border-radius: 5px;
-    border: 1px solid var(--gray-1);
+    border: 1px solid var(--gray);
   }
 
   .login-wrapper main form button {

@@ -21,7 +21,8 @@ export default function AuthInfo({ user, showMenu }) {
 
   return (
     <a className='btn createConta' href="/acesso">
-      <IoMdLogIn />&nbsp;&nbsp;Entrar
+      <IoMdLogIn />
+      Entrar
     </a>
   );
 }

@@ -9,11 +9,12 @@ import { AppContext } from '../../../common/context/AppContext';
 
 export default function Profile() {
   const history = useHistory();
-  const { user } = useContext(AppContext);
+  const { user, reloadAuth } = useContext(AppContext);
 
   const logout = () => {
     localStorage.removeItem('@buscabelo_client/user');
     localStorage.removeItem('@buscabelo_client/token');
+    reloadAuth();
     history.replace('/');
   };
 

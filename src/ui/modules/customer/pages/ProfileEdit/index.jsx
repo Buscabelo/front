@@ -10,7 +10,7 @@ import { AppContext } from '../../../common/context/AppContext';
 
 export default function ProfileEdit() {
   const history = useHistory();
-  const { user, token } = useContext(AppContext);
+  const { user, token, reloadAuth } = useContext(AppContext);
   const [avatar, setAvatar] = useState(user.avatar);
   const avatarRef = useRef();
   const name = useRef();
@@ -42,6 +42,7 @@ export default function ProfileEdit() {
 
         if (success) {
           localStorage.setItem('@buscabelo_client/user', JSON.stringify(userChanged));
+          reloadAuth();
         }
       } catch (error) {
         // eslint-disable-next-line no-console
@@ -70,6 +71,7 @@ export default function ProfileEdit() {
 
         if (success) {
           localStorage.setItem('@buscabelo_client/user', JSON.stringify(userChanged));
+          reloadAuth();
         }
       } catch (error) {
         // eslint-disable-next-line no-console

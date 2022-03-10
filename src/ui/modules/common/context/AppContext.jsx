@@ -4,8 +4,9 @@ export const AppContext = createContext();
 
 export default function AppContextProvider({ children }) {
   const [categories, setCategories] = useState([]);
-  const user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
-  const token = localStorage.getItem('@buscabelo_client/token');
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
+  const [needLoad, setNeedLoad] = useState(true);
 
   const loadCategories = useCallback(async () => {
     try {
@@ -21,16 +22,31 @@ export default function AppContextProvider({ children }) {
     }
   }, []);
 
+  const reloadAuth = () => {
+    setNeedLoad(true);
+  };
+
   useEffect(() => {
     loadCategories();
   }, [loadCategories]);
+
+  useEffect(() => {
+    if (needLoad) {
+      const _user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
+      setUser(_user);
+      const _token = localStorage.getItem('@buscabelo_client/token');
+      setToken(_token);
+      setNeedLoad(false);
+    }
+  }, [needLoad]);
 
   return (
     <AppContext.Provider
       value={{
         categories,
         user,
-        token
+        token,
+        reloadAuth
       }}
     >
       {children}
