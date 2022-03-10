@@ -4,6 +4,7 @@ import { Card, Typography, Modal } from 'antd';
 
 import FlexlistWrapper from '../../components/FlexlistWrapper/FlexlistWrapper';
 import { ResponseHandlerContext } from '../../context/ResponseHandlerContext';
+import DashboardLayout from '../../components/DashboardLayout/DashboardLayout';
 
 const { Title, Text } = Typography;
 
@@ -80,7 +81,7 @@ export default function ListAppointments() {
   }
 
   return (
-    <>
+    <DashboardLayout>
       {
         selectedAppointment ?
           <Modal
@@ -133,6 +134,6 @@ export default function ListAppointments() {
           );
         })}
       </FlexlistWrapper>
-    </>
+    </DashboardLayout>
   );
 }
