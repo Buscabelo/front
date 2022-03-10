@@ -1,0 +1,76 @@
+.Container {
+  background: var(--primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  top: 0;
+  left: 0;
+  padding: 9px 19px 20px;
+  max-height: 100%;
+  width: 35vw;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 1px solid var(--primary);
+}
+
+.Container .Topside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Container .Topside .MenuButton {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 8.25px 0;
+  outline: 0;
+  width: 100%;
+}
+
+.Container .Topside .MenuButton a {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  font-size: 1.1rem;
+}
+
+.Container .Topside .MenuButton .active {
+  color: var(--light);
+}
+
+.Container .Topside .MenuButton a span {
+  margin-left: 1vw;
+}
+
+.Container .Topside .MenuButton + button {
+  margin-top: 16.5px;
+}
+
+.Container .Topside .MenuButton + button:last-child {
+  margin-top: 36px;
+  width: 40px;
+  height: 40px;
+}
+
+@media (max-width: 768px) {
+  .Container {
+    width: 40vw;
+  }
+
+  .Container .Topside .MenuButton a {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .Container .Topside .MenuButton a svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .Container .Topside .MenuButton a span {
+    display: none;
+  }
+}
