@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { isMobile, isTablet } from 'react-device-detect';
 import { useHistory } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 
 import './styles.css';
 import Layout from '../../../common/components/CustomerLayout';
+import { AppContext } from '../../../common/context/AppContext';
 import logo from '../../../../assets/images/Buscabelo_logo.png';
 
 export default function Register() {
@@ -16,6 +17,7 @@ export default function Register() {
   const [isProvider, setIsProvider] = useState(false);
   const [description, setDescription] = useState('');
   const [address, setAddress] = useState('');
+  const { reloadAuth } = useContext(AppContext);
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -72,6 +74,7 @@ export default function Register() {
         if (success) {
           localStorage.setItem('@buscabelo_client/user', JSON.stringify(user));
           localStorage.setItem('@buscabelo_client/token', token);
+          reloadAuth();
           history.push('/');
         }
       } catch (error) {

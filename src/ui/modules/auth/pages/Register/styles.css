@@ -131,7 +131,7 @@
   .register-wrapper main form .input-group input {
     padding: 1.5vh 1vw;
     border-radius: 5px;
-    border: 1px solid var(--gray-1);
+    border: 1px solid var(--gray);
   }
 
   .register-wrapper main form .input-group input[type="checkbox"],
@@ -142,7 +142,7 @@
   .register-wrapper main form .input-group textarea {
     padding: 1.75vh 1vw;
     border-radius: 5px;
-    border: 1px solid var(--gray-1);
+    border: 1px solid var(--gray);
     resize: none;
     font-size: 0.85rem;
   }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { isMobile, isTablet } from 'react-device-detect';
 import { useHistory } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
@@ -6,12 +6,14 @@ import { GoogleLogin } from 'react-google-login';
 import './styles.css';
 import { userTypes } from '../../../../constants/user';
 import Layout from '../../../common/components/CustomerLayout';
+import { AppContext } from '../../../common/context/AppContext';
 import logo from '../../../../assets/images/Buscabelo_logo.png';
 
 export default function Login() {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { reloadAuth } = useContext(AppContext);
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -31,10 +33,12 @@ export default function Login() {
         if (user.type === userTypes.Provider) {
           localStorage.setItem('@buscabelo-estabelecimento/me', JSON.stringify(user));
           localStorage.setItem('@buscabelo-estabelecimento/token', token);
+          reloadAuth();
           history.push('/painel');
         } else {
           localStorage.setItem('@buscabelo_client/user', JSON.stringify(user));
           localStorage.setItem('@buscabelo_client/token', token);
+          reloadAuth();
 
           if (isMobile || isTablet){
             history.push('/');
@@ -69,10 +73,12 @@ export default function Login() {
           if (user.type === userTypes.Provider) {
             localStorage.setItem('@buscabelo-estabelecimento/me', JSON.stringify(user));
             localStorage.setItem('@buscabelo-estabelecimento/token', token);
+            reloadAuth();
             history.push('/painel');
           } else {
             localStorage.setItem('@buscabelo_client/user', JSON.stringify(user));
             localStorage.setItem('@buscabelo_client/token', token);
+            reloadAuth();
             history.push('/');
           }
         } else {
