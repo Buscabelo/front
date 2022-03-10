@@ -1,3 +1,28 @@
-p {
-  font: 100;
+.container-list {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 5vh;
+}
+
+.container-list .card {
+  border: none;
+  width: 20vw;
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border-left-style: inset;
+  border-right-style: outset;
+  border-color: var(--secondary);
+}
+
+.container-list .card .title-card {
+  font-weight: bold;
+  margin-bottom: 2vh;
+}
+
+.container-list .card .description-card {
+  font-size: 1.5rem;
 }
