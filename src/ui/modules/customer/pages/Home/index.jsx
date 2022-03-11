@@ -33,7 +33,7 @@ export default function Home() {
 
   const loadTopProviders = useCallback(async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API}/top`);
+      const response = await fetch(`${process.env.REACT_APP_API}/providers/top`);
       const { success, providers } = await response.json();
 
       if (success) {

@@ -1,0 +1,118 @@
+.new-service-modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0009;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-service-modal {
+  background: var(--light);
+  border-radius: 4px;
+  outline: none;
+  padding: 3vh 2vw;
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  gap: 4vh;
+}
+
+.new-service-modal header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.new-service-modal header h2 {
+  font-weight: bold;
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.new-service-modal header button {
+  display: inherit;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.new-service-modal header button svg {
+  font-size: 1.5rem;
+}
+
+.new-service-modal main form {
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+}
+
+.new-service-modal main form fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+}
+
+.new-service-modal main form fieldset input {
+  padding: 1.5vh 1vw;
+  border-radius: 5px;
+  border: 2px solid var(--gray);
+  outline: none;
+  font-size: 1rem;
+}
+
+.new-service-modal main form fieldset input:focus {
+  border: 2px solid var(--primary);
+}
+
+.new-service-modal main form fieldset textarea {
+  padding: 1.5vh 1vw;
+  border-radius: 5px;
+  border: 2px solid var(--gray);
+  outline: none;
+  resize: none;
+  font-size: 1rem;
+}
+
+.new-service-modal main form fieldset textarea:focus {
+  border: 2px solid var(--primary);
+}
+
+.new-service-modal main form fieldset select {
+  padding: 1.5vh 0.5vw;
+  border-radius: 5px;
+  border: 2px solid var(--gray);
+  outline: none;
+  resize: none;
+  background-color: #fff;
+  font-size: 1rem;
+}
+
+.new-service-modal main form fieldset select:focus {
+  border: 2px solid var(--primary);
+}
+
+.new-service-modal footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1vw;
+}
+
+.new-service-modal footer button {
+  padding: 1.25vh 1vw;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--primary);
+  color: var(--light);
+  cursor: pointer;
+}
+
+.new-service-modal footer button.btn-danger {
+  background-color: var(--danger);
+}

@@ -1,0 +1,79 @@
+.service-creation {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: 2vh;
+}
+
+.service-creation button {
+  padding: 1.5vh 2vw;
+  font-weight: bold;
+  font-size: 1.15rem;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--primary);
+  color: var(--light);
+  cursor: pointer;
+}
+
+.services-list {
+  width: 100%;
+}
+
+.services-list thead {
+  background-color: var(--gray);
+  box-shadow: 0 0 6px var(--gray);
+}
+
+.services-list thead tr th {
+  padding: 2vh 0;
+}
+
+.services-list thead tr th:last-child {
+  text-align: right;
+  padding-right: 6vw;
+}
+
+.services-list tbody {
+  text-align: center;
+}
+
+.services-list tbody tr:nth-child(even) {
+  background-color: var(--light);
+}
+
+.services-list tbody tr td {
+  padding: 2vh 0;
+}
+
+.services-list tbody tr td:last-child {
+  text-align: right;
+}
+
+.services-list tbody tr td button {
+  border-radius: 5px;
+  font-weight: bold;
+  border-color: transparent;
+  padding: 0.75vh 0.5vw;
+  margin-right: 1vw;
+  cursor: pointer;
+}
+
+.services-list tbody tr td button:last-child {
+  margin: 0;
+}
+
+.services-list tbody tr td button.danger {
+  background-color: var(--danger);
+  color: var(--light);
+}
+
+.services-list tbody tr td button.info {
+  background-color: var(--info);
+  color: var(--light);
+}
+
+.services-list tbody tr td button.warning {
+  background-color: var(--warning);
+  color: var(--light);
+}
