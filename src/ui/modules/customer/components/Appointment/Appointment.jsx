@@ -28,7 +28,7 @@ Modal.setAppElement(document.getElementById('root'));
 export default function Appointment({ data }) {
   const history = useHistory();
   const { service, provider } = data;
-  const token = localStorage.getItem('@buscabelo_client/token');
+  const token = localStorage.getItem('@buscabelo/token');
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
