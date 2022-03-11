@@ -1,0 +1,56 @@
+.appointments-list {
+  width: 100%;
+}
+
+.appointments-list thead {
+  background-color: var(--gray);
+  box-shadow: 0 0 6px var(--gray);
+}
+
+.appointments-list thead tr th {
+  padding: 2vh 0;
+}
+
+.appointments-list tbody {
+  text-align: center;
+}
+
+.appointments-list tbody tr:nth-child(even) {
+  background-color: var(--light);
+}
+
+.appointments-list tbody tr td {
+  padding: 2vh 0;
+}
+
+.appointments-list tbody tr td img {
+  border-radius: 50%;
+  aspect-ratio: 1;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-right: 1vw;
+}
+
+.appointments-list tbody tr td button {
+  border-radius: 5px;
+  font-weight: bold;
+  border-color: transparent;
+  padding: 0.75vh 0.5vw;
+  margin-right: 1vw;
+  cursor: pointer;
+}
+
+.appointments-list tbody tr td button:last-child {
+  margin: 0;
+}
+
+.appointments-list tbody tr td button.danger {
+  background-color: var(--danger);
+  color: var(--light);
+}
+
+.appointments-list tbody tr td button.success {
+  background-color: var(--success);
+  color: var(--light);
+}
