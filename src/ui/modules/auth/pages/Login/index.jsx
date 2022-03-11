@@ -30,16 +30,13 @@ export default function Login() {
       const { success, user, token, message } = await response.json();
 
       if (success) {
+        localStorage.setItem('@buscabelo/user', JSON.stringify(user));
+        localStorage.setItem('@buscabelo/token', token);
+        reloadAuth();
+
         if (user.type === userTypes.Provider) {
-          localStorage.setItem('@buscabelo-estabelecimento/me', JSON.stringify(user));
-          localStorage.setItem('@buscabelo-estabelecimento/token', token);
-          reloadAuth();
           history.push('/painel');
         } else {
-          localStorage.setItem('@buscabelo_client/user', JSON.stringify(user));
-          localStorage.setItem('@buscabelo_client/token', token);
-          reloadAuth();
-
           if (isMobile || isTablet){
             history.push('/');
           } else {
@@ -70,15 +67,13 @@ export default function Login() {
         const { success, user, token, message } = await response.json();
 
         if (success) {
+          localStorage.setItem('@buscabelo/user', JSON.stringify(user));
+          localStorage.setItem('@buscabelo/token', token);
+          reloadAuth();
+
           if (user.type === userTypes.Provider) {
-            localStorage.setItem('@buscabelo-estabelecimento/me', JSON.stringify(user));
-            localStorage.setItem('@buscabelo-estabelecimento/token', token);
-            reloadAuth();
             history.push('/painel');
           } else {
-            localStorage.setItem('@buscabelo_client/user', JSON.stringify(user));
-            localStorage.setItem('@buscabelo_client/token', token);
-            reloadAuth();
             history.push('/');
           }
         } else {

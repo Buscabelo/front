@@ -32,9 +32,9 @@ export default function AppContextProvider({ children }) {
 
   useEffect(() => {
     if (needLoad) {
-      const _user = JSON.parse(localStorage.getItem('@buscabelo_client/user'));
+      const _user = JSON.parse(localStorage.getItem('@buscabelo/user'));
       setUser(_user);
-      const _token = localStorage.getItem('@buscabelo_client/token');
+      const _token = localStorage.getItem('@buscabelo/token');
       setToken(_token);
       setNeedLoad(false);
     }

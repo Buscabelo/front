@@ -41,7 +41,7 @@ export default function ProfileEdit() {
         const { success, user: userChanged } = await response.json();
 
         if (success) {
-          localStorage.setItem('@buscabelo_client/user', JSON.stringify(userChanged));
+          localStorage.setItem('@buscabelo/user', JSON.stringify(userChanged));
           reloadAuth();
         }
       } catch (error) {
@@ -70,7 +70,7 @@ export default function ProfileEdit() {
         const { success, user: userChanged } = await editResponse.json();
 
         if (success) {
-          localStorage.setItem('@buscabelo_client/user', JSON.stringify(userChanged));
+          localStorage.setItem('@buscabelo/user', JSON.stringify(userChanged));
           reloadAuth();
         }
       } catch (error) {

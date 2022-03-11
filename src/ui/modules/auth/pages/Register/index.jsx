@@ -72,8 +72,8 @@ export default function Register() {
         const { success, user, token } = await response.json();
 
         if (success) {
-          localStorage.setItem('@buscabelo_client/user', JSON.stringify(user));
-          localStorage.setItem('@buscabelo_client/token', token);
+          localStorage.setItem('@buscabelo/user', JSON.stringify(user));
+          localStorage.setItem('@buscabelo/token', token);
           reloadAuth();
           history.push('/');
         }

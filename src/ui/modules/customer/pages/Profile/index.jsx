@@ -12,8 +12,8 @@ export default function Profile() {
   const { user, reloadAuth } = useContext(AppContext);
 
   const logout = () => {
-    localStorage.removeItem('@buscabelo_client/user');
-    localStorage.removeItem('@buscabelo_client/token');
+    localStorage.removeItem('@buscabelo/user');
+    localStorage.removeItem('@buscabelo/token');
     reloadAuth();
     history.replace('/');
   };

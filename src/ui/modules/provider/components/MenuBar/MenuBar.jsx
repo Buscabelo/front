@@ -9,8 +9,8 @@ export default function MenuBar() {
   const location = useLocation();
 
   const handleLogout = () => {
-    localStorage.removeItem('@buscabelo_client/user');
-    localStorage.removeItem('@buscabelo_client/token');
+    localStorage.removeItem('@buscabelo/user');
+    localStorage.removeItem('@buscabelo/token');
   };
 
   return (
