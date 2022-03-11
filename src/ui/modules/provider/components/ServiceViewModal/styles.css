@@ -1,0 +1,79 @@
+.view-service-modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0009;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.view-service-modal {
+  background: var(--light);
+  border-radius: 4px;
+  outline: none;
+  padding: 3vh 2vw;
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  gap: 4vh;
+}
+
+.view-service-modal header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.view-service-modal header h2 {
+  font-weight: bold;
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.view-service-modal header button {
+  display: inherit;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.view-service-modal header button svg {
+  font-size: 1.5rem;
+}
+
+.view-service-modal main {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+.view-service-modal main section {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+}
+
+.view-service-modal footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1vw;
+}
+
+.view-service-modal footer button {
+  padding: 1.25vh 1vw;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--primary);
+  color: var(--light);
+  cursor: pointer;
+}
+
+.view-service-modal footer button.btn-danger {
+  background-color: var(--danger);
+}
