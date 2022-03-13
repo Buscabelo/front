@@ -86,6 +86,7 @@
     align-items: center;
     padding-left: 4vw;
     height: 100vh;
+    background: var(--warning);
   }
 
   .login-wrapper .cta {
@@ -102,6 +103,7 @@
 
   .login-wrapper .cta h3 {
     margin: 5vh 2vw 2vh 2vw;
+    font-size: 1.5rem;
   }
 
   .login-wrapper main {
@@ -110,11 +112,13 @@
     flex-direction: column;
     justify-content: center;
     height: 100%;
-    background-color: var(--gray-2);
+    margin-right: 2vw;
   }
 
   .login-wrapper main form {
     padding: 2vh 2vw 4vh 2vw;
+    background: var(--light);
+    border-radius: 16px;
   }
 
   .login-wrapper main form #login-title {
@@ -138,12 +142,14 @@
     border: 1px solid var(--gray);
   }
 
+  .login-wrapper main form .input-group input:focus {
+    outline: none;
+    border: 2px solid var(--primary);
+  }
+
   .login-wrapper main form button {
     appearance: none;
-    padding: 2.4vh 1.5vw;
-    background-color: #727272;
-    color: #fff;
-    border: none;
+    padding: 2vh 1vw 3.5vh;
     font-size: 0.9rem;
     font-weight: bold;
     cursor: pointer;

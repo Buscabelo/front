@@ -200,7 +200,7 @@ export default function Register() {
               Possui um estabelecimento?
             </label>
           </div>
-          <button type="submit">Cadastrar</button>
+          <button className='btn' type="submit">Cadastrar</button>
         </form>
         {!isProvider && <GoogleLogin
           clientId="698519431370-hqbblgqr7v6vl3vd96itd98j0d4a3ibv.apps.googleusercontent.com"
@@ -212,7 +212,7 @@ export default function Register() {
         />}
         <section className="login-cta">
           Tem uma conta?
-          <a href="/acesso">Conecte-se</a>
+          <a className='btn-link' href="/acesso">Conecte-se</a>
         </section>
       </main>
     </article>

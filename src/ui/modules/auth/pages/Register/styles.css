@@ -86,6 +86,7 @@
     align-items: center;
     padding: 3vh 4vw;
     height: 100vh;
+    background: var(--warning);
   }
 
   .register-wrapper .cta {
@@ -98,6 +99,7 @@
 
   .register-wrapper .cta h3 {
     margin: 5vh 2vw 2vh 2vw;
+    font-size: 1.5rem;
   }
 
   .register-wrapper .cta img {
@@ -110,9 +112,9 @@
 
   .register-wrapper main form {
     padding: 2vh 2vw 4vh 2vw;
-    background-color: var(--gray-2);
+    background: var(--light);
     margin-bottom: 2vh;
-    border-radius: 6px;
+    border-radius: 16px;
   }
 
   .register-wrapper main form h1 {
@@ -135,6 +137,11 @@
     border: 1px solid var(--gray);
   }
 
+  .register-wrapper main form .input-group input:focus {
+    outline: none;
+    border: 2px solid var(--primary);
+  }
+
   .register-wrapper main form .input-group input[type="checkbox"],
   .register-wrapper main form .input-group input[type="radio"] {
     margin-right: 0.5vw;
@@ -150,9 +157,7 @@
 
   .register-wrapper main form button {
     appearance: none;
-    padding: 2.4vh 1.5vw;
-    background-color: #727272;
-    color: #fff;
+    padding: 2vh 1vw 3.5vh;
     border: none;
     font-size: 0.9rem;
     font-weight: bold;
@@ -167,9 +172,9 @@
     justify-content: center;
     text-align: center;
     padding: 2vh 5vw;
-    background-color: var(--gray-2);
+    background-color: var(--light);
     margin-top: 1em;
-    border-radius: 6px;
+    border-radius: 16px;
   }
 
   .register-wrapper main .login-cta a {

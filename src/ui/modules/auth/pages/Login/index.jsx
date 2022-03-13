@@ -152,7 +152,7 @@ export default function Login() {
             <label>Senha</label>
             <input type="password" placeholder="Ex: ******" value={password} onChange={({target}) => setPassword(target.value)} required />
           </div>
-          <button className="btn-block" type="submit">Entrar</button>
+          <button className="btn-block btn" type="submit">Entrar</button>
           <GoogleLogin
             clientId="698519431370-hqbblgqr7v6vl3vd96itd98j0d4a3ibv.apps.googleusercontent.com"
             buttonText="Entrar usando Google"
@@ -162,7 +162,7 @@ export default function Login() {
             className="button-google"
           />
           <section className="register-cta">
-            Não tem uma conta? <a href="/cadastro">Cadastre-se aqui!</a>
+            Não tem uma conta? <a className='btn-link' href="/cadastro">Cadastre-se aqui!</a>
           </section>
         </form>
       </main>
