@@ -97,7 +97,6 @@
 
   .profile-edit {
     display: flex;
-    align-items: center;
     justify-content: center;
     margin-top: 10vh;
   }
@@ -147,6 +146,7 @@
   .profile-edit .form-group .input-group {
     display: flex;
     flex-direction: column;
+    margin-bottom: 2vh;
   }
 
   .profile-edit .form-group .input-group label {
@@ -156,10 +156,13 @@
   }
 
   .profile-edit .form-group .input-group input {
-    border: 0;
-    border-radius: 10px;
-    height: 2em;
-    padding: 0 1.5vw;
-    box-shadow: 0 0 1em var(--info);
+    padding: 1.5vh 1vw;
+    border-radius: 5px;
+    border: 1px solid var(--gray);
+  }
+
+  .profile-edit .form-group .input-group input:focus {
+    outline: none;
+    border: 2px solid var(--warning);
   }
 }
