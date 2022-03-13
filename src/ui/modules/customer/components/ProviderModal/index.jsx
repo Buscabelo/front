@@ -13,7 +13,7 @@ import { decimalPlaces } from '../../../../constants';
 export default function ProviderModal({ show = false, providerId = null, onHide }) {
   const [provider, setProvider] = useState(null);
   const [services, setServices] = useState([]);
-  const [images, setImages] = useState([]);
+  // const [images, setImages] = useState([]);
   const [selectedService, setSelectedService] = useState(null);
   const { categories } = useContext(AppContext);
 
@@ -43,19 +43,19 @@ export default function ProviderModal({ show = false, providerId = null, onHide 
     }
   }, [providerId]);
 
-  const loadImages = useCallback(async service => {
-    try {
-      const response = await fetch(`${process.env.REACT_APP_API}/${service}/images`);
-      const { success, images } = response.json();
+  // const loadImages = useCallback(async service => {
+  //   try {
+  //     const response = await fetch(`${process.env.REACT_APP_API}/${service}/images`);
+  //     const { success, images } = response.json();
 
-      if (success) {
-        return images;
-      }
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(error);
-    }
-  }, []);
+  //     if (success) {
+  //       return images;
+  //     }
+  //   } catch (error) {
+  //     // eslint-disable-next-line no-console
+  //     console.error(error);
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (providerId) {
@@ -64,17 +64,17 @@ export default function ProviderModal({ show = false, providerId = null, onHide 
     }
   }, [providerId, loadProvider, loadServices]);
 
-  useEffect(() => {
-    if (Array.isArray(services) && services.length) {
-      const _images = [];
-      services.map(async service => {
-        const serviceImages = await loadImages(service.id);
-        _images.push(serviceImages);
-      });
+  // useEffect(() => {
+  //  if (Array.isArray(services) && services.length) {
+  //    const _images = [];
+  //    services.map(async service => {
+  //      const serviceImages = await loadImages(service.id);
+  //      _images.push(serviceImages);
+  //    });
 
-      setImages(_images);
-    }
-  }, [services, loadImages]);
+  //    setImages(_images);
+  //  }
+  // }, [services, loadImages]);
 
   const renderStatus = () => <span className="closed">Fechado</span>;
 
@@ -110,9 +110,9 @@ export default function ProviderModal({ show = false, providerId = null, onHide 
               <Tab>
                 Serviços
               </Tab>
-              <Tab>
+              {/* <Tab>
                 Galeria
-              </Tab>
+              </Tab> */}
               <Tab>
                 Sobre
               </Tab>
@@ -146,11 +146,11 @@ export default function ProviderModal({ show = false, providerId = null, onHide 
                 </ul>
               </section>
             </TabPanel>
-            <TabPanel>
+            {/* <TabPanel>
               <section className="gallery">
                 {images.map(image => <img key={image.url} src={image.url} />)}
               </section>
-            </TabPanel>
+            </TabPanel> */}
             <TabPanel>
               <article className="about">
                 {provider.description &&<div className="card">
