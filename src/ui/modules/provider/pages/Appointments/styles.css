@@ -23,6 +23,10 @@
   padding: 2vh 0;
 }
 
+.appointments-list tbody tr td:first-child {
+  text-align: left;
+}
+
 .appointments-list tbody tr td img {
   border-radius: 50%;
   aspect-ratio: 1;
@@ -53,4 +57,12 @@
 .appointments-list tbody tr td button.success {
   background-color: var(--success);
   color: var(--light);
+}
+
+.text-danger {
+  color: var(--danger);
+}
+
+.text-success {
+  color: var(--success);
 }
