@@ -2,9 +2,11 @@
   display: flex;
   justify-content: flex-start;
   max-height: 100vh;
+  overflow: hidden;
 }
 
 .Container-root main {
   width: 100%;
   padding: 2vh 2vw;
+  overflow: auto;
 }

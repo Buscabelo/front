@@ -81,6 +81,30 @@ export default function Appointments() {
     }
   }
 
+  const renderStatus = appointment => {
+    if (!appointment.canceled_at && !appointment.time_done_at)
+      return (
+        <>
+          <button type="button" className="danger" onClick={() => handleCancel(appointment.id)}>Cancelar</button>
+          <button type="button" className="success" onClick={() => handleFinish(appointment.id)}>Finalizar</button>
+        </>
+      );
+
+    if (appointment.canceled_at)
+      return (
+        <>
+          <span className="text-danger">Cancelado</span> em {format(parseISO(appointment.canceled_at), 'd/MM/y H:m:s')}
+        </>
+      );
+
+    if (appointment.time_done_at)
+      return (
+        <>
+          <span className="text-success">Finalizado</span> em {format(parseISO(appointment.time_done_at), 'd/MM/y H:m:s')}
+        </>
+      );
+  };
+
   return (
     <DashboardLayout>
       <table className="appointments-list">
@@ -103,8 +127,7 @@ export default function Appointments() {
             <td>{format(parseISO(appointment.scheduled_at), 'dd/MM/y H:mm')}</td>
             <td>{format(parseISO(appointment.appointment_to), 'dd/MM/y H:mm')}</td>
             <td>
-              {!appointment.canceled_at && <button type="button" className="danger" onClick={() => handleCancel(appointment.id)}>Cancelar</button>}
-              {!appointment.canceled_at && !appointment.time_done_at && <button type="button" className="success" onClick={() => handleFinish(appointment.id)}>Finalizar</button>}
+              {renderStatus(appointment)}
             </td>
           </tr>)}
         </tbody>
