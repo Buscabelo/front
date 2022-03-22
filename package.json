@@ -39,7 +39,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint --fix '**/*.{js,jsx}'",
     "lint:staged": "lint-staged",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "cy:open": "cypress open"
   },
   "browserslist": {
     "production": [
@@ -73,8 +74,10 @@
     ]
   },
   "devDependencies": {
+    "cypress": "^9.5.1",
     "eslint": "^7.32.0",
     "eslint-plugin-import": "^2.24.1",
+    "eslint-plugin-jest": "^26.1.2",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^7.0.0",
