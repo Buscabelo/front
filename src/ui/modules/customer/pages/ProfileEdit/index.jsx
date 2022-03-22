@@ -11,7 +11,7 @@ import { AppContext } from '../../../common/context/AppContext';
 export default function ProfileEdit() {
   const history = useHistory();
   const { user, token, reloadAuth } = useContext(AppContext);
-  const [avatar, setAvatar] = useState(user.avatar);
+  const [avatar, setAvatar] = useState(user?.avatar || null);
   const avatarRef = useRef();
   const name = useRef();
   const email = useRef();
@@ -82,6 +82,9 @@ export default function ProfileEdit() {
     if (avatarChanged || dataChanged)
       window.location.reload();
   };
+
+  if (user === null)
+    return null;
 
   if (isMobile || isTablet) {
     const showPreviousAvatar = () => {

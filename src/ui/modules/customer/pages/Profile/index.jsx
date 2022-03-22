@@ -18,6 +18,9 @@ export default function Profile() {
     history.replace('/');
   };
 
+  if (user === null)
+    return null;
+
   if (isMobile || isTablet) {
     return (
       <Layout>
