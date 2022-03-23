@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { IoHome, IoGrid, IoCalendar, IoExitOutline } from 'react-icons/io5';
+import { IoHome, IoGrid, IoCalendar, IoSettingsSharp, IoExitOutline } from 'react-icons/io5';
 
 import logo from '../../../../assets/images/Buscabelo_logo.png';
 
@@ -38,6 +38,13 @@ export default function MenuBar() {
           <a href="/painel/agendamentos" className={location.pathname === '/painel/agendamentos' ? 'btn active' : 'btn'}>
             <IoCalendar />
             <span>Agendamentos</span>
+          </a>
+        </div>
+
+        <div className="MenuButton">
+          <a href="/painel/perfil/edicao" className={location.pathname === '/painel/perfil/edicao' ? 'btn active' : 'btn'}>
+            <IoSettingsSharp />
+            <span>Editar dados</span>
           </a>
         </div>
 
